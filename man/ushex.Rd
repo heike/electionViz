@@ -4,7 +4,7 @@
 \name{ushex}
 \alias{ushex}
 \title{Hexbin map of the United States}
-\format{An object of class data.frame with 357 rows and 5 columns.
+\format{An object of class data.frame with 357 rows and 8 columns.
 \describe{
 \item{long}{geographic longitude}
 \item{lat}{geographic latitude}

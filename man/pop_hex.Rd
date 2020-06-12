@@ -3,8 +3,8 @@
 \docType{data}
 \name{pop_hex}
 \alias{pop_hex}
-\title{Hexbin map of the United States}
-\format{An object of class data.frame with 357 rows and 5 columns.
+\title{Hexbin map of the United States by population}
+\format{An object of class data.frame with 4515 rows and 8 columns.
 \describe{
 \item{long}{geographic longitude}
 \item{lat}{geographic latitude}

@@ -34,7 +34,7 @@ devtools::install_github("heike/electionViz")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example, include=FALSE}
+```{r example}
 library(electionViz)
 library(tidyverse)
 
@@ -43,7 +43,7 @@ USelections %>% filter(year >= 2012) %>% glimpse()
 
 elections <- USelections %>% 
   select(-office) %>%
-  group_by(year, state) %>%
+  group_by(year, state, state_po) %>%
   mutate(percent = candidatevotes/totalvotes*100) %>%
   summarise(
     votes_dem = candidatevotes[party %in% c("democrat", "democratic-farmer-labor")],
@@ -70,15 +70,42 @@ ushex_plus %>%
   ggplot() +
   geom_polygon(aes(fill =  Outcome, 
                    x = long, y = lat, group = group), 
-               colour = "grey90", size = 0.1) +
+               colour = "grey90", size = 0.1, alpha = 0.9) +
   scale_fill_manual(values = c("darkblue", "darkred")) +
   geom_text(aes(x = centerX, y = centerY, label = abbr), 
             colour = "grey80", size = 3, data = centers) +
   theme_void() +
   coord_map() +
   facet_wrap(~Election, labeller = "label_both") +
-  theme(legend.position = "bottom") 
+  theme(legend.position = "bottom") +
+  ggtitle("US Presidential Election results by state")
+```
+ 
 
+```{r electoral}
+# Merge geospatial and numerical information
+electoral_hexplus <- electoral_hex %>%
+  left_join(elections, by=c("state" = "state_po"))
+
+centers <- electoral_hex %>% select(centerX, centerY, state) %>% unique()
+# Make a first chloropleth map
+electoral_hexplus %>%
+  filter(year >= 2012) %>%
+  mutate(
+    Election = year,
+    Outcome = c("Republican", "Democrat")[as.numeric(perc_rep < perc_dem) + 1]) %>%
+  ggplot() +
+  geom_polygon(aes(fill =  Outcome, 
+                   x = long, y = lat, group = group), 
+               colour = "grey90", size = 0.1, alpha = 0.9) +
+  scale_fill_manual(values = c("darkblue", "darkred")) +
+  geom_text(aes(x = centerX, y = centerY, label = state), 
+            colour = "grey80", size = 3, data = centers) +
+  theme_void() +
+#  coord_map() +
+  facet_wrap(~Election, labeller = "label_both") +
+  theme(legend.position = "bottom") +
+  ggtitle("US Presidential Election results by electoral votes")
 ```
 
 

@@ -28,7 +28,7 @@
 #' 
 #' Hexbin map of the United states modified to include hexagon centers and state abbreviations.
 #' The original hexbin map is provided by Andrew X Hill at \url{https://team.carto.com/u/andrew/tables/andrew.us_states_hexgrid/public/map}.
-#' @format An object of class data.frame with 357 rows and 5 columns.
+#' @format An object of class data.frame with 357 rows and 8 columns.
 #' \describe{
 #' \item{long}{geographic longitude}
 #' \item{lat}{geographic latitude}
@@ -44,10 +44,10 @@
 "ushex"
 
 
-#' Hexbin map of the United States
+#' Hexbin map of the United States by population
 #' 
 #' Hexbin map of the United states. Each hexagon represents a population of about 500k. This map is based on the  `sf_Pitch_US_Population_2016_v1` map in the `tilegramsR` package by Bhaskar Karambelkar.
-#' @format An object of class data.frame with 357 rows and 5 columns.
+#' @format An object of class data.frame with 4515 rows and 8 columns.
 #' \describe{
 #' \item{long}{geographic longitude}
 #' \item{lat}{geographic latitude}
@@ -59,3 +59,20 @@
 #' \item{centerY}{center of the hexagon in latitude}
 #' }
 "pop_hex"
+
+
+#' Hexbin map of the United States by electoral votes
+#' 
+#' Hexbin map of the United states. Each hexagon represents a population of about 500k. This map is based on the  `sf_FiveThirtyEightElectoralCollege` map in the `tilegramsR` package by Bhaskar Karambelkar.
+#' @format An object of class data.frame with 3766 rows and 8 columns.
+#' \describe{
+#' \item{long}{geographic longitude}
+#' \item{lat}{geographic latitude}
+#' \item{order}{order in which nodes are connected}
+#' \item{group}{group}
+#' \item{state}{name of the state (abbreviated)}
+#' \item{FID}{state fips codes}
+#' \item{centerX}{center of the hexagon in longitude}
+#' \item{centerY}{center of the hexagon in latitude}
+#' }
+"electoral_hex"
