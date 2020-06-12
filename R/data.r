@@ -43,3 +43,19 @@
 #' @references Andrew X Hill
 "ushex"
 
+
+#' Hexbin map of the United States
+#' 
+#' Hexbin map of the United states. Each hexagon represents a population of about 500k. This map is based on the  `sf_Pitch_US_Population_2016_v1` map in the `tilegramsR` package by Bhaskar Karambelkar.
+#' @format An object of class data.frame with 357 rows and 5 columns.
+#' \describe{
+#' \item{long}{geographic longitude}
+#' \item{lat}{geographic latitude}
+#' \item{order}{order in which nodes are connected}
+#' \item{group}{group}
+#' \item{state}{name of the state (abbreviated)}
+#' \item{FID}{state fips codes}
+#' \item{centerX}{center of the hexagon in longitude}
+#' \item{centerY}{center of the hexagon in latitude}
+#' }
+"pop_hex"
