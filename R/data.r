@@ -1,58 +1,45 @@
-#' Conversion rate of 1 Australian Doller (AUD) to 1 US Dollar
-#'
-#' The dataset consists of the daily exchange rates of 1 Australian Dollar to 1 US Dollar between Jan 9 2018 and Feb 21 2018.
-#'
-#' @docType data
-#' @name aud
-NULL
-
-#' Los Angeles Lakers play-by-play data.
-#'
-#' Play by play data from all games played by the Los Angeles lakers in the
-#' 2008/2009 season.
-#'
-#' @docType data
-#' @name lal
-NULL
-
-#' Wasp gene expression data.
-#'
-#' Data from Toth et al (2010) used in Niladri Roy et al (2015)
-#'
-#' @docType data
-#' @name wasps
-NULL
-
-#' Sample turk results
-#'
-#' Subset of data from a Turk experiment, used to show how to compute power of a lineup
-#'
-#' @docType data
-#' @name turk_results
-NULL
-
-#' Polls and election results from the 2012 US Election
-#'
-#'
-#' @format A list with two data frames:
-#' polls is a data frame of 51 rows and 4 variables
+#' Results of the US Presidential elections by state 1976-2016
+#' 
+#' A dataset containing results of all US Presidential elections by state from 1976 to 2016.
+#' This data was provided by the MIT Election Data + Science Lab. 
+#' @format An object of class data.frame with 3740 rows and 14 columns.
 #' \describe{
-#' \item{State}{State name}
-#' \item{Electoral.vote}{Number of electoral votes in the 2012 election}
-#' \item{Margin}{Margin between the parties with the highest number of votes and second highest number of votes.
-#' These margins are based on polls.}
-#' \item{Democrat}{logical vector True, if the democratic party is  the majority party in this state. }
+#' \item{year}{Year of the election between 1976 and 2016}
+#' \item{state}{Name of the US state}
+#' \item{state_po}{U.S. postal code state abbreviation}
+#' \item{state_fips}{State FIPS code}
+#' \item{state_cen}{U.S. Census state code}
+#' \item{state_ic}{ICPSR state code}
+#' \item{office}{U.S. President}
+#' \item{candidate}{Name of the candidate}
+#' \item{party}{Party of the candidate}
+#' \item{writein}{Vote totals associated with write-in candidates}
+#' \item{candidatevotes}{Votes received by this candidate for this particular party}
+#' \item{totalvotes}{Total number of votes cast for this election}
+#' \item{version}{Date of final version}
+#' \item{notes}{logical vector}
 #' }
-#' `election` is a data frame of 51 rows and 5 variables
+#' @source \url{https://doi.org/10.7910/DVN/42MVDX}
+#' @references MIT Election Data and Science Lab, 2017, "U.S. President 1976–2016", \url{https://doi.org/10.7910/DVN/42MVDX}, Harvard Dataverse, V5.
+"USelections"
+
+
+#' Hexbin map of the United States
+#' 
+#' Hexbin map of the United states modified to include hexagon centers and state abbreviations.
+#' The original hexbin map is provided by Andrew X Hill at \url{https://team.carto.com/u/andrew/tables/andrew.us_states_hexgrid/public/map}.
+#' @format An object of class data.frame with 357 rows and 5 columns.
 #' \describe{
-#' \item{State}{State name}
-#' \item{Candidate}{character string of the winner: Romney or Obama}
-#' \item{Electoral.vote}{Number of electoral votes in the 2012 election}
-#' \item{Margin}{Margin between the parties with the highest number of votes and second highest number of votes.
-#' These margins are based on the actual election outcome}
-#' \item{Democrat}{logical vector True, if the democratic party is  the majority party in this state. }
+#' \item{long}{geographic longitude}
+#' \item{lat}{geographic latitude}
+#' \item{order}{order in which nodes are connected}
+#' \item{group}{group}
+#' \item{state}{name of the state}
+#' \item{abbr}{US postal code state abbreviations}
+#' \item{centerX}{center of the hexagon in longitude}
+#' \item{centerY}{center of the hexagon in latitude}
 #' }
-#' @docType data
-#' @name electoral
-NULL
+#' @source \url{https://team.carto.com/u/andrew/tables/andrew.us_states_hexgrid/public/map}
+#' @references Andrew X Hill
+"ushex"
 

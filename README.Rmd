@@ -36,10 +36,49 @@ This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(electionViz)
-# county level results from 2016 presidential elections
-el2016 <- read.csv("https://raw.githubusercontent.com/tonmcg/US_County_Level_Election_Results_08-16/master/2016_US_County_Level_Presidential_Results.csv") 
+library(tidyverse)
 
 ## basic example code
+USelections %>% filter(year >= 2012) %>% glimpse()
+
+elections <- USelections %>% 
+  select(-office) %>%
+  group_by(year, state) %>%
+  mutate(percent = candidatevotes/totalvotes*100) %>%
+  summarise(
+    votes_dem = candidatevotes[party %in% c("democrat", "democratic-farmer-labor")],
+    votes_rep = candidatevotes[party=="republican"],
+    perc_dem = percent[party %in% c("democrat", "democratic-farmer-labor")],
+    perc_rep = percent[party=="republican"],
+    totalvotes = max(totalvotes),
+    cand_dem = candidate[party %in% c("democrat", "democratic-farmer-labor")],
+    cand_rep = candidate[party=="republican"],
+    .groups = 'drop'
+  )
+
+# Merge geospatial and numerical information
+ushex_plus <- ushex %>%
+  left_join(elections, by="state")
+
+centers <- ushex %>% select(centerX, centerY, abbr) %>% unique()
+# Make a first chloropleth map
+ushex_plus %>%
+  filter(year >= 2012) %>%
+  mutate(
+    Election = year,
+    Outcome = c("Republican", "Democrat")[as.numeric(perc_rep < perc_dem) + 1]) %>%
+  ggplot() +
+  geom_polygon(aes(fill =  Outcome, 
+                   x = long, y = lat, group = group), 
+               colour = "grey90", size = 0.1) +
+  scale_fill_manual(values = c("darkblue", "darkred")) +
+  geom_text(aes(x = centerX, y = centerY, label = abbr), 
+            colour = "grey80", size = 3, data = centers) +
+  theme_void() +
+  coord_map() +
+  facet_wrap(~Election, labeller = "label_both") +
+  theme(legend.position = "bottom") 
+
 ```
 
 

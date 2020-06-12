@@ -35,6 +35,10 @@ ggplot() +
   coord_map()
 
 # HH: choropleth map
+ushex <- spdf_fortified %>% select(long, lat, order, group, id)
+use_data(ushex)
+ushex_centers <- centers
+use_data(ushex_centers)
 
 # Load mariage data
 data <- read.table("https://raw.githubusercontent.com/holtzy/R-graph-gallery/master/DATA/State_mariage_rate.csv", header=T, sep=",", na.strings="---")
