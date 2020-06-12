@@ -1,12 +1,23 @@
 Package: electionViz
-Title: What the Package Does (One Line, Title Case)
+Title: Visualizing US Polls and Election Results
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
+Authors@R: c(
+    person(given = "Heike",
+           family = "Hofmann",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "hofmann@iastate.com",
+           comment = c(ORCID = "YOUR-ORCID-ID")),
+    person(given = "Susan",
+           family = "VanderPlas",
+           role = c("aut"),
+           email = "srvanderplas@unl.com",
+           comment = c(ORCID = "YOUR-ORCID-ID")),     
+    person(given = "Kiegan",
+           family = "Rice",
+           role = c("aut"),
+           email = "ricek@iastate.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))       
+           )
 Description: What the package does (one paragraph).
 License: What license it uses
 Depends: 

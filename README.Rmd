@@ -34,7 +34,7 @@ devtools::install_github("heike/electionViz")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r example, include=FALSE}
 library(electionViz)
 library(tidyverse)
 
