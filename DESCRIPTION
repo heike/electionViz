@@ -23,7 +23,6 @@ License: What license it uses
 Depends: 
     R (>= 2.10),
     ggplot2 (>= 3.3.1),
-    tilegramsR (>= 0.2.0),
     elections (>= 1.0.0)
 Encoding: UTF-8
 LazyData: true

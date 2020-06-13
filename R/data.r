@@ -76,3 +76,19 @@
 #' \item{centerY}{center of the hexagon in latitude}
 #' }
 "electoral_hex"
+
+#' Hexbin map of the United States by electoral votes
+#' 
+#' Hexbin map of the United states. Each hexagon represents a population of about 500k. This map is based on the  `sf_FiveThirtyEightElectoralCollege` map in the `tilegramsR` package by Bhaskar Karambelkar.
+#' @format An object of class data.frame with 3766 rows and 8 columns.
+#' \describe{
+#' \item{long}{geographic longitude}
+#' \item{lat}{geographic latitude}
+#' \item{order}{order in which nodes are connected}
+#' \item{group}{group}
+#' \item{state}{name of the state (abbreviated)}
+#' \item{FID}{state fips codes}
+#' \item{centerX}{center of the hexagon in longitude}
+#' \item{centerY}{center of the hexagon in latitude}
+#' }
+"electoral_state_outline_hex"

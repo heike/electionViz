@@ -111,20 +111,21 @@ ushex_plus %>%
 electoral_hexplus <- electoral_hex %>%
   left_join(elections, by=c("state" = "state_po"))
 
-centers <- electoral_hex %>% select(centerX, centerY, state) %>% unique()
 # Make a first chloropleth map
 electoral_hexplus %>%
   filter(year >= 2012) %>%
   mutate(
     Election = year,
     Outcome = c("Republican", "Democrat")[as.numeric(perc_rep < perc_dem) + 1]) %>%
-  ggplot() +
-  geom_polygon(aes(fill =  Outcome, 
-                   x = long, y = lat, group = group), 
+  ggplot(aes(x = long, y = lat, group = group)) +
+  geom_polygon(aes(fill =  Outcome), 
                colour = "grey90", size = 0.1, alpha = 0.9) +
   scale_fill_manual(values = c("darkblue", "darkred")) +
   geom_text(aes(x = centerX, y = centerY, label = state), 
-            colour = "grey80", size = 3, data = centers) +
+            colour = "grey80", size = 3, 
+            data = electoral_state_outline_hex) +
+  geom_path(colour = "grey80", size = 0.5, 
+            data = electoral_state_outline_hex) +
   theme_void() +
 #  coord_map() +
   facet_wrap(~Election, labeller = "label_both") +
