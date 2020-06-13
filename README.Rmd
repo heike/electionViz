@@ -32,14 +32,26 @@ devtools::install_github("heike/electionViz")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+We will be inundated with information about the state of the polls in the build-up to the upcoming Presidential election of 2020.
 
-```{r example}
+With the tools of this package you will be able to pick your favorite visualization(s) and explore the results your own way.
+
+```{r, message = FALSE, warning = FALSE}
+# load the package
 library(electionViz)
+```
+
+
+### Hexbin Cartogram of Election Results by State
+
+Each state is represented by one hexagon. This map has been made available by Andrew X Hill at [CARTO](https://team.carto.com/u/andrew/tables/andrew.us_states_hexgrid/public/map).
+
+
+```{r example, echo=FALSE, warning = FALSE, message = FALSE}
 library(tidyverse)
 
 ## basic example code
-USelections %>% filter(year >= 2012) %>% glimpse()
+#USelections %>% filter(year >= 2012) %>% glimpse()
 
 elections <- USelections %>% 
   select(-office) %>%
@@ -82,7 +94,11 @@ ushex_plus %>%
 ```
  
 
-```{r electoral}
+### Hexbin Cartogram of the US Presidential Election by Electoral Votes
+
+Each state is represented by a set of hexagons corresponding in number to the state's electoral votes. This map was adapted from the object `sf_FiveThirtyEightElectoralCollege` in Bhaskar Karambelkar's R package [tilegramsR](https://github.com/bhaskarvk/tilegramsR).
+
+```{r electoral, echo=FALSE, warning = FALSE, message = FALSE}
 # Merge geospatial and numerical information
 electoral_hexplus <- electoral_hex %>%
   left_join(elections, by=c("state" = "state_po"))
@@ -95,12 +111,12 @@ electoral_hexplus %>%
     Outcome = c("Republican", "Democrat")[as.numeric(perc_rep < perc_dem) + 1]) %>%
   ggplot(aes(x = long, y = lat, group = group)) +
   geom_polygon(aes(fill =  Outcome), 
-               colour = "grey90", size = 0.1, alpha = 0.9) +
+               colour = "grey60", size = 0.1, alpha = 0.9) +
   scale_fill_manual(values = c("darkblue", "darkred")) +
   geom_text(aes(x = centerX, y = centerY, label = state), 
-            colour = "grey80", size = 3, 
-            data = electoral_state_outline_hex) +
-  geom_path(colour = "grey80", size = 0.5, 
+            colour = "grey90", size = 3, 
+            data = unique(electoral_state_outline_hex[,c("centerX", "centerY", "state", "group")])) +
+  geom_path(colour = "grey70", size = 0.35, 
             data = electoral_state_outline_hex) +
   theme_void() +
 #  coord_map() +
