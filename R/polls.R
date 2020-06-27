@@ -10,7 +10,7 @@ rcp_race_info <- function(nodelist) {
   txt <- rvest::html_text(x = nodelist, trim = T)
   tibble::tibble(
     idx = 1:length(txt),
-    rcp_state_poll_link = rvest::html_attr(nodelist, "href"),
+    rcp_poll_page_link = rvest::html_attr(nodelist, "href"),
     state = stringr::str_extract(txt, "^([A-z ]{1,})"),
     race = stringr::str_extract(txt, "([A-z \\.]{1,})$") %>% stringr::str_trim()
   )
@@ -64,7 +64,7 @@ rcp_detail_poll_info <- function(url_frag) {
     tidyr::nest(res = c(candidate, pct)) %>%
     # dplyr::rename(pollster = Poll) %>%
     dplyr::mutate(poll_link = get_poll_link(table_node),
-                  rcp_state_poll_link = url_frag)
+                  rcp_poll_page_link = url_frag)
   
   tmp
 }
@@ -117,8 +117,10 @@ rcp_update <- function(type = "state_president") {
     dplyr::select(-table_node) %>%
     tidyr::unnest(data)
   
-  detailed_info <- unique(info$rcp_state_poll_link)  %>%
+  detailed_info <- unique(info$rcp_poll_page_link)  %>%
       purrr::map_df(rcp_detail_poll_info)
-  info <- dplyr::left_join(info, detailed_info, by = c("rcp_state_poll_link", "poll_link"))
+  info <- dplyr::left_join(info, detailed_info, by = c("rcp_poll_page_link", "poll_link")) %>%
+    dplyr::select(-idx) %>%
+    dplyr::rename(Date_Posted = date, Pop = state, Poll_Abbrev = Poll, Poll = pollster)
   info
 }
