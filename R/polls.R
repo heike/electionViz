@@ -24,29 +24,73 @@ rcp_poll_info <- function(nodelist) {
   )
 }
 
-rcp_results_info <- function(nodelist) {
-  c1 <- c1score <- c2 <- c2score <- candidate <- idx <- pct <- . <- NULL
+# rcp_results_info <- function(nodelist) {
+#   c1 <- c1score <- c2 <- c2score <- candidate <- idx <- pct <- . <- NULL
+#   
+#   tmp <- rvest::html_text(x = nodelist, trim = T)
+#   tibble::tibble(tmp = tmp, idx = 1:length(tmp)) %>%
+#     tidyr::extract(tmp, into = c("c1", "c1score", "c2", "c2score"), "([A-z]{1,}) (\\d{1,3}), ([A-z]{1,}) (\\d{1,3})") %>%
+#     tidyr::pivot_wider(names_from = c(c1, c2), values_from = c(c1score, c2score)) %>%
+#     magrittr::set_names(stringr::str_replace_all(names(.), c("c1score_([A-z]{1,})_([A-z]{1,})"="c1_\\1",
+#                                                              "c2score_([A-z]{1,})_([A-z]{1,})"="c2_\\2"))) %>%
+#     tidyr::pivot_longer(-1, names_to = "candidate", values_to = "pct") %>%
+#     dplyr::filter(!is.na(pct)) %>%
+#     dplyr::mutate(candidate = stringr::str_remove(candidate, "c\\d_")) %>%
+#     # tidyr::pivot_wider(names_from = candidate, values_from = pct) %>%
+#     tidyr::nest(res = -idx)
+# }
+
+
+rcp_detail_poll_info <- function(url_frag) {
+  Date <- Spread <- Sample <- MoE <- Sample_n <- candidate <- pct <- NULL
   
-  tmp <- rvest::html_text(x = nodelist, trim = T)
-  tibble::tibble(tmp = tmp, idx = 1:length(tmp)) %>%
-    tidyr::extract(tmp, into = c("c1", "c1score", "c2", "c2score"), "([A-z]{1,}) (\\d{1,3}), ([A-z]{1,}) (\\d{1,3})") %>%
-    tidyr::pivot_wider(names_from = c(c1, c2), values_from = c(c1score, c2score)) %>%
-    magrittr::set_names(stringr::str_replace_all(names(.), c("c1score_([A-z]{1,})_([A-z]{1,})"="c1_\\1",
-                                                             "c2score_([A-z]{1,})_([A-z]{1,})"="c2_\\2"))) %>%
-    tidyr::pivot_longer(-1, names_to = "candidate", values_to = "pct") %>%
-    dplyr::filter(!is.na(pct)) %>%
-    dplyr::mutate(candidate = stringr::str_remove(candidate, "c\\d_")) %>%
-    # tidyr::pivot_wider(names_from = candidate, values_from = pct) %>%
-    tidyr::nest(res = -idx)
+  url <- paste0("https://www.realclearpolitics.com", url_frag)
+  page <- xml2::read_html(url)
+  
+  # --- Clear out mobile links ---
+  mobilelink <- rvest::xml_nodes(page, ".normal_pollster_name") %>%
+    purrr::walk(xml2::xml_remove)
+  table_node <- page %>%
+    rvest::xml_nodes(xpath = "(//table[contains(@class, 'data')])")
+  table_node <- table_node[[length(table_node)]]
+  
+  # --- Extra fun to get poll link for merge
+  get_poll_link <- function(x) {
+    tmp <- xml2::xml_find_all(x, "*/td[1]") %>% 
+      purrr::map(~try(xml2::xml_child(.), silent = T)) %>% 
+      purrr::map_chr(~try(rvest::html_attr(., "href"), silent = T))
+    
+    tmp[grepl("Error ", tmp)] <- NA
+    tmp
+  }
+  
+  # --- define cols not to pivot (easier than handling candidate names, etc.)
+  nopivot <- c("id", "Poll", "Date_Start", "Date_End", "Sample_n", "Sample_type", "MoE")
+  as.numeric.nowarning <- function(x) suppressWarnings(as.numeric(x))
+  tmp <- rvest::html_table(table_node) 
+  if (length(tmp) == 1) tmp <- tmp[[1]]
+  
+  tmp <- tmp %>%
+    tidyr::extract(Date, c("Date_Start", "Date_End"), "(\\d{1,2}.\\d{1,2}) - (\\d{1,2}.\\d{1,2})") %>%
+    dplyr::select(-Spread) %>%
+    dplyr::mutate(dplyr::across(dplyr::matches("Date"), ~paste0(., "/2020") %>% lubridate::mdy())) %>%
+    tidyr::extract(Sample, c("Sample_n", "Sample_type"), regex = "(\\d{1,}) (.*)") %>%
+    dplyr::mutate(dplyr::across(c(MoE, Sample_n), as.numeric.nowarning)) %>%
+    dplyr::mutate(id = 1:dplyr::n()) %>%
+    tidyr::pivot_longer(-dplyr::one_of(nopivot), names_to = "candidate", values_to = "pct") %>%
+    tidyr::nest(res = c(candidate, pct)) %>%
+    # dplyr::rename(pollster = Poll) %>%
+    dplyr::mutate(poll_link = get_poll_link(table_node),
+                  rcp_state_poll_link = url_frag)
+  
+  tmp
 }
 
 get_rcp_poll_info <- function(node) {
   races <- rvest::xml_nodes(node, xpath = "tr/td[@class='lp-race']/a") %>% rcp_race_info()
   polls <- rvest::xml_nodes(node, xpath="tr/td[@class='lp-poll']/a") %>% rcp_poll_info()
-  results <- rvest::xml_nodes(node, xpath="tr/td[@class='lp-results']/a") %>% rcp_results_info()
-  # spread <- rvest::xml_nodes(node, xpath="tr/td[@class='lp-spread']") 
-  dplyr::left_join(races, polls, by = "idx") %>%
-    dplyr::left_join(results, by = "idx")
+  # get detailed poll info only once for each state, not with each poll
+  dplyr::left_join(races, polls, by = "idx")
 }
 
 #' This function returns the latest polls from Real Clear Politics
@@ -68,7 +112,7 @@ get_rcp_poll_info <- function(node) {
 #' rcp_update()
 #' rcp_update("national_president")
 rcp_update <- function(type = "state_president") {
-  table_node <- data <- NULL
+  table_node <- data <- . <- NULL
   
   stopifnot(type %in% c("national_president", "state_president", "senate", "governor", "state_of_the_union"))
   url <- paste0("https://www.realclearpolitics.com/epolls/latest_polls/", type, "/")
@@ -86,9 +130,12 @@ rcp_update <- function(type = "state_president") {
     purrr::map(rvest::html_node, xpath = "following-sibling::*[1]")
   
   info <- tibble::tibble(date = table_dates, table_node = table_dates_nextsib) %>%
-    dplyr::mutate(data = purrr::map(table_node, get_rcp_poll_info)) %>%
+    dplyr::mutate(data = purrr::map(table_node, ~try(get_rcp_poll_info(.)))) %>%
     dplyr::select(-table_node) %>%
-    tidyr::unnest(data) 
+    tidyr::unnest(data)
+  
+  detailed_info <- unique(info$rcp_state_poll_link)  %>%
+      purrr::map_df(rcp_detail_poll_info)
+  info <- dplyr::left_join(info, detailed_info, by = c("rcp_state_poll_link", "poll_link"))
   info
 }
-
