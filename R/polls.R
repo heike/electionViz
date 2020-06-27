@@ -24,23 +24,6 @@ rcp_poll_info <- function(nodelist) {
   )
 }
 
-# rcp_results_info <- function(nodelist) {
-#   c1 <- c1score <- c2 <- c2score <- candidate <- idx <- pct <- . <- NULL
-#   
-#   tmp <- rvest::html_text(x = nodelist, trim = T)
-#   tibble::tibble(tmp = tmp, idx = 1:length(tmp)) %>%
-#     tidyr::extract(tmp, into = c("c1", "c1score", "c2", "c2score"), "([A-z]{1,}) (\\d{1,3}), ([A-z]{1,}) (\\d{1,3})") %>%
-#     tidyr::pivot_wider(names_from = c(c1, c2), values_from = c(c1score, c2score)) %>%
-#     magrittr::set_names(stringr::str_replace_all(names(.), c("c1score_([A-z]{1,})_([A-z]{1,})"="c1_\\1",
-#                                                              "c2score_([A-z]{1,})_([A-z]{1,})"="c2_\\2"))) %>%
-#     tidyr::pivot_longer(-1, names_to = "candidate", values_to = "pct") %>%
-#     dplyr::filter(!is.na(pct)) %>%
-#     dplyr::mutate(candidate = stringr::str_remove(candidate, "c\\d_")) %>%
-#     # tidyr::pivot_wider(names_from = candidate, values_from = pct) %>%
-#     tidyr::nest(res = -idx)
-# }
-
-
 rcp_detail_poll_info <- function(url_frag) {
   Date <- Spread <- Sample <- MoE <- Sample_n <- candidate <- pct <- NULL
   
