@@ -24,4 +24,14 @@ Depends:
     R (>= 2.10)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
+Imports: 
+    magrittr,
+    xml2,
+    rvest,
+    purrr,
+    stringr,
+    lubridate,
+    dplyr,
+    tibble,
+    tidyr
