@@ -4,8 +4,7 @@
 \name{ushex}
 \alias{ushex}
 \title{Hexbin map of the United States}
-\format{
-An object of class data.frame with 357 rows and 8 columns.
+\format{An object of class data.frame with 357 rows and 8 columns.
 \describe{
 \item{long}{geographic longitude}
 \item{lat}{geographic latitude}
@@ -15,8 +14,7 @@ An object of class data.frame with 357 rows and 8 columns.
 \item{abbr}{US postal code state abbreviations}
 \item{centerX}{center of the hexagon in longitude}
 \item{centerY}{center of the hexagon in latitude}
-}
-}
+}}
 \source{
 \url{https://team.carto.com/u/andrew/tables/andrew.us_states_hexgrid/public/map}
 }

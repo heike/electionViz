@@ -4,8 +4,7 @@
 \name{electoral_hex}
 \alias{electoral_hex}
 \title{Hexbin map of the United States by electoral votes}
-\format{
-An object of class data.frame with 3766 rows and 8 columns.
+\format{An object of class data.frame with 3766 rows and 8 columns.
 \describe{
 \item{long}{geographic longitude}
 \item{lat}{geographic latitude}
@@ -15,8 +14,7 @@ An object of class data.frame with 3766 rows and 8 columns.
 \item{FID}{state fips codes}
 \item{centerX}{center of the hexagon in longitude}
 \item{centerY}{center of the hexagon in latitude}
-}
-}
+}}
 \usage{
 electoral_hex
 }

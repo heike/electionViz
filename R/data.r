@@ -92,3 +92,18 @@
 #' \item{centerY}{center of the hexagon in latitude}
 #' }
 "electoral_state_outline_hex"
+
+
+#' Electoral votes corresponding to U.S. states and Maine, Nebraska congressional districts
+#' 
+#' Electoral votes corresponding to U.S. states and congressional districts for Maine and Nebraska. Data from the UC-Santa Barbara American Presidency Project
+#' @format An object of class data.frame with 56 rows and 4 columns.
+#' \describe{
+#' \item{state_district}{state name or congressional district}
+#' \item{electoral_votes}{number of electoral votes associated with state or district}
+#' \item{perc_dem}{percentage of votes earned by democratic candidate in 2016}
+#' \item{perc_rep}{percentage of votes earned by republican candidate in 2016}
+#' }
+#' @source \url{https://www.presidency.ucsb.edu/statistics/elections/2016}
+"electoral_votes_2016"
+
