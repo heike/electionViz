@@ -48,3 +48,11 @@ to the state’s electoral votes. This map was adapted from the object
 [tilegramsR](https://github.com/bhaskarvk/tilegramsR).
 
 <img src="man/figures/README-electoral-1.png" width="100%" />
+
+### Electoral Building of the U.S. Presidential Election by Electoral Votes and Margin of Victory
+
+“Electoral Building” diagram, inspired by a 2000 graphic from the New
+York Times. Vote margin is represented on the x axis, while number of
+electoral votes is represented in the height.
+
+<img src="man/figures/README-building-1.png" width="100%" />

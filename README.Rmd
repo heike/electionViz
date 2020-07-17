@@ -126,9 +126,11 @@ electoral_hexplus %>%
 ```
 
 
-## Electoral Building of the U.S. Presidential Election by Electoral Votes and Margin of Victory 
+### Electoral Building of the U.S. Presidential Election by Electoral Votes and Margin of Victory  
 
-```{r building, echo = F, warning = F, message = F}
+"Electoral Building" diagram, inspired by a 2000 graphic from the New York Times. Vote margin is represented on the x axis, while number of electoral votes is represented in the height. 
+
+```{r building, echo = F, warning = F, message = F, fig.width = 6, fig.height = 9}
 geom_electoral_building <- function(state_district, electoral_votes, perc_dem, perc_rep){
   df <- data.frame(state_district, electoral_votes, perc_dem, perc_rep, stringsAsFactors = F)
   df <- df %>% mutate(rep_margin = perc_rep - perc_dem, 
