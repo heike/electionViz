@@ -149,9 +149,13 @@ split_df_bezier <- function(df, height = NULL, buffer = NULL) {
 #' TODO: Make this work with NSE 
 #' 
 #' @param data data frame with format similar to electoral_votes_2016
+#' @param height  defaults to NULL
+#' @param buffer space between beads, defaults to  NULL
+#' @importFrom ggforce geom_bezier
+#' @importFrom tidyr nest
+#' @export
 #' @examples 
 #' 
-#' library(tidyverse)
 #' data("electoral_votes_2016")
 #' bead_snake_plot(electoral_votes_2016)
 #' bead_snake_plot(electoral_votes_2016, height = 40, buffer = 3)
@@ -186,7 +190,7 @@ bead_snake_plot <- function(data, height = NULL, buffer = NULL) {
     summarize(across(everything(), mysumfun)) %>%
     arrange(ord) %>%
     # Hide unnecessary stuff
-    nest(data = -c(xcol2, colwidth, seqsign)) %>%
+    tidyr::nest(data = -c(xcol2, colwidth, seqsign)) %>%
     # Compute x coord
     mutate(x = cumsum(lag(colwidth, 1, 0)) + .5 * colwidth) %>%
     unnest(c(data)) %>%

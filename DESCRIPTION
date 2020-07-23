@@ -6,12 +6,12 @@ Authors@R: c(
            family = "Hofmann",
            role = c("aut", "cre"),
            email = "hofmann@iastate.com",
-           comment = c(ORCID = "YOUR-ORCID-ID")),
+           comment = c(ORCID = "0000-0001-6216-5183")),
     person(given = "Susan",
            family = "VanderPlas",
            role = c("aut"),
            email = "srvanderplas@unl.com",
-           comment = c(ORCID = "YOUR-ORCID-ID")),     
+           comment = c(ORCID = "0000-0002-3803-0972")),     
     person(given = "Kiegan",
            family = "Rice",
            role = c("aut"),
@@ -22,9 +22,6 @@ Description: What the package does (one paragraph).
 License: CCBY-4.0
 Depends: 
     R (>= 2.10)
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.1.1
 Imports: 
     magrittr,
     xml2,
@@ -34,4 +31,9 @@ Imports:
     lubridate,
     dplyr,
     tibble,
-    tidyr
+    tidyr,
+    ggplot2,
+    ggforce (>= 0.3.1)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
