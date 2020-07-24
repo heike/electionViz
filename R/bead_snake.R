@@ -151,8 +151,10 @@ split_df_bezier <- function(df, height = NULL, buffer = NULL) {
 #' @param data data frame with format similar to electoral_votes_2016
 #' @param height  defaults to NULL
 #' @param buffer space between beads, defaults to  NULL
-#' @importFrom ggforce geom_bezier
+#' @importFrom ggforce geom_bezier geom_circle
 #' @importFrom tidyr nest
+#' @import ggplot2 
+#' @importFrom stats df
 #' @export
 #' @examples 
 #' 
@@ -197,6 +199,7 @@ bead_snake_plot <- function(data, height = NULL, buffer = NULL) {
     # Hide unnecessary stuff
     nest(extra = c(colwidth, seq, absseq, bead_dist, total_dist, ydir)) 
   
+  data(state, package="datasets") # load data
   # Make nice labels... TODO: make this something that is passed in
   plot_df <- plot_df %>%
     left_join(tibble(state_district = c(state.name, "District of Columbia"), 
