@@ -161,7 +161,7 @@ split_df_bezier <- function(df, height = NULL, buffer = NULL) {
 #' 
 #' data("electoral_votes_2016")
 #' bead_snake_plot(electoral_votes_2016)
-#' bead_snake_plot(electoral_votes_2016, height = 40, buffer = 3)
+#' bead_snake_plot(electoral_votes_2016, height = 30, buffer = 3)
 bead_snake_plot <- function(data, height = max(sqrt(electoral_votes_2016$electoral_votes)*8), buffer = min(sqrt(electoral_votes_2016$electoral_votes)*3)) {
 
   # Prep data
@@ -211,19 +211,19 @@ bead_snake_plot <- function(data, height = max(sqrt(electoral_votes_2016$elector
   ggplot() + 
     # Should probably set this up so that it's not the center of the line, but offset based on % over 270
     # and maybe normalize things? Not sure... space rows based on # electoral votes?...
-    geom_vline(aes(xintercept = x), data = filter(plot_df, seqsign == 0)) + 
-    geom_text(aes(x = x, y = Inf, label = "270 Electoral Votes"), data = filter(plot_df, seqsign == 0),
-              hjust = 0, vjust = 2, nudge_x = 2) + 
+    geom_vline(aes(xintercept = x), data = filter(plot_df, seqsign == 0), colour = "grey70") + 
+    geom_label(aes(x = x, y = Inf, label = "270 Electoral Votes"), data = filter(plot_df, seqsign == 0),
+               hjust = 0.5, vjust = 1) + 
     # Plot bezier curve underneath
-    ggforce::geom_bezier(data = bezier, aes(x = x, y = y, group = id)) + 
+    ggforce::geom_bezier(data = bezier, aes(x = x, y = y, group = id), colour = "grey70") + 
     # Plot circles scaled so that area is precisely the # electoral votes
     ggforce::geom_circle(aes(x0 = x, y0 = y, r = radius, color = split, fill = split), 
                          alpha = 1, data = plot_df) + 
     geom_text(aes(x = x, y = y+radius, label = label), 
               nudge_x = 1, nudge_y = 1, data = plot_df, size = 2, alpha = 1) +
-    scale_color_gradientn(guide = F, colors = c("darkred", "red", "grey70", "blue", "darkblue"), 
+    scale_color_gradientn(guide = "none", colors = c("darkred", "red", "grey70", "blue", "darkblue"), 
                           values = c(0, .48, .5, .52, 1), limits = c(-100, 100)) + 
-    scale_fill_gradientn(guide = F, colors = c("darkred", "red", "white", "blue", "darkblue"), 
+    scale_fill_gradientn(guide = "none", colors = c("darkred", "red", "white", "blue", "darkblue"), 
                          values = c(0, .48, .5, .52, 1), limits = c(-100, 100)) + 
     coord_fixed() + 
     theme(panel.grid = element_blank(), panel.background = element_blank(),

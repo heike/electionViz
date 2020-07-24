@@ -24,5 +24,5 @@ TODO: Make this work with NSE
 
 data("electoral_votes_2016")
 bead_snake_plot(electoral_votes_2016)
-bead_snake_plot(electoral_votes_2016, height = 40, buffer = 3)
+bead_snake_plot(electoral_votes_2016, height = 30, buffer = 3)
 }
