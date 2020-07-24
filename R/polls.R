@@ -70,6 +70,7 @@ rcp_detail_poll_info <- function(url_frag) {
 }
 
 get_rcp_poll_info <- function(node) {
+  idx <- NULL
   races <- rvest::xml_nodes(node, xpath = "tr/td[@class='lp-race']/a") %>% rcp_race_info()
   polls <- rvest::xml_nodes(node, xpath="tr/td[@class='lp-poll']/a") %>% rcp_poll_info()
   # get detailed poll info only once for each state, not with each poll

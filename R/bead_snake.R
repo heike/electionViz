@@ -81,7 +81,8 @@ compute_dir <- function(xx, adjust = 3) {
 #' @import purrr
 add_control_points <- function(df, dir = "right", adjust = 3) {
   # this assumes df is properly sorted ahead of time
-  
+  idx <- NULL
+    
   # dir is the direction in x - moving right or moving left
   if (dir == "left") {
     df <- rev(df)
@@ -149,8 +150,8 @@ split_df_bezier <- function(df, height = NULL, buffer = NULL) {
 #' TODO: Make this work with NSE 
 #' 
 #' @param data data frame with format similar to electoral_votes_2016
-#' @param height  defaults to NULL
-#' @param buffer space between beads, defaults to  NULL
+#' @param height column height, default is carefully chosen based on number of electoral votes
+#' @param buffer space between beads
 #' @importFrom ggforce geom_bezier geom_circle
 #' @importFrom tidyr nest
 #' @import ggplot2 
@@ -161,13 +162,8 @@ split_df_bezier <- function(df, height = NULL, buffer = NULL) {
 #' data("electoral_votes_2016")
 #' bead_snake_plot(electoral_votes_2016)
 #' bead_snake_plot(electoral_votes_2016, height = 40, buffer = 3)
-bead_snake_plot <- function(data, height = NULL, buffer = NULL) {
-  # Column height
-  if (is.null(height)) height <- max(sqrt(electoral_votes_2016$electoral_votes)*8)
-  # space between beads
-  if (is.null(buffer)) buffer <- min(sqrt(electoral_votes_2016$electoral_votes)*3)
-  
-  
+bead_snake_plot <- function(data, height = max(sqrt(electoral_votes_2016$electoral_votes)*8), buffer = min(sqrt(electoral_votes_2016$electoral_votes)*3)) {
+
   # Prep data
   seg_arrange <- data %>%
     mutate(split = perc_dem - perc_rep) %>%
@@ -199,7 +195,7 @@ bead_snake_plot <- function(data, height = NULL, buffer = NULL) {
     # Hide unnecessary stuff
     nest(extra = c(colwidth, seq, absseq, bead_dist, total_dist, ydir)) 
   
-  data(state, package="datasets") # load data
+  data("state", package="datasets", envir = environment()) # load data
   # Make nice labels... TODO: make this something that is passed in
   plot_df <- plot_df %>%
     left_join(tibble(state_district = c(state.name, "District of Columbia"), 
