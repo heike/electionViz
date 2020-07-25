@@ -97,6 +97,7 @@ get_rcp_poll_info <- function(node) {
 #' rcp_update("national_president")
 rcp_update <- function(type = "state_president") {
   table_node <- data <- . <- NULL
+  idx <- state <- Poll <- pollster <- NULL
   
   stopifnot(type %in% c("national_president", "state_president", "senate", "governor", "state_of_the_union"))
   url <- paste0("https://www.realclearpolitics.com/epolls/latest_polls/", type, "/")

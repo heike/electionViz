@@ -7,6 +7,10 @@ cum_half_sum <- function(x) {
 #' Sets up beads based on initial information
 #' This should eventually become stat_beads or something like that, I think.
 set_up_beads <- function(df, height = NULL, buffer = NULL) {
+  # R CMD check
+  electoral_votes <- radius <- bead_dist <- total_dist <- xcol2 <- NULL
+  ydir <- NULL
+  
   df %>% 
     mutate(
       # Compute point radius
@@ -49,6 +53,9 @@ compute_control_point <- function(dfs, xwt = .5, ywt = .5, dir = 0, ...) {
   # check df has columns x, y
   stopifnot("x" %in% names(dfs), "y" %in% names(dfs), "radius" %in% names(dfs))
   stopifnot(nrow(df) == 2)
+  
+  # R CMD check
+  x <- y <- NULL
   
   # create a row for the control point
   dfnew <- dfs %>% summarize(across(everything(), mysumfun))
@@ -117,11 +124,13 @@ add_control_points <- function(df, dir = "right", adjust = 3) {
 #' @import tibble
 split_df_bezier <- function(df, height = NULL, buffer = NULL) {
   stopifnot(c("xcol2", "seqsign", "x", "y", "ord") %in% names(df))
+  # making R CMD check happpy
+  ord <- nr <- x <- y <- seqsign <- xcol2 <- NULL
+
   # break up segments
   df <- df %>% mutate(xcol2 = seqsign * (abs(seqsign) + xcol2))
   # get main parts of segments
-  tmp <- df %>%
-    split(., .$xcol2)
+  tmp <- split(df, df$xcol2)
   
   cpdf <- tibble(
     df = map(tmp, function(xx) {
@@ -163,6 +172,11 @@ split_df_bezier <- function(df, height = NULL, buffer = NULL) {
 #' bead_snake_plot(electoral_votes_2016)
 #' bead_snake_plot(electoral_votes_2016, height = 30, buffer = 3)
 bead_snake_plot <- function(data, height = max(sqrt(electoral_votes_2016$electoral_votes)*8), buffer = min(sqrt(electoral_votes_2016$electoral_votes)*3)) {
+  # Make R CMD check happy
+  perc_dem <- perc_rep <- electoral_votes <- evtot <- absseq <- NULL
+  ord <- xcol2 <- colwidth <- seqsign <- bead_dist <- total_dist <- NULL
+  ydir <- state.name <- state.abb <- state_district <- x <- y <- NULL
+  radius <- label <- abb <- NULL
 
   # Prep data
   seg_arrange <- data %>%
@@ -178,10 +192,12 @@ bead_snake_plot <- function(data, height = max(sqrt(electoral_votes_2016$elector
   # Split into chunks
   left <- filter(seg_arrange, seq <= 0) %>%
     arrange(absseq) %>%
-    set_up_beads(., height = height, buffer = buffer)
+    set_up_beads(height = height, buffer = buffer)
+#    set_up_beads(., height = height, buffer = buffer)
   right <- filter(seg_arrange, seq >= 0) %>%
     arrange(absseq) %>% 
-    set_up_beads(., height = height, buffer = buffer)
+    set_up_beads(height = height, buffer = buffer)
+#   set_up_beads(., height = height, buffer = buffer)
   
   plot_df <- bind_rows(left, right) %>%
     group_by(ord) %>%
