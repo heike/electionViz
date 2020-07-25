@@ -1,11 +1,19 @@
+#' Helper function
+#' 
 #' This function is useful for calculating the location of the center of the 
 #' beads in various situations
+#' @param x vector
 cum_half_sum <- function(x) {
   cumsum(lag(x, 1, 0)) + .5*x
 }
 
+#' Helper function
+#' 
 #' Sets up beads based on initial information
 #' This should eventually become stat_beads or something like that, I think.
+#' @param df data frame
+#' @param height overall height
+#' @param buffer space between beads
 set_up_beads <- function(df, height = NULL, buffer = NULL) {
   # R CMD check
   electoral_votes <- radius <- bead_dist <- total_dist <- xcol2 <- NULL
@@ -34,8 +42,11 @@ set_up_beads <- function(df, height = NULL, buffer = NULL) {
     )
 }
 
+#' Helper function
+#' 
 #' Summarize by taking the mean (if numeric), the unique value 
 #' (if there's only one), and NA otherwise
+#' @param x vector
 mysumfun <- function(x) {
   if (is.character(x)) {
     if (length(unique(x)) == 1) unique(x) else NA
@@ -46,9 +57,16 @@ mysumfun <- function(x) {
   } 
 }
 
+#' Helper function
+#' 
 #' This function computes the control point based on weights passed in - 
 #' the control point is (xwt, ywt) in relative proportion between the two rows 
 #' in the data frame
+#' @param dfs dataset
+#' @param xwt some weight along x direction
+#' @param ywt some weight along y direction
+#' @param dir parameter controlling the direction
+#' @param ... passed on to inside functions
 compute_control_point <- function(dfs, xwt = .5, ywt = .5, dir = 0, ...) { 
   # check df has columns x, y
   stopifnot("x" %in% names(dfs), "y" %in% names(dfs), "radius" %in% names(dfs))
@@ -69,7 +87,11 @@ compute_control_point <- function(dfs, xwt = .5, ywt = .5, dir = 0, ...) {
   bind_rows(dfs, dfnew) %>% arrange(x, y)
 }
 
+#' Helper function
+#' 
 #' Compute the direction/y offset of the bezier control point
+#' @param xx data frame
+#' @param adjust integer
 compute_dir <- function(xx, adjust = 3) {
   # This function should be applied to a whole uni-directional-ish segment 
   # e.g. y is almost always increasing
@@ -83,6 +105,8 @@ compute_dir <- function(xx, adjust = 3) {
 #' Add control points to the middle of a two-point data frame
 #' 
 #' @param df tibble subset of bead dataframe
+#' @param dir direction
+#' @param adjust adjustment
 #' @import tibble
 #' @import dplyr
 #' @import purrr

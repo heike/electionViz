@@ -2,9 +2,14 @@
 % Please edit documentation in R/bead_snake.R
 \name{compute_dir}
 \alias{compute_dir}
-\title{Compute the direction/y offset of the bezier control point}
+\title{Helper function}
 \usage{
 compute_dir(xx, adjust = 3)
+}
+\arguments{
+\item{xx}{data frame}
+
+\item{adjust}{integer}
 }
 \description{
 Compute the direction/y offset of the bezier control point

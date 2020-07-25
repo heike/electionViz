@@ -2,10 +2,12 @@
 % Please edit documentation in R/bead_snake.R
 \name{mysumfun}
 \alias{mysumfun}
-\title{Summarize by taking the mean (if numeric), the unique value 
-(if there's only one), and NA otherwise}
+\title{Helper function}
 \usage{
 mysumfun(x)
+}
+\arguments{
+\item{x}{vector}
 }
 \description{
 Summarize by taking the mean (if numeric), the unique value 

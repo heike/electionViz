@@ -2,10 +2,12 @@
 % Please edit documentation in R/bead_snake.R
 \name{cum_half_sum}
 \alias{cum_half_sum}
-\title{This function is useful for calculating the location of the center of the 
-beads in various situations}
+\title{Helper function}
 \usage{
 cum_half_sum(x)
+}
+\arguments{
+\item{x}{vector}
 }
 \description{
 This function is useful for calculating the location of the center of the 

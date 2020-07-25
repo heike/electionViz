@@ -8,6 +8,10 @@ add_control_points(df, dir = "right", adjust = 3)
 }
 \arguments{
 \item{df}{tibble subset of bead dataframe}
+
+\item{dir}{direction}
+
+\item{adjust}{adjustment}
 }
 \description{
 Add control points to the middle of a two-point data frame
