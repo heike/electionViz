@@ -122,7 +122,8 @@ rcp_update <- function(type = "state_president") {
   detailed_info <- unique(info$rcp_poll_page_link)  %>%
       purrr::map_df(rcp_detail_poll_info)
   info <- dplyr::left_join(info, detailed_info, by = c("rcp_poll_page_link", "poll_link")) %>%
-    dplyr::select(-idx) %>%
-    dplyr::rename(Date_Posted = date, Pop = state, Poll_Abbrev = Poll, Poll = pollster)
+    dplyr::select(-idx) #%>%
+#    dplyr::rename(Date_Posted = date, Pop = state, Poll_Abbrev = Poll, Poll = pollster)
+
   info
 }
