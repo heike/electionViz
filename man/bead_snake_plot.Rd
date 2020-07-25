@@ -4,18 +4,14 @@
 \alias{bead_snake_plot}
 \title{Plot state electoral votes as beads on a string}
 \usage{
-bead_snake_plot(
-  data,
-  height = max(sqrt(electoral_votes_2016$electoral_votes) * 8),
-  buffer = min(sqrt(electoral_votes_2016$electoral_votes) * 3)
-)
+bead_snake_plot(data, height = 60, buffer = 3)
 }
 \arguments{
 \item{data}{data frame with format similar to electoral_votes_2016}
 
-\item{height}{column height, default is carefully chosen based on number of electoral votes}
+\item{height}{column height, default is carefully chosen (as max(sqrt(electoral_votes_2016$electoral_votes)*8)) based on number of electoral votes}
 
-\item{buffer}{space between beads}
+\item{buffer}{space between beads, defaults to 3 based on min(sqrt(electoral_votes_2016$electoral_votes)*3)}
 }
 \description{
 TODO: Make this work with NSE
@@ -23,6 +19,6 @@ TODO: Make this work with NSE
 \examples{
 
 data("electoral_votes_2016")
-bead_snake_plot(electoral_votes_2016)
+bead_snake_plot(electoral_votes_2016) 
 bead_snake_plot(electoral_votes_2016, height = 30, buffer = 3)
 }

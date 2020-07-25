@@ -19,7 +19,7 @@ Authors@R: c(
            comment = c(ORCID = "YOUR-ORCID-ID"))       
            )
 Description: What the package does (one paragraph).
-License: CCBY-4.0
+License: MIT + file LICENSE
 Depends: 
     R (>= 2.10)
 Imports: 
