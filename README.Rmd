@@ -40,6 +40,7 @@ With the tools of this package you will be able to pick your favorite visualizat
 ```{r, message = FALSE, warning = FALSE}
 # load the package
 library(electionViz)
+library(tidyverse)
 ```
 
 
@@ -48,52 +49,23 @@ library(electionViz)
 Each state is represented by one hexagon. This map has been made available by Andrew X Hill at [CARTO](https://team.carto.com/u/andrew/tables/andrew.us_states_hexgrid/public/map).
 
 
-```{r example, echo=FALSE, warning = FALSE, message = FALSE}
-library(tidyverse)
-
-## basic example code
-#USelections %>% filter(year >= 2012) %>% glimpse()
-
-elections <- USelections %>% 
-  select(-office) %>%
-  group_by(year, state, state_po) %>%
-  mutate(percent = candidatevotes/totalvotes*100) %>%
-  summarise(
-    votes_dem = candidatevotes[party %in% c("democrat", "democratic-farmer-labor")],
-    votes_rep = candidatevotes[party=="republican"],
-    perc_dem = percent[party %in% c("democrat", "democratic-farmer-labor")],
-    perc_rep = percent[party=="republican"],
-    totalvotes = max(totalvotes),
-    cand_dem = candidate[party %in% c("democrat", "democratic-farmer-labor")],
-    cand_rep = candidate[party=="republican"],
-    .groups = 'drop'
-  )
-
-# Merge geospatial and numerical information
-ushex_plus <- ushex %>%
-  left_join(elections, by="state")
-
-centers <- ushex %>% select(centerX, centerY, abbr) %>% unique()
-# Make a first chloropleth map
-ushex_plus %>%
-  filter(year >= 2012) %>%
-  mutate(
-    Election = year,
-    Outcome = c("Republican", "Democrat")[as.numeric(perc_rep < perc_dem) + 1]) %>%
-  ggplot() +
-  geom_polygon(aes(fill =  Outcome, 
-                   x = long, y = lat, group = group), 
-               colour = "grey90", size = 0.1, alpha = 0.9) +
-  scale_fill_manual(values = c("darkblue", "darkred")) +
-  geom_text(aes(x = centerX, y = centerY, label = abbr), 
-            colour = "grey80", size = 3, data = centers) +
-  theme_void() +
-  coord_map() +
-  facet_wrap(~Election, labeller = "label_both") +
+```{r example}
+data(elections)
+el12 <- elections %>% filter(year == 2012)
+gg12 <- hexplot(el12$state, el12$perc_rep > el12$perc_dem) +
+  scale_fill_party("", labels=c("Democrat", "Republican")) +
   theme(legend.position = "bottom") +
-  ggtitle("US Presidential Election results by state")
+  ggtitle("Election 2012")
+
+el16 <- elections %>% filter(year == 2016)
+gg16 <- hexplot(el16$state, el16$perc_rep > el16$perc_dem) +
+  scale_fill_party("", labels=c("Democrat", "Republican")) +
+  theme(legend.position = "bottom") +
+  ggtitle("Election 2016")
+
+gridExtra::grid.arrange(gg12, gg16, ncol=2)
 ```
- 
+
 
 ### Hexbin Cartogram of the US Presidential Election by Electoral Votes
 
@@ -132,58 +104,13 @@ electoral_hexplus %>%
 "Electoral Building" diagram, inspired by a 2000 graphic from the New York Times. Vote margin is represented on the x axis, while number of electoral votes is represented in the height. 
 
 ```{r building, echo = F, warning = F, message = F, fig.width = 6, fig.height = 9}
-geom_electoral_building <- function(state_district, electoral_votes, perc_dem, perc_rep){
-  df <- data.frame(state_district, electoral_votes, perc_dem, perc_rep, stringsAsFactors = F)
-  df <- df %>% mutate(rep_margin = perc_rep - perc_dem, 
-                margin = abs(rep_margin), 
-                victor = c("Republican", "Democrat")[as.numeric(perc_rep < perc_dem) + 1]) %>%
-    group_by(victor) %>%
-    nest(data = c(state_district, electoral_votes, perc_dem, perc_rep, rep_margin, margin)) %>%
-    mutate(data = purrr::map(data, .f = function(data){
-      data <- data %>% arrange(desc(margin), electoral_votes) %>%
-        mutate(height_min = cumsum(electoral_votes) - electoral_votes, height_max = cumsum(electoral_votes))
-      return(data)
-    })) %>%
-    unnest(cols = c(data))%>%
-    mutate(location_min = ifelse(victor == "Republican", 0, rep_margin), 
-           location_max = ifelse(victor == "Republican", rep_margin, 0), 
-           text_loc = ifelse(victor == "Republican", location_max + 2, location_min - 2), 
-           hjust_param = ifelse(victor == "Republican", 0, 1))
-  
-  p <- df %>% 
-    ggplot() + 
-    geom_hline(aes(yintercept = 270), lty = 2, colour = "grey20") + 
-    geom_rect(aes(xmin = location_min, xmax = location_max, 
-                  ymin = height_min, ymax = height_max, 
-                  fill = factor(victor)), color = "black", alpha = 0.8) + 
-    scale_fill_manual(breaks = c("Democrat", "Republican"),
-                      values = c("darkblue", "darkred"), name = "Candidate") + 
-    geom_text(aes(x = text_loc, y = (height_min + height_max)/2, 
-                  label = state_district, hjust = hjust_param), size = 2.5, color = "black",
-              data = df %>% filter(margin < 15 | electoral_votes < 7)) + 
-    geom_text(aes(x = (location_min + location_max)/2, y = (height_min + height_max)/2, 
-                  label = state_district, hjust = 0.5), size = 2.5, color = "black",
-              data = df %>% filter(margin >= 15, electoral_votes >= 7)) + 
-    labs(x = "Margin of Victory", y = "Number of Electoral Votes") + 
-    theme_void() + 
-    theme(axis.text = element_text(color = "grey20"), 
-          legend.text = element_text(color = "grey20"), 
-          axis.title = element_text(color = "grey20"), 
-          axis.title.y = element_text(angle = 90), 
-          panel.grid.major = element_line(colour = "grey80")) + 
-    annotate(geom = "text", x = -75, y = 275, 
-             label = "270 Electoral Votes to Win", 
-             color = "grey20",size = 3) + 
-    xlim(c(-100, 100))
-    
-    return(p)
-  
-}
 
 # make an electoral building plot! 
-geom_electoral_building(state_district = electoral_votes_2016$state_district, 
+electoral_building(state_district = electoral_votes_2016$state_district, 
                         electoral_votes = electoral_votes_2016$electoral_votes, 
                         perc_dem = electoral_votes_2016$perc_dem, 
-                        perc_rep = electoral_votes_2016$perc_rep)
+                        perc_rep = electoral_votes_2016$perc_rep) +
+  scale_fill_party("Party") +
+  theme(legend.position = "bottom")
 ```
 

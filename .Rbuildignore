@@ -4,3 +4,5 @@
 ^docs$
 ^LICENSE\.md$
 ^\.travis\.yml$
+raw
+stuff

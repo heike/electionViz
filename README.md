@@ -32,6 +32,7 @@ visualization(s) and explore the results your own way.
 ``` r
 # load the package
 library(electionViz)
+library(tidyverse)
 ```
 
 ### Hexbin Cartogram of Election Results by State
@@ -39,6 +40,23 @@ library(electionViz)
 Each state is represented by one hexagon. This map has been made
 available by Andrew X Hill at
 [CARTO](https://team.carto.com/u/andrew/tables/andrew.us_states_hexgrid/public/map).
+
+``` r
+data(elections)
+el12 <- elections %>% filter(year == 2012)
+gg12 <- hexplot(el12$state, el12$perc_rep > el12$perc_dem) +
+  scale_fill_party("", labels=c("Democrat", "Republican")) +
+  theme(legend.position = "bottom") +
+  ggtitle("Election 2012")
+
+el16 <- elections %>% filter(year == 2016)
+gg16 <- hexplot(el16$state, el16$perc_rep > el16$perc_dem) +
+  scale_fill_party("", labels=c("Democrat", "Republican")) +
+  theme(legend.position = "bottom") +
+  ggtitle("Election 2016")
+
+gridExtra::grid.arrange(gg12, gg16, ncol=2)
+```
 
 <img src="man/figures/README-example-1.png" width="100%" />
 

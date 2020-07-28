@@ -107,3 +107,90 @@
 #' @source \url{https://www.presidency.ucsb.edu/statistics/elections/2016}
 "electoral_votes_2016"
 
+#' Polls for the presidential general election
+#' 
+#' Scraped from FiveThirtyEight's website of most recent polls on July 26 2020
+#' @format A tibble with 5312 rows and 37 columns
+#' \describe{
+#'   \item{question_id}{numeric}
+#'   \item{poll_id}{numeric}
+#'   \item{cycle}{numeric}
+#'   \item{state}{character}
+#'   \item{pollster_id}{numeric}
+#'   \item{pollster}{character}
+#'   \item{sponsor_ids}{numeric}
+#'   \item{sponsors}{character}
+#'   \item{display_name}{character}
+#'   \item{pollster_rating_id}{numeric}
+#'   \item{pollster_rating_name}{character}
+#'   \item{fte_grade}{character}
+#'   \item{sample_size}{numeric}
+#'   \item{population}{character}
+#'   \item{population_full}{character}
+#'   \item{methodology}{character}
+#'   \item{office_type}{character}
+#'   \item{seat_number}{numeric}
+#'   \item{seat_name}{logical}
+#'   \item{start_date}{Date}
+#'   \item{end_date}{Date}
+#'   \item{election_date}{Date}
+#'   \item{sponsor_candidate}{character}
+#'   \item{internal}{logical}
+#'   \item{partisan}{character}
+#'   \item{tracking}{logical}
+#'   \item{nationwide_batch}{logical}
+#'   \item{ranked_choice_reallocated}{logical}
+#'   \item{created_at}{character}
+#'   \item{notes}{character}
+#'   \item{url}{character}
+#'   \item{stage}{character}
+#'   \item{race_id}{numeric}
+#'   \item{answer}{character}
+#'   \item{candidate_name}{character}
+#'   \item{candidate_party}{character}
+#'   \item{pct}{numeric}
+#' }
+#' @source \url{https://projects.fivethirtyeight.com/polls-page/president_polls.csv}
+#' @examples 
+#' library(ggplot2)
+#' library(dplyr)
+#' 
+#' data(presidential)
+#' presidential %>% 
+#'   filter(candidate_party %in% c("DEM", "REP")) %>% 
+#'   filter(!is.na(state)) %>%
+#'   ggplot(aes(x = end_date, y = pct)) + 
+#'     geom_point(aes(colour = candidate_party)) +
+#'     facet_wrap(~state) +
+#'     scale_colour_party()
+#'
+#' # national polls
+#' presidential %>% 
+#'   filter(candidate_party %in% c("DEM", "REP")) %>% 
+#'   filter(answer %in% c("Biden", "Trump")) %>% 
+#'   filter(is.na(state)) %>%
+#'   ggplot(aes(x = end_date, y = pct, 
+#'              colour = candidate_party)) + 
+#'     geom_point(alpha = 0.3) +
+#'     geom_smooth(se = FALSE, method="gam") +
+#'     scale_colour_party() +
+#'     theme(legend.position="bottom")
+"presidential"
+
+#' State-level election results of US presidential elections
+#' 
+#' Wide format of the `USelection` data, watered down to democratic and republican votes.
+#' @format A tibble with 564 rows and 10 columns
+#' \describe{
+#'   \item{year}{year of election}
+#'   \item{state}{name of the state}
+#'   \item{state_po}{two-letter abbreviation of state}
+#'   \item{votes_dem}{number of votes for the Democratic candidate}
+#'   \item{votes_rep}{number of votes for the Republican candidate}
+#'   \item{perc_dem}{percent of votes for the Democratic candidate}
+#'   \item{perc_rep}{percent of votes for the Republican candidate}
+#'   \item{totalvotes}{number of total votes}
+#'   \item{cand_dem}{name of the Democratic candidate}
+#'   \item{cand_rep}{name of the Republican candidate}
+#' }
+"elections"
