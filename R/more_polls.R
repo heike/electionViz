@@ -35,7 +35,7 @@ scale_fill_party <- function(...) {
 #' @importFrom lubridate mdy
 #' @export
 #' @examples 
-#' presidential <- fivethirtyeight_update()
+#' presidential_polls <- fivethirtyeight_update()
 fivethirtyeight_update <- function(polls = "president_polls") {
   url <- sprintf("https://projects.fivethirtyeight.com/polls-page/%s.csv", polls)
   start_date <- end_date <- election_date <- ""

@@ -109,7 +109,7 @@
 
 #' Polls for the presidential general election
 #' 
-#' Scraped from FiveThirtyEight's website of most recent polls on July 26 2020
+#' Scraped from FiveThirtyEight's website of most recent polls on July 28 2020.
 #' @format A tibble with 5312 rows and 37 columns
 #' \describe{
 #'   \item{question_id}{numeric}
@@ -155,8 +155,8 @@
 #' library(ggplot2)
 #' library(dplyr)
 #' 
-#' data(presidential)
-#' presidential %>% 
+#' data(presidential_polls)
+#' presidential_polls %>% 
 #'   filter(candidate_party %in% c("DEM", "REP")) %>% 
 #'   filter(!is.na(state)) %>%
 #'   ggplot(aes(x = end_date, y = pct)) + 
@@ -165,7 +165,7 @@
 #'     scale_colour_party()
 #'
 #' # national polls
-#' presidential %>% 
+#' presidential_polls %>% 
 #'   filter(candidate_party %in% c("DEM", "REP")) %>% 
 #'   filter(answer %in% c("Biden", "Trump")) %>% 
 #'   filter(is.na(state)) %>%
@@ -175,7 +175,7 @@
 #'     geom_smooth(se = FALSE, method="gam") +
 #'     scale_colour_party() +
 #'     theme(legend.position="bottom")
-"presidential"
+"presidential_polls"
 
 #' State-level election results of US presidential elections
 #' 

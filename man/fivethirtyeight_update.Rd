@@ -16,5 +16,5 @@ tibble of the recent polls
 Update to the newest polls provided by FiveThirtyEight
 }
 \examples{
-presidential <- fivethirtyeight_update()
+presidential_polls <- fivethirtyeight_update()
 }
