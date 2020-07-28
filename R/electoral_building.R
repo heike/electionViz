@@ -5,6 +5,14 @@
 #' @param perc_dem percent democrats
 #' @param perc_rep percent republicans
 #' @export
+#' @examples 
+#' electoral_building(state_district = electoral_votes_2016$state_district, 
+#'                    electoral_votes = electoral_votes_2016$electoral_votes, 
+#'                    perc_dem = electoral_votes_2016$perc_dem, 
+#'                    perc_rep = electoral_votes_2016$perc_rep) +
+#'   scale_color_party("Party") +
+#'   scale_fill_party("Party") +
+#'   theme(legend.position = "bottom")
 electoral_building <- function(state_district, electoral_votes, perc_dem, perc_rep){
   rep_margin <- victor <- location_max <- location_min <- height_min <- height_max <- text_loc <- hjust_param <- NULL
   
@@ -30,7 +38,7 @@ electoral_building <- function(state_district, electoral_votes, perc_dem, perc_r
     geom_hline(aes(yintercept = 270), lty = 2, colour = "grey20") + 
     geom_rect(aes(xmin = location_min, xmax = location_max, 
                   ymin = height_min, ymax = height_max, 
-                  fill = factor(victor)), color = "black", alpha = 0.8) + 
+                  fill = factor(victor), color = factor(victor)), alpha = 0.7) + 
     scale_fill_manual(breaks = c("Democrat", "Republican"),
                       values = c("darkblue", "darkred"), name = "Candidate") + 
     geom_text(aes(x = text_loc, y = (height_min + height_max)/2, 

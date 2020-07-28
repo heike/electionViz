@@ -75,4 +75,4 @@ to the state’s electoral votes. This map was adapted from the object
 York Times. Vote margin is represented on the x axis, while number of
 electoral votes is represented in the height.
 
-<img src="man/figures/README-building-1.png" width="100%" />
+<img src="man/figures/README-building-1.png" width="70%" />

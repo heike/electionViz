@@ -49,7 +49,7 @@ library(tidyverse)
 Each state is represented by one hexagon. This map has been made available by Andrew X Hill at [CARTO](https://team.carto.com/u/andrew/tables/andrew.us_states_hexgrid/public/map).
 
 
-```{r example}
+```{r example, fig.height=3.5}
 data(elections)
 el12 <- elections %>% filter(year == 2012)
 gg12 <- hexplot(el12$state, el12$perc_rep > el12$perc_dem) +
@@ -85,7 +85,6 @@ electoral_hexplus %>%
   ggplot(aes(x = long, y = lat, group = group)) +
   geom_polygon(aes(fill =  Outcome), 
                colour = "grey60", size = 0.1, alpha = 0.9) +
-  scale_fill_manual(values = c("darkblue", "darkred")) +
   geom_text(aes(x = centerX, y = centerY, label = state), 
             colour = "grey90", size = 3, 
             data = unique(electoral_state_outline_hex[,c("centerX", "centerY", "state", "group")])) +
@@ -95,7 +94,8 @@ electoral_hexplus %>%
 #  coord_map() +
   facet_wrap(~Election, labeller = "label_both") +
   theme(legend.position = "bottom") +
-  ggtitle("US Presidential Election results by electoral votes")
+  ggtitle("US Presidential Election results by electoral votes") +
+  scale_fill_party()
 ```
 
 
@@ -103,13 +103,14 @@ electoral_hexplus %>%
 
 "Electoral Building" diagram, inspired by a 2000 graphic from the New York Times. Vote margin is represented on the x axis, while number of electoral votes is represented in the height. 
 
-```{r building, echo = F, warning = F, message = F, fig.width = 6, fig.height = 9}
+```{r building, echo = F, warning = F, message = F, fig.width = 6, fig.height = 9, out.width='70%'}
 
 # make an electoral building plot! 
 electoral_building(state_district = electoral_votes_2016$state_district, 
                         electoral_votes = electoral_votes_2016$electoral_votes, 
                         perc_dem = electoral_votes_2016$perc_dem, 
                         perc_rep = electoral_votes_2016$perc_rep) +
+  scale_color_party("Party") +
   scale_fill_party("Party") +
   theme(legend.position = "bottom")
 ```
