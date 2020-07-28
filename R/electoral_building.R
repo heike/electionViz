@@ -6,6 +6,8 @@
 #' @param perc_rep percent republicans
 #' @export
 electoral_building <- function(state_district, electoral_votes, perc_dem, perc_rep){
+  rep_margin <- victor <- location_max <- location_min <- height_min <- height_max <- text_loc <- hjust_param <- NULL
+  
   df <- data.frame(state_district, electoral_votes, perc_dem, perc_rep, stringsAsFactors = F)
   df <- df %>% mutate(rep_margin = perc_rep - perc_dem, 
                       margin = abs(rep_margin), 
