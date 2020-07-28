@@ -81,11 +81,26 @@
 <p>We will be inundated with information about the state of the polls in the build-up to the upcoming Presidential election of 2020.</p>
 <p>With the tools of this package you will be able to pick your favorite visualization(s) and explore the results your own way.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># load the package</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(electionViz)</a></code></pre></div>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(electionViz)</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyverse)</a></code></pre></div>
 <div id="hexbin-cartogram-of-election-results-by-state" class="section level3">
 <h3 class="hasAnchor">
 <a href="#hexbin-cartogram-of-election-results-by-state" class="anchor"></a>Hexbin Cartogram of Election Results by State</h3>
 <p>Each state is represented by one hexagon. This map has been made available by Andrew X Hill at <a href="https://team.carto.com/u/andrew/tables/andrew.us_states_hexgrid/public/map">CARTO</a>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(elections)</a>
+<a class="sourceLine" id="cb3-2" title="2">el12 &lt;-<span class="st"> </span>elections <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2012</span>)</a>
+<a class="sourceLine" id="cb3-3" title="3">gg12 &lt;-<span class="st"> </span><span class="kw"><a href="reference/hexplot.html">hexplot</a></span>(el12<span class="op">$</span>state, el12<span class="op">$</span>perc_rep <span class="op">&gt;</span><span class="st"> </span>el12<span class="op">$</span>perc_dem) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="st">  </span><span class="kw"><a href="reference/scale_fill_party.html">scale_fill_party</a></span>(<span class="st">""</span>, <span class="dt">labels=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Democrat"</span>, <span class="st">"Republican"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"bottom"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Election 2012"</span>)</a>
+<a class="sourceLine" id="cb3-7" title="7"></a>
+<a class="sourceLine" id="cb3-8" title="8">el16 &lt;-<span class="st"> </span>elections <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2016</span>)</a>
+<a class="sourceLine" id="cb3-9" title="9">gg16 &lt;-<span class="st"> </span><span class="kw"><a href="reference/hexplot.html">hexplot</a></span>(el16<span class="op">$</span>state, el16<span class="op">$</span>perc_rep <span class="op">&gt;</span><span class="st"> </span>el16<span class="op">$</span>perc_dem) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="st">  </span><span class="kw"><a href="reference/scale_fill_party.html">scale_fill_party</a></span>(<span class="st">""</span>, <span class="dt">labels=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Democrat"</span>, <span class="st">"Republican"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-11" title="11"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"bottom"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-12" title="12"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Election 2016"</span>)</a>
+<a class="sourceLine" id="cb3-13" title="13"></a>
+<a class="sourceLine" id="cb3-14" title="14">gridExtra<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/gridExtra/topics/arrangeGrob">grid.arrange</a></span>(gg12, gg16, <span class="dt">ncol=</span><span class="dv">2</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-example-1.png" width="100%"></p>
 </div>
 <div id="hexbin-cartogram-of-the-us-presidential-election-by-electoral-votes" class="section level3">
