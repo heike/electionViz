@@ -6,6 +6,7 @@
 #' @param label logical. Should labels be shown?
 #' @param labelcolor colour in which labels are shown. Ignored if `label=FALSE`.
 #' @importFrom utils data
+#' @importFrom mapproj mapproject
 #' @return ggplot2 object
 #' @export
 #' @examples 
