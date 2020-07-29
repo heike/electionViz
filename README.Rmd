@@ -122,7 +122,7 @@ electoral_building(
 
 The difference in percentage between democratic and republican percentage of the last five polls (of likely or registered voters) for each state are shown as grey points, colored points show average difference for each point. States are ordered according to difference in percentage. The yewllow rectangle shows a margin of +/- 5 percent - the typical margin of error of a poll.
 
-```{r, echo=FALSE, fig.height=6, message=FALSE}
+```{r, echo=FALSE, fig.height=8, message=FALSE}
 state_polls <- presidential_polls %>%
   filter(!is.na(state)) %>%
   filter(population %in% c("lv", "rv")) %>%
