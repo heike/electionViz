@@ -194,3 +194,20 @@ electoral_building(
   theme(legend.position = "bottom") +
   ggtitle("Electoral building, based on polls")
 ```
+
+### A snake of beads
+
+```{r, fig.width = 5, fig.height = 3}
+bead_snake_plot(electoral_votes_2016, height = 30, buffer = 3) +
+  ggtitle("Election 2016")
+```
+
+```{r, echo=FALSE, fig.width = 5, fig.height = 3}
+state_3$state_district <- as.character(state_3$state)
+
+bead_snake_plot(
+  state_3 %>% select(state_district, electoral_votes,
+                     perc_dem, perc_rep), 
+  height = 30, buffer = 3) +
+  ggtitle(sprintf("Polls %s", max(state_polls$end_date)))
+```

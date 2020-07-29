@@ -107,3 +107,17 @@ electoral_building(
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="70%" />
+
+### A snake of beads
+
+``` r
+bead_snake_plot(electoral_votes_2016, height = 30, buffer = 3) +
+  ggtitle("Election 2016")
+#> Joining, by = "state_district"
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+
+    #> Joining, by = "state_district"
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
