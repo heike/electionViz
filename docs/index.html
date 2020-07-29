@@ -113,7 +113,32 @@
 <h3 class="hasAnchor">
 <a href="#electoral-building-of-the-u-s--presidential-election-by-electoral-votes-and-margin-of-victory" class="anchor"></a>Electoral Building of the U.S. Presidential Election by Electoral Votes and Margin of Victory</h3>
 <p>“Electoral Building” diagram, inspired by a 2000 graphic from the New York Times. Vote margin is represented on the x axis, while number of electoral votes is represented in the height.</p>
-<p><img src="reference/figures/README-building-1.png" width="100%"></p>
+<p><img src="reference/figures/README-building-1.png" width="70%"></p>
+</div>
+</div>
+<div id="visualization-of-polls" class="section level2">
+<h2 class="hasAnchor">
+<a href="#visualization-of-polls" class="anchor"></a>Visualization of Polls</h2>
+<div id="polls-by-state" class="section level3">
+<h3 class="hasAnchor">
+<a href="#polls-by-state" class="anchor"></a>Polls by State</h3>
+<p>The difference in percentage between democratic and republican percentage of the last five polls (of likely or registered voters) for each state are shown as grey points, colored points show average difference for each point. States are ordered according to difference in percentage. The yewllow rectangle shows a margin of +/- 5 percent - the typical margin of error of a poll.</p>
+<pre><code>#&gt; Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"></p>
+</div>
+<div id="building-of-polls" class="section level3">
+<h3 class="hasAnchor">
+<a href="#building-of-polls" class="anchor"></a>Building of polls</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="reference/electoral_building.html">electoral_building</a></span>(</a>
+<a class="sourceLine" id="cb5-2" title="2">    <span class="dt">state_district =</span> state_<span class="dv">3</span><span class="op">$</span>state, </a>
+<a class="sourceLine" id="cb5-3" title="3">    <span class="dt">electoral_votes =</span> state_<span class="dv">3</span><span class="op">$</span>electoral_votes, </a>
+<a class="sourceLine" id="cb5-4" title="4">    <span class="dt">perc_dem =</span> state_<span class="dv">3</span><span class="op">$</span>perc_dem, </a>
+<a class="sourceLine" id="cb5-5" title="5">    <span class="dt">perc_rep =</span> state_<span class="dv">3</span><span class="op">$</span>perc_rep) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="st">  </span><span class="kw"><a href="reference/scale_color_party.html">scale_color_party</a></span>(<span class="st">"Party"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="st">  </span><span class="kw"><a href="reference/scale_fill_party.html">scale_fill_party</a></span>(<span class="st">"Party"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"bottom"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Electoral building, based on polls"</span>)</a></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="70%"></p>
 </div>
 </div>
 </div>

@@ -129,11 +129,21 @@
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
+<span class='fu'>electoral_building</span>(<span class='kw'>state_district</span> <span class='kw'>=</span> <span class='no'>electoral_votes_2016</span>$<span class='no'>state_district</span>,
+                   <span class='kw'>electoral_votes</span> <span class='kw'>=</span> <span class='no'>electoral_votes_2016</span>$<span class='no'>electoral_votes</span>,
+                   <span class='kw'>perc_dem</span> <span class='kw'>=</span> <span class='no'>electoral_votes_2016</span>$<span class='no'>perc_dem</span>,
+                   <span class='kw'>perc_rep</span> <span class='kw'>=</span> <span class='no'>electoral_votes_2016</span>$<span class='no'>perc_rep</span>) +
+  <span class='fu'><a href='scale_color_party.html'>scale_color_party</a></span>(<span class='st'>"Party"</span>) +
+  <span class='fu'><a href='scale_fill_party.html'>scale_fill_party</a></span>(<span class='st'>"Party"</span>) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>)</div><div class='img'><img src='electoral_building-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

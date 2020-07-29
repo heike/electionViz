@@ -1,3 +1,14 @@
+electoral_votes_2016 <- electoral_votes_2016 %>% mutate(
+  state_district = ifelse(state_district=="NE-1", "Nebraska CD-1", state_district),
+  state_district = ifelse(state_district=="NE-2", "Nebraska CD-2", state_district),
+  state_district = ifelse(state_district=="NE-3", "Nebraska CD-3", state_district),
+  state_district = ifelse(state_district=="ME-1", "Maine CD-1", state_district),
+  state_district = ifelse(state_district=="ME-2", "Maine CD-2", state_district)
+  
+)
+use_data(electoral_votes_2016, overwrite = TRUE)
+
+
 presidential <- fivethirtyeight_update()
 presidential <- presidential %>%
   mutate(

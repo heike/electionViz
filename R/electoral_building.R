@@ -6,6 +6,7 @@
 #' @param perc_rep percent republicans
 #' @export
 #' @examples 
+#' library(ggplot2)
 #' electoral_building(state_district = electoral_votes_2016$state_district, 
 #'                    electoral_votes = electoral_votes_2016$electoral_votes, 
 #'                    perc_dem = electoral_votes_2016$perc_dem, 
@@ -39,8 +40,6 @@ electoral_building <- function(state_district, electoral_votes, perc_dem, perc_r
     geom_rect(aes(xmin = location_min, xmax = location_max, 
                   ymin = height_min, ymax = height_max, 
                   fill = factor(victor), color = factor(victor)), alpha = 0.7) + 
-    scale_fill_manual(breaks = c("Democrat", "Republican"),
-                      values = c("darkblue", "darkred"), name = "Candidate") + 
     geom_text(aes(x = text_loc, y = (height_min + height_max)/2, 
                   label = state_district, hjust = hjust_param), size = 2.5, color = "black",
               data = df %>% filter(margin < 15 | electoral_votes < 7)) + 

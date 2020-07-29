@@ -76,3 +76,34 @@ York Times. Vote margin is represented on the x axis, while number of
 electoral votes is represented in the height.
 
 <img src="man/figures/README-building-1.png" width="70%" />
+
+## Visualization of Polls
+
+### Polls by State
+
+The difference in percentage between democratic and republican
+percentage of the last five polls (of likely or registered voters) for
+each state are shown as grey points, colored points show average
+difference for each point. States are ordered according to difference in
+percentage. The yewllow rectangle shows a margin of +/- 5 percent - the
+typical margin of error of a poll.
+
+    #> Warning: Removed 1 rows containing missing values (geom_point).
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+
+### Building of polls
+
+``` r
+electoral_building(
+    state_district = state_3$state, 
+    electoral_votes = state_3$electoral_votes, 
+    perc_dem = state_3$perc_dem, 
+    perc_rep = state_3$perc_rep) +
+  scale_color_party("Party") +
+  scale_fill_party("Party") +
+  theme(legend.position = "bottom") +
+  ggtitle("Electoral building, based on polls")
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="70%" />

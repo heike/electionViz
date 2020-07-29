@@ -18,3 +18,13 @@ electoral_building(state_district, electoral_votes, perc_dem, perc_rep)
 \description{
 Electoral Building
 }
+\examples{
+library(ggplot2)
+electoral_building(state_district = electoral_votes_2016$state_district, 
+                   electoral_votes = electoral_votes_2016$electoral_votes, 
+                   perc_dem = electoral_votes_2016$perc_dem, 
+                   perc_rep = electoral_votes_2016$perc_rep) +
+  scale_color_party("Party") +
+  scale_fill_party("Party") +
+  theme(legend.position = "bottom")
+}
