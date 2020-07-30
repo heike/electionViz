@@ -10,7 +10,9 @@ status](https://travis-ci.org/heike/electionViz.svg?branch=master)](https://trav
 <!-- badges: end -->
 
 R package for visualizations of election (or poll) results as easy as
-adding `geom_electoral_building`.
+adding `geom_electoral_building`. While the geom is still in the
+planning stages, several types of visualizations are implemented and
+ready to use.
 
 ## Installation
 
@@ -79,6 +81,31 @@ electoral votes is represented in the height.
 
 ## Visualization of Polls
 
+Accessing data of the most recent polls from RealClearPolitics or
+FiveThirtyEight is done with functions `rcp_update()` or
+`fivethirtyeight_update()` respectively. Each one of these functions has
+a parameter `polls` to allow for a finer grained choice of which polls
+to focus on:
+
+``` r
+new_polls <- fivethirtyeight_update(polls="president_polls")
+new_polls %>% select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
+#> # A tibble: 5,650 x 7
+#>    poll_id start_date end_date   pollster state candidate_name        pct
+#>      <dbl> <date>     <date>     <chr>    <chr> <chr>               <dbl>
+#>  1   67815 2020-07-27 2020-07-28 Ipsos    <NA>  Joseph R. Biden Jr.  57  
+#>  2   67815 2020-07-27 2020-07-28 Ipsos    <NA>  Donald Trump         43  
+#>  3   67815 2020-07-27 2020-07-28 Ipsos    <NA>  Joseph R. Biden Jr.  57  
+#>  4   67815 2020-07-27 2020-07-28 Ipsos    <NA>  Donald Trump         43  
+#>  5   67820 2020-07-26 2020-07-28 YouGov   <NA>  Joseph R. Biden Jr.  49  
+#>  6   67820 2020-07-26 2020-07-28 YouGov   <NA>  Donald Trump         40  
+#>  7   67832 2020-07-24 2020-07-28 Optimus  <NA>  Joseph R. Biden Jr.  38.5
+#>  8   67832 2020-07-24 2020-07-28 Optimus  <NA>  Donald Trump         31.1
+#>  9   67832 2020-07-24 2020-07-28 Optimus  <NA>  Joseph R. Biden Jr.  47.5
+#> 10   67832 2020-07-24 2020-07-28 Optimus  <NA>  Donald Trump         40.4
+#> # … with 5,640 more rows
+```
+
 ### Polls by State
 
 The difference in percentage between democratic and republican
@@ -90,7 +117,7 @@ typical margin of error of a poll.
 
     #> Warning: Removed 1 rows containing missing values (geom_point).
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ### Building of polls
 
@@ -106,7 +133,7 @@ electoral_building(
   ggtitle("Electoral building, based on polls")
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="70%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="70%" />
 
 ### A snake of beads
 
@@ -121,8 +148,8 @@ bead_snake_plot(
 #> Joining, by = "state_district"
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
 
     #> Joining, by = "state_district"
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />

@@ -4,10 +4,16 @@
 \alias{bead_snake_plot}
 \title{Plot state electoral votes as beads on a string}
 \usage{
-bead_snake_plot(data, height = 60, buffer = 3)
+bead_snake_plot(state, votes, perc_dem, perc_rep, height = 60, buffer = 3)
 }
 \arguments{
-\item{data}{data frame with format similar to electoral_votes_2016}
+\item{state}{name of state/district}
+
+\item{votes}{number of electoral votes}
+
+\item{perc_dem}{percentage democrats}
+
+\item{perc_rep}{percentage republicans}
 
 \item{height}{column height, default is carefully chosen (as max(sqrt(electoral_votes_2016$electoral_votes)*8)) based on number of electoral votes}
 
@@ -19,6 +25,16 @@ TODO: Make this work with NSE
 \examples{
 
 data("electoral_votes_2016")
-bead_snake_plot(electoral_votes_2016) 
-bead_snake_plot(electoral_votes_2016, height = 30, buffer = 3)
+bead_snake_plot(
+  electoral_votes_2016$state_district,
+  electoral_votes_2016$electoral_votes,
+  electoral_votes_2016$perc_dem,
+  electoral_votes_2016$perc_rep
+  ) 
+bead_snake_plot(
+  electoral_votes_2016$state_district,
+  electoral_votes_2016$electoral_votes,
+  electoral_votes_2016$perc_dem,
+  electoral_votes_2016$perc_rep, 
+  height = 30, buffer = 3)
 }
