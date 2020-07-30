@@ -111,7 +111,12 @@ electoral_building(
 ### A snake of beads
 
 ``` r
-bead_snake_plot(electoral_votes_2016, height = 30, buffer = 3) +
+bead_snake_plot(
+   electoral_votes_2016$state_district,
+   electoral_votes_2016$electoral_votes,
+   electoral_votes_2016$perc_dem,
+   electoral_votes_2016$perc_rep, 
+  height = 30, buffer = 3) +
   ggtitle("Election 2016")
 #> Joining, by = "state_district"
 ```

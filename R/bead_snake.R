@@ -182,7 +182,10 @@ split_df_bezier <- function(df, height = NULL, buffer = NULL) {
 #' 
 #' TODO: Make this work with NSE 
 #' 
-#' @param data data frame with format similar to electoral_votes_2016
+#' @param state name of state/district
+#' @param votes number of electoral votes
+#' @param perc_dem percentage democrats
+#' @param perc_rep percentage republicans
 #' @param height column height, default is carefully chosen (as max(sqrt(electoral_votes_2016$electoral_votes)*8)) based on number of electoral votes 
 #' @param buffer space between beads, defaults to 3 based on min(sqrt(electoral_votes_2016$electoral_votes)*3)
 #' @importFrom ggforce geom_bezier geom_circle
@@ -193,15 +196,27 @@ split_df_bezier <- function(df, height = NULL, buffer = NULL) {
 #' @examples 
 #' 
 #' data("electoral_votes_2016")
-#' bead_snake_plot(electoral_votes_2016) 
-#' bead_snake_plot(electoral_votes_2016, height = 30, buffer = 3)
-bead_snake_plot <- function(data, height = 60, buffer = 3) {
+#' bead_snake_plot(
+#'   electoral_votes_2016$state_district,
+#'   electoral_votes_2016$electoral_votes,
+#'   electoral_votes_2016$perc_dem,
+#'   electoral_votes_2016$perc_rep
+#'   ) 
+#' bead_snake_plot(
+#'   electoral_votes_2016$state_district,
+#'   electoral_votes_2016$electoral_votes,
+#'   electoral_votes_2016$perc_dem,
+#'   electoral_votes_2016$perc_rep, 
+#'   height = 30, buffer = 3)
+bead_snake_plot <- function(state, votes, perc_dem, perc_rep, height = 60, buffer = 3) {
   # Make R CMD check happy
-  perc_dem <- perc_rep <- electoral_votes <- evtot <- absseq <- NULL
+  evtot <- absseq <- NULL
   ord <- xcol2 <- colwidth <- seqsign <- bead_dist <- total_dist <- NULL
-  ydir <- state.name <- state.abb <- state_district <- x <- y <- NULL
+  ydir <- state.name <- state.abb <- x <- y <- NULL
   radius <- label <- abb <- NULL
-
+ 
+  data <- data.frame(state_district = as.character(state), electoral_votes = votes,
+                     perc_dem = perc_dem, perc_rep = perc_rep, stringsAsFactors = FALSE) 
 #  data("electoral_votes_2016", package="electionViz", envir = environment())
   # Prep data
   seg_arrange <- data %>%
