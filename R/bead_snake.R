@@ -214,6 +214,7 @@ bead_snake_plot <- function(state, votes, perc_dem, perc_rep, height = 60, buffe
   ord <- xcol2 <- colwidth <- seqsign <- bead_dist <- total_dist <- NULL
   ydir <- state.name <- state.abb <- x <- y <- NULL
   radius <- label <- abb <- NULL
+  electoral_votes <- state_district <- NULL
  
   data <- data.frame(state_district = as.character(state), electoral_votes = votes,
                      perc_dem = perc_dem, perc_rep = perc_rep, stringsAsFactors = FALSE) 
