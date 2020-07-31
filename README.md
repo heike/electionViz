@@ -91,7 +91,7 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 3,020 x 7
+#> # A tibble: 3,022 x 7
 #>    poll_id start_date end_date   pollster         state    candidate_name    pct
 #>      <dbl> <date>     <date>     <chr>            <chr>    <chr>           <dbl>
 #>  1   67827 2020-07-16 2020-07-28 University of N… New Ham… Joseph R. Bide…    53
@@ -104,7 +104,7 @@ new_polls %>% filter(!is.na(state)) %>%
 #>  8   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Jo Jorgensen        2
 #>  9   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Joseph R. Bide…    46
 #> 10   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Donald Trump       49
-#> # … with 3,010 more rows
+#> # … with 3,012 more rows
 ```
 
 ### Polls by State
