@@ -121,21 +121,22 @@
 <a href="#visualization-of-polls" class="anchor"></a>Visualization of Polls</h2>
 <p>Accessing data of the most recent polls from RealClearPolitics or FiveThirtyEight is done with functions <code><a href="reference/rcp_update.html">rcp_update()</a></code> or <code><a href="reference/fivethirtyeight_update.html">fivethirtyeight_update()</a></code> respectively. Each one of these functions has a parameter <code>polls</code> to allow for a finer grained choice of which polls to focus on:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">new_polls &lt;-<span class="st"> </span><span class="kw"><a href="reference/fivethirtyeight_update.html">fivethirtyeight_update</a></span>(<span class="dt">polls=</span><span class="st">"president_polls"</span>)</a>
-<a class="sourceLine" id="cb4-2" title="2">new_polls <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(poll_id, start_date, end_date, pollster, state, candidate_name, pct)</a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt; # A tibble: 5,658 x 7</span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt;    poll_id start_date end_date   pollster state candidate_name        pct</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;               &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;  1   67815 2020-07-27 2020-07-28 Ipsos    &lt;NA&gt;  Joseph R. Biden Jr.  57  </span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  2   67815 2020-07-27 2020-07-28 Ipsos    &lt;NA&gt;  Donald Trump         43  </span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  3   67815 2020-07-27 2020-07-28 Ipsos    &lt;NA&gt;  Joseph R. Biden Jr.  57  </span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  4   67815 2020-07-27 2020-07-28 Ipsos    &lt;NA&gt;  Donald Trump         43  </span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  5   67820 2020-07-26 2020-07-28 YouGov   &lt;NA&gt;  Joseph R. Biden Jr.  49  </span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  6   67820 2020-07-26 2020-07-28 YouGov   &lt;NA&gt;  Donald Trump         40  </span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  7   67847 2020-07-25 2020-07-28 IBD/TIPP &lt;NA&gt;  Joseph R. Biden Jr.  48  </span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  8   67847 2020-07-25 2020-07-28 IBD/TIPP &lt;NA&gt;  Donald Trump         41  </span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;  9   67832 2020-07-24 2020-07-28 Optimus  &lt;NA&gt;  Joseph R. Biden Jr.  38.5</span></a>
-<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; 10   67832 2020-07-24 2020-07-28 Optimus  &lt;NA&gt;  Donald Trump         31.1</span></a>
-<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; # … with 5,648 more rows</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-2" title="2">new_polls <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(state)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">select</span>(poll_id, start_date, end_date, pollster, state, candidate_name, pct)</a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; # A tibble: 3,020 x 7</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;    poll_id start_date end_date   pollster         state    candidate_name    pct</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt;           &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  1   67827 2020-07-16 2020-07-28 University of N… New Ham… Joseph R. Bide…    53</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  2   67827 2020-07-16 2020-07-28 University of N… New Ham… Donald Trump       40</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  3   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Joseph R. Bide…    47</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  4   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Donald Trump       47</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  5   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Jo Jorgensen        3</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  6   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Joseph R. Bide…    47</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  7   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Donald Trump       48</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;  8   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Jo Jorgensen        2</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;  9   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Joseph R. Bide…    46</span></a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 10   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Donald Trump       49</span></a>
+<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt; # … with 3,010 more rows</span></a></code></pre></div>
 <div id="polls-by-state" class="section level3">
 <h3 class="hasAnchor">
 <a href="#polls-by-state" class="anchor"></a>Polls by State</h3>
@@ -146,15 +147,17 @@
 <div id="building-of-polls" class="section level3">
 <h3 class="hasAnchor">
 <a href="#building-of-polls" class="anchor"></a>Building of polls</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="reference/electoral_building.html">electoral_building</a></span>(</a>
-<a class="sourceLine" id="cb6-2" title="2">    <span class="dt">state_district =</span> state_<span class="dv">3</span><span class="op">$</span>state, </a>
-<a class="sourceLine" id="cb6-3" title="3">    <span class="dt">electoral_votes =</span> state_<span class="dv">3</span><span class="op">$</span>electoral_votes, </a>
-<a class="sourceLine" id="cb6-4" title="4">    <span class="dt">perc_dem =</span> state_<span class="dv">3</span><span class="op">$</span>perc_dem, </a>
-<a class="sourceLine" id="cb6-5" title="5">    <span class="dt">perc_rep =</span> state_<span class="dv">3</span><span class="op">$</span>perc_rep) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="st">  </span><span class="kw"><a href="reference/scale_color_party.html">scale_color_party</a></span>(<span class="st">"Party"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="st">  </span><span class="kw"><a href="reference/scale_fill_party.html">scale_fill_party</a></span>(<span class="st">"Party"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"bottom"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Electoral building, based on polls"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">state_<span class="dv">3</span> &lt;-<span class="st"> </span>state_<span class="dv">3</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="op">!</span>(state <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Maine"</span>, <span class="st">"Nebraska"</span>)))</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="reference/electoral_building.html">electoral_building</a></span>(</a>
+<a class="sourceLine" id="cb6-3" title="3">    <span class="dt">state_district =</span> state_<span class="dv">3</span><span class="op">$</span>state, </a>
+<a class="sourceLine" id="cb6-4" title="4">    <span class="dt">electoral_votes =</span> state_<span class="dv">3</span><span class="op">$</span>electoral_votes, </a>
+<a class="sourceLine" id="cb6-5" title="5">    <span class="dt">perc_dem =</span> state_<span class="dv">3</span><span class="op">$</span>perc_dem, </a>
+<a class="sourceLine" id="cb6-6" title="6">    <span class="dt">perc_rep =</span> state_<span class="dv">3</span><span class="op">$</span>perc_rep,</a>
+<a class="sourceLine" id="cb6-7" title="7">    <span class="dt">source =</span> state_<span class="dv">3</span><span class="op">$</span>source) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="st">  </span><span class="kw"><a href="reference/scale_color_party.html">scale_color_party</a></span>(<span class="st">"Party"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="st">  </span><span class="kw"><a href="reference/scale_fill_party.html">scale_fill_party</a></span>(<span class="st">"Party"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-10" title="10"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Electoral building, based on polls"</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-5-1.png" width="70%"></p>
 </div>
 <div id="a-snake-of-beads" class="section level3">

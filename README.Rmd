@@ -110,7 +110,8 @@ electoral_building(
     state_district = electoral_votes_2016$state_district, 
     electoral_votes = electoral_votes_2016$electoral_votes, 
     perc_dem = electoral_votes_2016$perc_dem, 
-    perc_rep = electoral_votes_2016$perc_rep) +
+    perc_rep = electoral_votes_2016$perc_rep,
+    source = "election") +
   scale_color_party("Party") +
   scale_fill_party("Party") +
   theme(legend.position = "bottom")
@@ -123,7 +124,8 @@ Each one of these functions has a parameter `polls` to allow for a finer grained
 
 ```{r, message = FALSE}
 new_polls <- fivethirtyeight_update(polls="president_polls")
-new_polls %>% select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
+new_polls %>% filter(!is.na(state)) %>%
+  select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
 ```
 
 
@@ -159,9 +161,9 @@ state_1 <- state_polls %>%
 
 state_3 <- polls_plus(
   new_polls %>% filter(
+    !is.na(state),
     population %in% c("lv", "rv")),
             electoral_votes_2016, k=5) %>%
-  filter(!(state %in% c("Maine CD-1", "Maine CD-2", "Nebraska"))) %>%
   mutate(
     state = reorder(state, pct_diff, mean)
   )
@@ -170,6 +172,7 @@ state_1 <- state_1 %>%
   mutate(state = factor(state, levels = levels(state_3$state)))
 
 gg_states <- state_1 %>%
+  filter(!(state %in% c("Maine CD-1", "Maine CD-2", "Nebraska"))) %>%
   ggplot(aes(x = pct_diff, y = state)) + 
   geom_rect(xmin=-5, xmax=+5, ymin=-Inf, ymax = +Inf, 
             fill="#fcfcc5", size=0) + 
@@ -194,14 +197,16 @@ gg_states +
 ### Building of polls
 
 ```{r, fig.width = 6, fig.height = 9, out.width="70%"}
+state_3 <- state_3 %>% filter(!(state %in% c("Maine", "Nebraska")))
 electoral_building(
     state_district = state_3$state, 
     electoral_votes = state_3$electoral_votes, 
     perc_dem = state_3$perc_dem, 
-    perc_rep = state_3$perc_rep) +
+    perc_rep = state_3$perc_rep,
+    source = state_3$source) +
   scale_color_party("Party") +
   scale_fill_party("Party") +
-  theme(legend.position = "bottom") +
+  theme(legend.position = "none") +
   ggtitle("Electoral building, based on polls")
 ```
 

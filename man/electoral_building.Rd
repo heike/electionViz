@@ -4,7 +4,7 @@
 \alias{electoral_building}
 \title{Electoral Building}
 \usage{
-electoral_building(state_district, electoral_votes, perc_dem, perc_rep)
+electoral_building(state_district, electoral_votes, perc_dem, perc_rep, source)
 }
 \arguments{
 \item{state_district}{state/district name}
@@ -14,6 +14,8 @@ electoral_building(state_district, electoral_votes, perc_dem, perc_rep)
 \item{perc_dem}{percent democrats}
 
 \item{perc_rep}{percent republicans}
+
+\item{source}{polls or election results?}
 }
 \description{
 Electoral Building
@@ -23,7 +25,9 @@ library(ggplot2)
 electoral_building(state_district = electoral_votes_2016$state_district, 
                    electoral_votes = electoral_votes_2016$electoral_votes, 
                    perc_dem = electoral_votes_2016$perc_dem, 
-                   perc_rep = electoral_votes_2016$perc_rep) +
+                   perc_rep = electoral_votes_2016$perc_rep,
+                   source = "election"
+                   ) +
   scale_color_party("Party") +
   scale_fill_party("Party") +
   theme(legend.position = "bottom")

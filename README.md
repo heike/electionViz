@@ -89,21 +89,22 @@ to focus on:
 
 ``` r
 new_polls <- fivethirtyeight_update(polls="president_polls")
-new_polls %>% select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 5,650 x 7
-#>    poll_id start_date end_date   pollster state candidate_name        pct
-#>      <dbl> <date>     <date>     <chr>    <chr> <chr>               <dbl>
-#>  1   67815 2020-07-27 2020-07-28 Ipsos    <NA>  Joseph R. Biden Jr.  57  
-#>  2   67815 2020-07-27 2020-07-28 Ipsos    <NA>  Donald Trump         43  
-#>  3   67815 2020-07-27 2020-07-28 Ipsos    <NA>  Joseph R. Biden Jr.  57  
-#>  4   67815 2020-07-27 2020-07-28 Ipsos    <NA>  Donald Trump         43  
-#>  5   67820 2020-07-26 2020-07-28 YouGov   <NA>  Joseph R. Biden Jr.  49  
-#>  6   67820 2020-07-26 2020-07-28 YouGov   <NA>  Donald Trump         40  
-#>  7   67832 2020-07-24 2020-07-28 Optimus  <NA>  Joseph R. Biden Jr.  38.5
-#>  8   67832 2020-07-24 2020-07-28 Optimus  <NA>  Donald Trump         31.1
-#>  9   67832 2020-07-24 2020-07-28 Optimus  <NA>  Joseph R. Biden Jr.  47.5
-#> 10   67832 2020-07-24 2020-07-28 Optimus  <NA>  Donald Trump         40.4
-#> # … with 5,640 more rows
+new_polls %>% filter(!is.na(state)) %>%
+  select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
+#> # A tibble: 3,020 x 7
+#>    poll_id start_date end_date   pollster         state    candidate_name    pct
+#>      <dbl> <date>     <date>     <chr>            <chr>    <chr>           <dbl>
+#>  1   67827 2020-07-16 2020-07-28 University of N… New Ham… Joseph R. Bide…    53
+#>  2   67827 2020-07-16 2020-07-28 University of N… New Ham… Donald Trump       40
+#>  3   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Joseph R. Bide…    47
+#>  4   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Donald Trump       47
+#>  5   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Jo Jorgensen        3
+#>  6   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Joseph R. Bide…    47
+#>  7   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Donald Trump       48
+#>  8   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Jo Jorgensen        2
+#>  9   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Joseph R. Bide…    46
+#> 10   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Donald Trump       49
+#> # … with 3,010 more rows
 ```
 
 ### Polls by State
@@ -122,14 +123,16 @@ typical margin of error of a poll.
 ### Building of polls
 
 ``` r
+state_3 <- state_3 %>% filter(!(state %in% c("Maine", "Nebraska")))
 electoral_building(
     state_district = state_3$state, 
     electoral_votes = state_3$electoral_votes, 
     perc_dem = state_3$perc_dem, 
-    perc_rep = state_3$perc_rep) +
+    perc_rep = state_3$perc_rep,
+    source = state_3$source) +
   scale_color_party("Party") +
   scale_fill_party("Party") +
-  theme(legend.position = "bottom") +
+  theme(legend.position = "none") +
   ggtitle("Electoral building, based on polls")
 ```
 
