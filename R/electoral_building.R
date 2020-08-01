@@ -19,6 +19,7 @@
 #'   theme(legend.position = "bottom")
 electoral_building <- function(state_district, electoral_votes, perc_dem, perc_rep, source){
   rep_margin <- victor <- location_max <- location_min <- height_min <- height_max <- text_loc <- hjust_param <- NULL
+  victorplus <- NULL
   
   df <- data.frame(state_district, electoral_votes, perc_dem, perc_rep, source, stringsAsFactors = F)
   df <- df %>% mutate(rep_margin = perc_rep - perc_dem, 

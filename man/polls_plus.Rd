@@ -4,14 +4,12 @@
 \alias{polls_plus}
 \title{Average polls and supplement with election data}
 \usage{
-polls_plus(polls, election, k = 5)
+polls_plus(polls, election)
 }
 \arguments{
-\item{polls}{tibble result from `fivethirteight_update`}
+\item{polls}{data frame of polls as returned by `polls_filter`}
 
 \item{election}{tibble of election results (with number of electoral votes)}
-
-\item{k}{include k most recent polls}
 }
 \value{
 tibble of average polls supplemented by last k polls
@@ -19,5 +17,5 @@ polls_plus(presidential_polls %>% filter(population %in% c("lv", "rv")),
            electoral_votes_2016) %>% head()
 }
 \description{
-Average polls and supplement with election data
+Find a state/district average of polls and supplement averages with election data in case no recent polls are available for a state or district.
 }
