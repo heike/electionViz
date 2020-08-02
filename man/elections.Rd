@@ -4,8 +4,7 @@
 \name{elections}
 \alias{elections}
 \title{State-level election results of US presidential elections}
-\format{
-A tibble with 564 rows and 10 columns
+\format{A tibble with 564 rows and 10 columns
 \describe{
   \item{year}{year of election}
   \item{state}{name of the state}
@@ -17,8 +16,7 @@ A tibble with 564 rows and 10 columns
   \item{totalvotes}{number of total votes}
   \item{cand_dem}{name of the Democratic candidate}
   \item{cand_rep}{name of the Republican candidate}
-}
-}
+}}
 \usage{
 elections
 }

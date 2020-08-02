@@ -4,8 +4,7 @@
 \name{presidential_polls}
 \alias{presidential_polls}
 \title{Polls for the presidential general election}
-\format{
-A tibble with 5312 rows and 37 columns
+\format{A tibble with 5312 rows and 37 columns
 \describe{
   \item{question_id}{numeric}
   \item{poll_id}{numeric}
@@ -44,8 +43,7 @@ A tibble with 5312 rows and 37 columns
   \item{candidate_name}{character}
   \item{candidate_party}{character}
   \item{pct}{numeric}
-}
-}
+}}
 \source{
 \url{https://projects.fivethirtyeight.com/polls-page/president_polls.csv}
 }

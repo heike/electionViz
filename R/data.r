@@ -194,3 +194,17 @@
 #'   \item{cand_rep}{name of the Republican candidate}
 #' }
 "elections"
+
+
+#' Electoral snake path data
+#' 
+#' A winding path of 538 approximately equal segments to be used for making
+#' the electoral snake plot.
+#' @format A tibble with 3278 rows and 4 columns
+#' \describe{
+#'   \item{ev}{electoral vote number}
+#'   \item{order}{path plotting order}
+#'   \item{x}{x coordinate}
+#'   \item{y}{y coordinate}
+#' }
+"snake_path"
