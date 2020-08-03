@@ -131,7 +131,7 @@ new_polls %>% filter(!is.na(state)) %>%
 
 ### Polls by State
 
-The difference in percentage between democratic and republican percentage of the last five polls (of likely or registered voters) for each state are shown as grey points, colored points show average difference for each point. States are ordered according to difference in percentage. The yewllow rectangle shows a margin of +/- 5 percent - the typical margin of error of a poll.
+The difference in percentage between democratic and republican percentage of the last five polls (of likely or registered voters) for each state are shown as grey points, colored points show average difference for each point. States are ordered according to difference in percentage. The yellow rectangle shows a margin of +/- 5 percent - the typical margin of error of a poll.
 
 
 ```{r, echo=FALSE, fig.height=8, message=FALSE}
