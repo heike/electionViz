@@ -1,37 +1,59 @@
 #' Create an Electoral Snake Plot
 #' 
-#' @param .data data frame
-#' @param pct_diff percent difference between republican and democrat votes/polls. Democrat advantage should be a negative number.
-#' @param electoral_votes number of electoral votes in each district
-#' @param district 
+#' @param data data frame
+#' @param order variable to use to order the snake segments
+#' @param label variable to use to label the segments (also used as a grouping variable)
+#' @param fill variable to use to fill the segments in
+#' @param color variable to use to outline the segments
+#' @param size variable to use to determine how many segments are allocated to a group 
+#' @import dplyr
+#' @importFrom purrr map
+#' @importFrom sf st_union st_cast
+#' @importFrom tidyr nest unnest
+#' @importFrom rlang ensym `!!` .data
+#' @importFrom ggplot2 ggplot aes geom_sf geom_sf_text theme_void
 #' @export
-ggsnake <- function(.data) {
+#' @examples
+#' 
+#' library(dplyr)
+#' electoral_votes_2016 %>%
+#' mutate(diff = perc_rep - perc_dem, party = ifelse(perc_dem > perc_rep, "Dem", "Rep")) %>%
+#' ggsnake(order = diff, fill = diff, label = state_district, color = party, size = electoral_votes) + 
+#' scale_color_party() + scale_fill_partygrad()
+ggsnake <- function(data, order, label, fill, color, size) {
   # browser()
-  data("snake_poly", package = "electionViz")
   
+  # ensym variables
+  f.order <- rlang::ensym(order)
+  f.fill <- rlang::ensym(fill)
+  f.color <- rlang::ensym(color)
+  f.size <- rlang::ensym(size)
+  f.label <- rlang::ensym(label)
+  
+  # data(snake_poly)
   get_segments <- function(idx) {
-    tmp <- filter(snake_poly, ev %in% idx) %>%
-      summarize(data = sf::st_union(data) %>% sf::st_cast("MULTIPOLYGON"))
+    tmp <- dplyr::filter(snake_poly, .data$ev %in% idx) %>%
+      dplyr::summarize(geometry = sf::st_union(.data$geometry) %>% sf::st_cast("MULTIPOLYGON"))
   }
-  
-  basic <- .data %>%
-    dplyr::arrange(pct_diff) %>%
-    dplyr::mutate(cumev = cumsum(electoral_votes),
-                  allev = purrr::map2(cumev, lag(cumev, 1, 0), ~ (.y+1):.x)) %>%
-    dplyr::mutate(data = purrr::map(allev, get_segments)) %>%
-    tidyr::unnest(data) %>%
-    dplyr::select(-allev) %>%
-    dplyr::mutate(fill = ifelse(pct_diff > 0, "#E9141D", "#0015BC"))
+  # browser()
+  basic <- data %>%
+    dplyr::arrange(!!f.order) %>%
+    dplyr::mutate(cumev = cumsum(!!f.size),
+                  allev = purrr::map2(.data$cumev, lag(.data$cumev, 1, 0), ~ (.y+1):.x)) %>%
+    dplyr::mutate(geometry = purrr::map(.data$allev, get_segments)) %>%
+    tidyr::unnest(geometry) %>%
+    dplyr::select(-.data$allev)
   
   labels <- basic %>%
-    dplyr::group_by(state) %>%
-    dplyr::summarize(center = purrr::map(data, sf::st_point_on_surface)) %>%
+    dplyr::group_by(!!f.label) %>%
+    dplyr::summarize(center = purrr::map(.data$geometry, sf::st_point_on_surface)) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(center = sf::st_as_sfc(center))
+    dplyr::mutate(center = sf::st_as_sfc(.data$center))
 
-  ggplot(basic, aes(geometry = data, group = district)) +
-    geom_sf(aes(geometry = data, color = fill, fill = pct_diff)) +
-    scale_color_identity() + scale_fill_partygrad() +
-    geom_sf_text(data = labels, aes(geometry = center, label = state), inherit.aes = F) +
-    theme_void()
+  geometry <- center <- NULL # CRAN check fixes
+  
+  ggplot2::ggplot(basic, ggplot2::aes(geometry = geometry, group = !!f.label)) +
+    ggplot2::geom_sf(ggplot2::aes(geometry = geometry, color = !!f.color, fill = !!f.fill)) +
+    ggplot2::geom_sf_text(data = labels, ggplot2::aes(geometry = center, label = !!f.label), inherit.aes = F) +
+    ggplot2::theme_void()
 }
