@@ -4,17 +4,29 @@
 \alias{ggsnake}
 \title{Create an Electoral Snake Plot}
 \usage{
-ggsnake(.data)
+ggsnake(data, order, label, fill, color, size)
 }
 \arguments{
-\item{.data}{data frame}
+\item{data}{data frame}
 
-\item{pct_diff}{percent difference between republican and democrat votes/polls. Democrat advantage should be a negative number.}
+\item{order}{variable to use to order the snake segments}
 
-\item{electoral_votes}{number of electoral votes in each district}
+\item{label}{variable to use to label the segments (also used as a grouping variable)}
 
-\item{district}{}
+\item{fill}{variable to use to fill the segments in}
+
+\item{color}{variable to use to outline the segments}
+
+\item{size}{variable to use to determine how many segments are allocated to a group}
 }
 \description{
 Create an Electoral Snake Plot
+}
+\examples{
+
+library(dplyr)
+electoral_votes_2016 \%>\%
+mutate(diff = perc_rep - perc_dem, party = ifelse(perc_dem > perc_rep, "Dem", "Rep")) \%>\%
+ggsnake(order = diff, fill = diff, label = state_district, color = party, size = electoral_votes) + 
+scale_color_party() + scale_fill_partygrad()
 }
