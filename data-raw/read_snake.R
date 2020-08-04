@@ -60,7 +60,7 @@ svg_split <- function(x) {
   #   dplyr::mutate(x = ifelse(type %in% letters, x + dplyr::lag(x, 1, 0), x),
   #                 y = ifelse(type %in% letters, ifelse(is.na(y), 0, y) + dplyr::lag(y, 1, 0), y),
   #                 type = ifelse(type %in% letters, toupper(type), type))
-
+  
   
   # Handle bezier start points
   df <- df %>%
@@ -125,88 +125,79 @@ bezier_control_to_df <- function(type, data) {
     as.data.frame() %>%
     purrr::set_names(c("x", "y")) %>%
     dplyr::mutate(order = seq(data$order[1], data$order[nrow(data)], length.out = nrow(.))#,
-           #row = seq(min(data$row), max(data$row), length.out = nrow(.))
-           )
+                  #row = seq(min(data$row), max(data$row), length.out = nrow(.))
+    )
 }
+#' 
+#' #' Read in the SVG snake with 538 segments as an R object
+#' snake_path <- function() {
+#'   html <- xml2::read_html("data-raw/snake_segments.svg")
+#'   paths <- xml2::xml_find_all(html, "//path")
+#' 
+#'   dir_orig <- tibble::tibble(group = 1:length(paths)) %>%
+#'     dplyr::mutate(directions = purrr::map_chr(paths, xml2::xml_attr, "d"))
+#'   
+#'   
+#'   # Handle SVG data and transition everything into absolute coords
+#'   segments_orig <- dir_orig %>%
+#'     dplyr::mutate(points = purrr::map(directions, svg_split)) %>%
+#'     tidyr::unnest(points) %>%
+#'     dplyr::select(-directions) %>%
+#'     unique()
+#' 
+#'   html2 <- xml2::read_html("data-raw/snake_combined.svg")
+#'   paths2 <- xml2::xml_find_all(html2, "//path")
+#' 
+#'   dir_orig2 <- tibble::tibble(directions = xml2::xml_attr(paths2, "d"))
+#' 
+#'   segments_orig2 <- dir_orig2 %>%
+#'     dplyr::mutate(points = purrr::map(directions, svg_split)) %>%
+#'     tidyr::unnest(points) %>%
+#'     dplyr::select(-directions) %>%
+#'     unique()
+#' 
+#'   segments_orig2$group <- rev(segments_orig$group)
+#' 
+#' 
+#'   segments <- segments_orig2 %>%
+#'     tidyr::nest(data = -c(group, type)) %>%
+#'     dplyr::mutate(data = purrr::map2(type, data, bezier_control_to_df)) %>%
+#'     tidyr::unnest(data) %>%
+#'     dplyr::select(ev = group, order = order, x = x, y = y) %>%
+#'     dplyr::arrange(ev, rev(order))
+#'   
+#' 
+#'   segments 
+#' }
 
-#' Read in the SVG snake with 538 segments as an R object
-snake_path <- function() {
-  html <- xml2::read_html("data-raw/snake_segments.svg")
-  paths <- xml2::xml_find_all(html, "//path")
+html <- xml2::read_html("data-raw/polygon_snake.svg")
+paths <- xml2::xml_find_all(html, "//path")
 
-  dir_orig <- tibble::tibble(group = 1:length(paths)) %>%
-    dplyr::mutate(directions = purrr::map_chr(paths, xml2::xml_attr, "d"))
-  
-  
-  # Handle SVG data and transition everything into absolute coords
-  segments_orig <- dir_orig %>%
-    dplyr::mutate(points = purrr::map(directions, svg_split)) %>%
-    tidyr::unnest(points) %>%
-    dplyr::select(-directions) %>%
-    unique()
-
-  html2 <- xml2::read_html("data-raw/snake_combined.svg")
-  paths2 <- xml2::xml_find_all(html2, "//path")
-
-  dir_orig2 <- tibble::tibble(directions = xml2::xml_attr(paths2, "d"))
-
-  segments_orig2 <- dir_orig2 %>%
-    dplyr::mutate(points = purrr::map(directions, svg_split)) %>%
-    tidyr::unnest(points) %>%
-    dplyr::select(-directions) %>%
-    unique()
-
-  segments_orig2$group <- rev(segments_orig$group)
+dir_orig <- tibble::tibble(group = 1:length(paths)) %>%
+  dplyr::mutate(directions = purrr::map_chr(paths, xml2::xml_attr, "d"))
 
 
-  segments <- segments_orig2 %>%
-    tidyr::nest(data = -c(group, type)) %>%
-    dplyr::mutate(data = purrr::map2(type, data, bezier_control_to_df)) %>%
-    tidyr::unnest(data) %>%
-    dplyr::select(ev = group, order = order, x = x, y = y) %>%
-    dplyr::arrange(ev, rev(order))
-  
+# Handle SVG data and transition everything into absolute coords
+segments_orig <- dir_orig %>%
+  dplyr::mutate(points = purrr::map(directions, svg_split)) %>%
+  tidyr::unnest(points) %>%
+  dplyr::select(-directions) %>%
+  unique()
 
-  segments 
-}
-#' Read in the SVG snake with 538 segments as an R object
-snake_poly <- function() {
-  # html <- xml2::read_html(system.file("DATA/snake_segments.svg", package = "electionViz"))
-  html <- xml2::read_html("data-raw/polygon_snake.svg")
-  paths <- xml2::xml_find_all(html, "//path")
-  
-  dir_orig <- tibble::tibble(group = 1:length(paths)) %>%
-    dplyr::mutate(directions = purrr::map_chr(paths, xml2::xml_attr, "d"))
-  
-  
-  # Handle SVG data and transition everything into absolute coords
-  segments_orig <- dir_orig %>%
-    dplyr::mutate(points = purrr::map(directions, svg_split)) %>%
-    tidyr::unnest(points) %>%
-    dplyr::select(-directions) %>%
-    unique()
- 
-  segments <- segments_orig %>%
-    tidyr::nest(data = -c(group, type)) %>%
-    dplyr::mutate(data = purrr::map2(type, data, bezier_control_to_df)) %>%
-    tidyr::unnest(data) %>%
-    dplyr::select(ev = group, order = order, x = x, y = y) %>%
-    dplyr::arrange(ev, order)
-  
-  segments_sf <- segments %>%
-    dplyr::select(-order) %>%
-    tidyr::nest(data = c(x, y)) %>%
-    dplyr::mutate(data = purrr::map(data, ~list(as.matrix(.)))) %>%
-    dplyr::mutate(data = purrr::map(data, ~try(sf::st_polygon(.)))) %>%
-    dplyr::mutate(data = sf::st_sfc(data))
-  
-  
-  segments_sf 
-}
-snake_path <- snake_path()
-usethis::use_data(snake_path, overwrite = T)
+segments <- segments_orig %>%
+  tidyr::nest(geometry = -c(group, type)) %>%
+  dplyr::mutate(geometry = purrr::map2(type, geometry, bezier_control_to_df)) %>%
+  tidyr::unnest(geometry) %>%
+  dplyr::select(ev = group, order = order, x = x, y = y) %>%
+  dplyr::arrange(ev, order)
 
-snake_poly <- snake_poly()
-usethis::use_data(snake_poly, overwrite = T)
+snake_poly <- segments %>%
+  dplyr::select(-order) %>%
+  tidyr::nest(geometry = c(x, y)) %>%
+  dplyr::mutate(geometry = purrr::map(geometry, ~list(as.matrix(.)))) %>%
+  dplyr::mutate(geometry = purrr::map(geometry, ~try(sf::st_polygon(.)))) %>%
+  dplyr::mutate(geometry = sf::st_sfc(geometry))
 
-ggplot(snake_poly, aes(geometry = data, fill = factor(ev%%3), group = ev)) + geom_sf(color = "black")
+usethis::use_data(snake_poly, overwrite = T, internal = T)
+
+# ggplot(snake_poly, aes(geometry = data, fill = factor(ev%%3), group = ev)) + geom_sf(color = "black")
