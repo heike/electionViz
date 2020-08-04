@@ -19,7 +19,7 @@
 #' electoral_votes_2016 %>%
 #' mutate(diff = perc_rep - perc_dem, party = ifelse(perc_dem > perc_rep, "Dem", "Rep")) %>%
 #' ggsnake(order = diff, fill = diff, label = state_district, color = party, size = electoral_votes) + 
-#' scale_color_party() + scale_fill_partygrad()
+#' scale_fill_party_binned() + scale_color_party()
 ggsnake <- function(data, order, label, fill, color, size) {
   # browser()
   
