@@ -27,6 +27,24 @@ scale_fill_party <- function(...) {
   scale_fill_manual(values = c(dem_blue, rep_red), ...)
 }
 
+
+#' Color scale for gradient between two parties
+#' 
+#' @param ... passed on to scale_color_manual
+#' @importFrom ggplot2 scale_color_manual
+#' @export
+scale_color_partygrad <- function(...) {
+  scale_color_gradient2(low = dem_blue, mid = "white", high = rep_red, midpoint = 0)
+}
+#' Fill scale for gradient between two parties
+#' 
+#' @param ... passed on to scale_color_manual
+#' @importFrom ggplot2 scale_color_manual
+#' @export
+scale_fill_partygrad <- function(...) {
+  scale_fill_gradient2(low = dem_blue, mid = "white", high = rep_red, midpoint = 0)
+}
+
 #' Update to the newest polls provided by FiveThirtyEight
 #' 
 #' @param polls character string describing the race, one of 'president_polls', 'senate_polls', 'house_polls' or 'governor_polls'
