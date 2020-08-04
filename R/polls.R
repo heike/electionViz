@@ -1,3 +1,27 @@
+
+#' Update to the newest polls provided by FiveThirtyEight
+#' 
+#' @param polls character string describing the race, one of 'president_polls', 'senate_polls', 'house_polls' or 'governor_polls'
+#' @return tibble of the recent polls
+#' @importFrom readr read_csv
+#' @importFrom lubridate mdy
+#' @export
+#' @examples 
+#' presidential_polls <- fivethirtyeight_update()
+fivethirtyeight_update <- function(polls = "president_polls") {
+  url <- sprintf("https://projects.fivethirtyeight.com/polls-page/%s.csv", polls)
+  start_date <- end_date <- election_date <- ""
+  
+  res <- readr::read_csv(url)
+  res %>% mutate(
+    start_date = lubridate::mdy(start_date),
+    end_date = lubridate::mdy(end_date),
+    election_date = lubridate::mdy(election_date)
+  )
+}
+
+
+
 search_for_parent <- function(node, tag) {
   parents <- xml2::xml_parents(node)
   tags <- purrr::map_chr(parents, rvest::html_name)
