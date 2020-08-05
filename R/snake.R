@@ -17,8 +17,9 @@
 #' 
 #' library(dplyr)
 #' electoral_votes_2016 %>%
-#' mutate(diff = perc_rep - perc_dem, party = ifelse(perc_dem > perc_rep, "Dem", "Rep")) %>%
-#' ggsnake(order = diff, fill = diff, label = state_district, color = party, size = electoral_votes) + 
+#' mutate(diff = perc_rep - perc_dem, party = ifelse(perc_dem > perc_rep, "Dem", "Rep"),
+#'        label = clean_districts(state_district, electoral_votes)) %>%
+#' ggsnake(order = diff, fill = diff, label = label, color = party, size = electoral_votes) + 
 #' scale_fill_party_binned() + scale_color_party()
 ggsnake <- function(data, order, label, fill, color, size) {
   # browser()
@@ -50,12 +51,13 @@ ggsnake <- function(data, order, label, fill, color, size) {
   }
   
   labels <- basic %>%
-    dplyr::group_by(!!f.label) %>%
-    dplyr::summarize(center = purrr::map(.data$geometry, sf::st_point_on_surface),
-                     width = purrr::map_dbl(.data$geometry, get_width_bbox),
-                     angle = ifelse(width > 15, 0, 90)) %>%
+    dplyr::group_by(!!f.label, !!f.size) %>%
+    dplyr::summarize(center = purrr::map(.data$geometry, sf::st_point_on_surface)) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(center = sf::st_as_sfc(.data$center)) 
+    dplyr::mutate(center = sf::st_as_sfc(.data$center)) %>%
+    dplyr::mutate(ev_intersect = sf::st_intersects(.data$center, snake_poly$geometry) %>% as.numeric()) %>%
+    dplyr::left_join(snake_poly_path, by = c("ev_intersect" = "ev")) %>%
+    dplyr::mutate(angle = ifelse(!!f.size == 1, 0, angle))
 
   geometry <- center <- width <- angle <- NULL # CRAN check fixes
   
@@ -64,4 +66,28 @@ ggsnake <- function(data, order, label, fill, color, size) {
     ggplot2::geom_sf_text(data = labels, ggplot2::aes(geometry = center, label = !!f.label, angle = angle), inherit.aes = F) +
     ggplot2::theme_void() + 
     ggplot2::theme(legend.position = c(.525, .45))
+}
+
+
+#' Clean up district labels
+#' 
+#' Replace state and district names with abbreviations (for districts with fewer 
+#' EVs than letters)
+#' @param label text labels
+#' @param ev electoral votes
+#' @export
+clean_districts <- function(label, ev) {
+  . <- NULL
+  
+  tibble::tibble(
+    orig = label, size = ev, nchar = nchar(label)
+  ) %>%
+    dplyr::mutate(abbreviate = .data$nchar > .data$size) %>%
+    dplyr::mutate(state = gsub(" CD-\\d", "", .data$orig) %>% gsub("District of Columbia", "DC", .),
+                  district = gsub("\\D{1,}", "", .data$orig)) %>%
+    dplyr::left_join(tibble::tibble(state = datasets::state.name, abb = datasets::state.abb)) %>%
+    dplyr::mutate(abb = ifelse(is.na(.data$abb), .data$state, .data$abb), 
+                  label = ifelse(.data$abbreviate, paste(.data$abb, .data$district, sep = "-"), .data$state) %>%
+                    gsub("-$", "", .)) %>%
+    `[[`("label")
 }

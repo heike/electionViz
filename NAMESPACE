@@ -2,6 +2,7 @@
 
 export("%>%")
 export(bead_snake_plot)
+export(clean_districts)
 export(electoral_building)
 export(fivethirtyeight_update)
 export(ggsnake)

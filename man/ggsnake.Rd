@@ -26,7 +26,8 @@ Create an Electoral Snake Plot
 
 library(dplyr)
 electoral_votes_2016 \%>\%
-mutate(diff = perc_rep - perc_dem, party = ifelse(perc_dem > perc_rep, "Dem", "Rep")) \%>\%
-ggsnake(order = diff, fill = diff, label = state_district, color = party, size = electoral_votes) + 
+mutate(diff = perc_rep - perc_dem, party = ifelse(perc_dem > perc_rep, "Dem", "Rep"),
+       label = clean_districts(state_district, electoral_votes)) \%>\%
+ggsnake(order = diff, fill = diff, label = label, color = party, size = electoral_votes) + 
 scale_fill_party_binned() + scale_color_party()
 }
