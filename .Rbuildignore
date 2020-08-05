@@ -7,3 +7,5 @@
 raw
 stuff
 ^data-raw$
+^_pkgdown\.yml$
+^pkgdown$
