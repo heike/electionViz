@@ -57,7 +57,7 @@ ggsnake <- function(data, order, label, fill, color, size) {
     dplyr::ungroup() %>%
     dplyr::mutate(center = sf::st_as_sfc(.data$center)) 
 
-  geometry <- center <- NULL # CRAN check fixes
+  geometry <- center <- width <- angle <- NULL # CRAN check fixes
   
   ggplot2::ggplot(basic, ggplot2::aes(geometry = geometry, group = !!f.label)) +
     ggplot2::geom_sf(ggplot2::aes(geometry = geometry, color = !!f.color, fill = !!f.fill)) +
