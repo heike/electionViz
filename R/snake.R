@@ -21,7 +21,7 @@
 #' ggsnake(order = diff, fill = diff, label = state_district, color = party, size = electoral_votes) + 
 #' scale_fill_party_binned() + scale_color_party()
 ggsnake <- function(data, order, label, fill, color, size) {
-  browser()
+  # browser()
   
   # ensym variables
   f.order <- rlang::ensym(order)
