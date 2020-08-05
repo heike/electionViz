@@ -198,6 +198,35 @@ snake_poly <- segments %>%
   dplyr::mutate(geometry = purrr::map(geometry, ~try(sf::st_polygon(.) %>% sf::st_make_valid()))) %>%
   dplyr::mutate(geometry = sf::st_sfc(geometry))
 
-usethis::use_data(snake_poly, overwrite = T, internal = T)
-rm(snake_poly)
 # ggplot(snake_poly, aes(geometry = data, fill = factor(ev%%3), group = ev)) + geom_sf(color = "black")
+
+
+html <- xml2::read_html("data-raw/wide_snake_path.svg")
+paths <- rev(xml2::xml_find_all(html, "//path"))
+
+dir_orig <- tibble::tibble(group = 1:length(paths)) %>%
+  dplyr::mutate(directions = purrr::map_chr(paths, xml2::xml_attr, "d"))
+
+
+# Handle SVG data and transition everything into absolute coords
+segments_orig <- dir_orig %>%
+  dplyr::mutate(points = purrr::map(directions, svg_split)) %>%
+  tidyr::unnest(points) %>%
+  dplyr::select(-directions) %>%
+  unique()
+
+segments <- segments_orig %>%
+  tidyr::nest(geometry = -c(group, type)) %>%
+  dplyr::mutate(geometry = purrr::map2(type, geometry, bezier_control_to_df)) %>%
+  tidyr::unnest(geometry) %>%
+  dplyr::select(ev = group, order = order, x = x, y = y) %>%
+  dplyr::arrange(ev, order)
+
+snake_poly_path <- segments %>%
+  dplyr::select(-order) %>%
+  dplyr::group_by(ev) %>%
+  dplyr::filter(dplyr::row_number() %in% c(1, dplyr::n())) %>%
+  dplyr::summarize(angle = atan2(diff(y),diff(x))/pi*180)
+
+usethis::use_data(snake_poly_path, snake_poly, overwrite = T, internal = T)
+rm(snake_poly, snake_poly_path)
