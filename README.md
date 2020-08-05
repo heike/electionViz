@@ -91,20 +91,20 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 3,022 x 7
-#>    poll_id start_date end_date   pollster         state    candidate_name    pct
-#>      <dbl> <date>     <date>     <chr>            <chr>    <chr>           <dbl>
-#>  1   67827 2020-07-16 2020-07-28 University of N… New Ham… Joseph R. Bide…    53
-#>  2   67827 2020-07-16 2020-07-28 University of N… New Ham… Donald Trump       40
-#>  3   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Joseph R. Bide…    47
-#>  4   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Donald Trump       47
-#>  5   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Jo Jorgensen        3
-#>  6   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Joseph R. Bide…    47
-#>  7   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Donald Trump       48
-#>  8   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Jo Jorgensen        2
-#>  9   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Joseph R. Bide…    46
-#> 10   67821 2020-07-23 2020-07-27 Monmouth Univer… Georgia  Donald Trump       49
-#> # … with 3,012 more rows
+#> # A tibble: 3,026 x 7
+#>    poll_id start_date end_date   pollster        state     candidate_name    pct
+#>      <dbl> <date>     <date>     <chr>           <chr>     <chr>           <dbl>
+#>  1   67859 2020-07-28 2020-07-31 YouGov          North Ca… Joseph R. Bide…    48
+#>  2   67859 2020-07-28 2020-07-31 YouGov          North Ca… Donald Trump       44
+#>  3   67860 2020-07-28 2020-07-31 YouGov          Georgia   Joseph R. Bide…    46
+#>  4   67860 2020-07-28 2020-07-31 YouGov          Georgia   Donald Trump       45
+#>  5   67827 2020-07-16 2020-07-28 University of … New Hamp… Joseph R. Bide…    53
+#>  6   67827 2020-07-16 2020-07-28 University of … New Hamp… Donald Trump       40
+#>  7   67821 2020-07-23 2020-07-27 Monmouth Unive… Georgia   Joseph R. Bide…    47
+#>  8   67821 2020-07-23 2020-07-27 Monmouth Unive… Georgia   Donald Trump       47
+#>  9   67821 2020-07-23 2020-07-27 Monmouth Unive… Georgia   Jo Jorgensen        3
+#> 10   67821 2020-07-23 2020-07-27 Monmouth Unive… Georgia   Joseph R. Bide…    47
+#> # … with 3,016 more rows
 ```
 
 ### Polls by State
