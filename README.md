@@ -91,20 +91,20 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 3,026 x 7
-#>    poll_id start_date end_date   pollster        state     candidate_name    pct
-#>      <dbl> <date>     <date>     <chr>           <chr>     <chr>           <dbl>
-#>  1   67859 2020-07-28 2020-07-31 YouGov          North Ca… Joseph R. Bide…    48
-#>  2   67859 2020-07-28 2020-07-31 YouGov          North Ca… Donald Trump       44
-#>  3   67860 2020-07-28 2020-07-31 YouGov          Georgia   Joseph R. Bide…    46
-#>  4   67860 2020-07-28 2020-07-31 YouGov          Georgia   Donald Trump       45
-#>  5   67827 2020-07-16 2020-07-28 University of … New Hamp… Joseph R. Bide…    53
-#>  6   67827 2020-07-16 2020-07-28 University of … New Hamp… Donald Trump       40
-#>  7   67821 2020-07-23 2020-07-27 Monmouth Unive… Georgia   Joseph R. Bide…    47
-#>  8   67821 2020-07-23 2020-07-27 Monmouth Unive… Georgia   Donald Trump       47
-#>  9   67821 2020-07-23 2020-07-27 Monmouth Unive… Georgia   Jo Jorgensen        3
-#> 10   67821 2020-07-23 2020-07-27 Monmouth Unive… Georgia   Joseph R. Bide…    47
-#> # … with 3,016 more rows
+#> # A tibble: 3,044 x 7
+#>    poll_id start_date end_date   pollster     state       candidate_name     pct
+#>      <dbl> <date>     <date>     <chr>        <chr>       <chr>            <dbl>
+#>  1   67867 2020-07-31 2020-08-02 Emerson Col… Montana     Joseph R. Biden…  45.5
+#>  2   67867 2020-07-31 2020-08-02 Emerson Col… Montana     Donald Trump      54.5
+#>  3   67879 2020-07-24 2020-08-02 Morning Con… Alabama     Joseph R. Biden…  36  
+#>  4   67879 2020-07-24 2020-08-02 Morning Con… Alabama     Donald Trump      58  
+#>  5   67880 2020-07-24 2020-08-02 Morning Con… Kentucky    Joseph R. Biden…  35  
+#>  6   67880 2020-07-24 2020-08-02 Morning Con… Kentucky    Donald Trump      59  
+#>  7   67881 2020-07-24 2020-08-02 Morning Con… South Caro… Joseph R. Biden…  44  
+#>  8   67881 2020-07-24 2020-08-02 Morning Con… South Caro… Donald Trump      49  
+#>  9   67882 2020-07-24 2020-08-02 Morning Con… Texas       Joseph R. Biden…  47  
+#> 10   67882 2020-07-24 2020-08-02 Morning Con… Texas       Donald Trump      46  
+#> # … with 3,034 more rows
 ```
 
 ### Polls by State
@@ -113,7 +113,7 @@ The difference in percentage between democratic and republican
 percentage of the last five polls (of likely or registered voters) for
 each state are shown as grey points, colored points show average
 difference for each point. States are ordered according to difference in
-percentage. The yewllow rectangle shows a margin of +/- 5 percent - the
+percentage. The yellow rectangle shows a margin of +/- 5 percent - the
 typical margin of error of a poll.
 
     #> Warning: Removed 1 rows containing missing values (geom_point).
