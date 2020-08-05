@@ -170,8 +170,8 @@ bezier_control_to_df <- function(type, data) {
 #'   segments 
 #' }
 
-html <- xml2::read_html("data-raw/polygon_snake.svg")
-paths <- xml2::xml_find_all(html, "//path")
+html <- xml2::read_html("data-raw/wide_snake.svg")
+paths <- rev(xml2::xml_find_all(html, "//path"))
 
 dir_orig <- tibble::tibble(group = 1:length(paths)) %>%
   dplyr::mutate(directions = purrr::map_chr(paths, xml2::xml_attr, "d"))
@@ -195,9 +195,9 @@ snake_poly <- segments %>%
   dplyr::select(-order) %>%
   tidyr::nest(geometry = c(x, y)) %>%
   dplyr::mutate(geometry = purrr::map(geometry, ~list(as.matrix(.)))) %>%
-  dplyr::mutate(geometry = purrr::map(geometry, ~try(sf::st_polygon(.)))) %>%
+  dplyr::mutate(geometry = purrr::map(geometry, ~try(sf::st_polygon(.) %>% sf::st_make_valid()))) %>%
   dplyr::mutate(geometry = sf::st_sfc(geometry))
 
 usethis::use_data(snake_poly, overwrite = T, internal = T)
-
+rm(snake_poly)
 # ggplot(snake_poly, aes(geometry = data, fill = factor(ev%%3), group = ev)) + geom_sf(color = "black")

@@ -21,7 +21,7 @@
 #' ggsnake(order = diff, fill = diff, label = state_district, color = party, size = electoral_votes) + 
 #' scale_fill_party_binned() + scale_color_party()
 ggsnake <- function(data, order, label, fill, color, size) {
-  # browser()
+  browser()
   
   # ensym variables
   f.order <- rlang::ensym(order)
@@ -33,7 +33,7 @@ ggsnake <- function(data, order, label, fill, color, size) {
   # data(snake_poly)
   get_segments <- function(idx) {
     tmp <- dplyr::filter(snake_poly, .data$ev %in% idx) %>%
-      dplyr::summarize(geometry = sf::st_union(.data$geometry) %>% sf::st_cast("MULTIPOLYGON"))
+      dplyr::summarize(geometry = sf::st_union(.data$geometry, by_feature = T) %>% sf::st_union() %>% sf::st_cast("MULTIPOLYGON"))
   }
   # browser()
   basic <- data %>%
@@ -44,16 +44,24 @@ ggsnake <- function(data, order, label, fill, color, size) {
     tidyr::unnest(geometry) %>%
     dplyr::select(-.data$allev)
   
+  get_width_bbox <- function(x) {
+    tmp <- x %>% sf::st_bbox() 
+    tmp$xmax - tmp$xmin
+  }
+  
   labels <- basic %>%
     dplyr::group_by(!!f.label) %>%
-    dplyr::summarize(center = purrr::map(.data$geometry, sf::st_point_on_surface)) %>%
+    dplyr::summarize(center = purrr::map(.data$geometry, sf::st_point_on_surface),
+                     width = purrr::map_dbl(.data$geometry, get_width_bbox),
+                     angle = ifelse(width > 15, 0, 90)) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(center = sf::st_as_sfc(.data$center))
+    dplyr::mutate(center = sf::st_as_sfc(.data$center)) 
 
   geometry <- center <- NULL # CRAN check fixes
   
   ggplot2::ggplot(basic, ggplot2::aes(geometry = geometry, group = !!f.label)) +
     ggplot2::geom_sf(ggplot2::aes(geometry = geometry, color = !!f.color, fill = !!f.fill)) +
-    ggplot2::geom_sf_text(data = labels, ggplot2::aes(geometry = center, label = !!f.label), inherit.aes = F) +
-    ggplot2::theme_void()
+    ggplot2::geom_sf_text(data = labels, ggplot2::aes(geometry = center, label = !!f.label, angle = angle), inherit.aes = F) +
+    ggplot2::theme_void() + 
+    ggplot2::theme(legend.position = c(.525, .45))
 }
