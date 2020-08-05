@@ -4,7 +4,8 @@
 \name{USelections}
 \alias{USelections}
 \title{Results of the US Presidential elections by state 1976-2016}
-\format{An object of class data.frame with 3740 rows and 14 columns.
+\format{
+An object of class data.frame with 3740 rows and 14 columns.
 \describe{
 \item{year}{Year of the election between 1976 and 2016}
 \item{state}{Name of the US state}
@@ -20,7 +21,8 @@
 \item{totalvotes}{Total number of votes cast for this election}
 \item{version}{Date of final version}
 \item{notes}{logical vector}
-}}
+}
+}
 \source{
 \url{https://doi.org/10.7910/DVN/42MVDX}
 }

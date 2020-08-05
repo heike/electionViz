@@ -4,7 +4,8 @@
 \name{pop_hex}
 \alias{pop_hex}
 \title{Hexbin map of the United States by population}
-\format{An object of class data.frame with 4515 rows and 8 columns.
+\format{
+An object of class data.frame with 4515 rows and 8 columns.
 \describe{
 \item{long}{geographic longitude}
 \item{lat}{geographic latitude}
@@ -14,7 +15,8 @@
 \item{FID}{state fips codes}
 \item{centerX}{center of the hexagon in longitude}
 \item{centerY}{center of the hexagon in latitude}
-}}
+}
+}
 \usage{
 pop_hex
 }
