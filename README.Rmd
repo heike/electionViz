@@ -215,3 +215,17 @@ bead_snake_plot(
   height = 30, buffer = 3) +
   ggtitle(sprintf("Polls %s", max(state_polls$end_date)))
 ```
+
+```{r,  echo=FALSE, fig.width = 10, fig.height = 8}
+state_3 %>%
+  mutate(diff = perc_rep - perc_dem, 
+         party = ifelse(perc_dem > perc_rep, "Dem", "Rep"),
+         label = state) %>%
+  ggsnake(order = diff, fill = diff, label = label, 
+          color = party, size = electoral_votes) +
+  scale_fill_party_binned() + 
+  scale_color_party() +
+  ggtitle(sprintf("Based on polls from %s to %s",
+                  min(state_polls$end_date), 
+                  max(state_polls$end_date)))
+```

@@ -91,20 +91,20 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 3,044 x 7
-#>    poll_id start_date end_date   pollster     state       candidate_name     pct
-#>      <dbl> <date>     <date>     <chr>        <chr>       <chr>            <dbl>
-#>  1   67867 2020-07-31 2020-08-02 Emerson Col… Montana     Joseph R. Biden…  45.5
-#>  2   67867 2020-07-31 2020-08-02 Emerson Col… Montana     Donald Trump      54.5
-#>  3   67879 2020-07-24 2020-08-02 Morning Con… Alabama     Joseph R. Biden…  36  
-#>  4   67879 2020-07-24 2020-08-02 Morning Con… Alabama     Donald Trump      58  
-#>  5   67880 2020-07-24 2020-08-02 Morning Con… Kentucky    Joseph R. Biden…  35  
-#>  6   67880 2020-07-24 2020-08-02 Morning Con… Kentucky    Donald Trump      59  
-#>  7   67881 2020-07-24 2020-08-02 Morning Con… South Caro… Joseph R. Biden…  44  
-#>  8   67881 2020-07-24 2020-08-02 Morning Con… South Caro… Donald Trump      49  
-#>  9   67882 2020-07-24 2020-08-02 Morning Con… Texas       Joseph R. Biden…  47  
-#> 10   67882 2020-07-24 2020-08-02 Morning Con… Texas       Donald Trump      46  
-#> # … with 3,034 more rows
+#> # A tibble: 3,145 x 7
+#>    poll_id start_date end_date   pollster          state candidate_name      pct
+#>      <dbl> <date>     <date>     <chr>             <chr> <chr>             <dbl>
+#>  1   67956 2020-08-05 2020-08-06 Public Policy Po… Kans… Joseph R. Biden …  43  
+#>  2   67956 2020-08-05 2020-08-06 Public Policy Po… Kans… Donald Trump       50  
+#>  3   67958 2020-08-01 2020-08-05 Trafalgar Group   Texas Joseph R. Biden …  43.4
+#>  4   67958 2020-08-01 2020-08-05 Trafalgar Group   Texas Donald Trump       49.4
+#>  5   67958 2020-08-01 2020-08-05 Trafalgar Group   Texas Jo Jorgensen        1.8
+#>  6   67920 2020-07-30 2020-08-03 Monmouth Univers… Iowa  Joseph R. Biden …  45  
+#>  7   67920 2020-07-30 2020-08-03 Monmouth Univers… Iowa  Donald Trump       48  
+#>  8   67920 2020-07-30 2020-08-03 Monmouth Univers… Iowa  Jo Jorgensen        3  
+#>  9   67920 2020-07-30 2020-08-03 Monmouth Univers… Iowa  Joseph R. Biden …  46  
+#> 10   67920 2020-07-30 2020-08-03 Monmouth Univers… Iowa  Donald Trump       48  
+#> # … with 3,135 more rows
 ```
 
 ### Polls by State
@@ -156,3 +156,5 @@ bead_snake_plot(
     #> Joining, by = "state_district"
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
