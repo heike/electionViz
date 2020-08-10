@@ -91,20 +91,20 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 3,145 x 7
-#>    poll_id start_date end_date   pollster          state candidate_name      pct
-#>      <dbl> <date>     <date>     <chr>             <chr> <chr>             <dbl>
-#>  1   67956 2020-08-05 2020-08-06 Public Policy Po… Kans… Joseph R. Biden …  43  
-#>  2   67956 2020-08-05 2020-08-06 Public Policy Po… Kans… Donald Trump       50  
-#>  3   67958 2020-08-01 2020-08-05 Trafalgar Group   Texas Joseph R. Biden …  43.4
-#>  4   67958 2020-08-01 2020-08-05 Trafalgar Group   Texas Donald Trump       49.4
-#>  5   67958 2020-08-01 2020-08-05 Trafalgar Group   Texas Jo Jorgensen        1.8
-#>  6   67920 2020-07-30 2020-08-03 Monmouth Univers… Iowa  Joseph R. Biden …  45  
-#>  7   67920 2020-07-30 2020-08-03 Monmouth Univers… Iowa  Donald Trump       48  
-#>  8   67920 2020-07-30 2020-08-03 Monmouth Univers… Iowa  Jo Jorgensen        3  
-#>  9   67920 2020-07-30 2020-08-03 Monmouth Univers… Iowa  Joseph R. Biden …  46  
-#> 10   67920 2020-07-30 2020-08-03 Monmouth Univers… Iowa  Donald Trump       48  
-#> # … with 3,135 more rows
+#> # A tibble: 3,159 x 7
+#>    poll_id start_date end_date   pollster        state    candidate_name     pct
+#>      <dbl> <date>     <date>     <chr>           <chr>    <chr>            <dbl>
+#>  1   67962 2020-08-04 2020-08-07 YouGov          Pennsyl… Joseph R. Biden…    49
+#>  2   67962 2020-08-04 2020-08-07 YouGov          Pennsyl… Donald Trump        43
+#>  3   67963 2020-08-04 2020-08-07 YouGov          Wiscons… Joseph R. Biden…    48
+#>  4   67963 2020-08-04 2020-08-07 YouGov          Wiscons… Donald Trump        42
+#>  5   67956 2020-08-05 2020-08-06 Public Policy … Kansas   Joseph R. Biden…    43
+#>  6   67956 2020-08-05 2020-08-06 Public Policy … Kansas   Donald Trump        50
+#>  7   67968 2020-07-27 2020-08-06 YouGov          Michigan Joseph R. Biden…    47
+#>  8   67968 2020-07-27 2020-08-06 YouGov          Michigan Donald Trump        43
+#>  9   67969 2020-07-27 2020-08-06 YouGov          Pennsyl… Joseph R. Biden…    50
+#> 10   67969 2020-07-27 2020-08-06 YouGov          Pennsyl… Donald Trump        41
+#> # … with 3,149 more rows
 ```
 
 ### Polls by State
