@@ -91,20 +91,20 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 3,159 x 7
-#>    poll_id start_date end_date   pollster        state    candidate_name     pct
-#>      <dbl> <date>     <date>     <chr>           <chr>    <chr>            <dbl>
-#>  1   67962 2020-08-04 2020-08-07 YouGov          Pennsyl… Joseph R. Biden…    49
-#>  2   67962 2020-08-04 2020-08-07 YouGov          Pennsyl… Donald Trump        43
-#>  3   67963 2020-08-04 2020-08-07 YouGov          Wiscons… Joseph R. Biden…    48
-#>  4   67963 2020-08-04 2020-08-07 YouGov          Wiscons… Donald Trump        42
-#>  5   67956 2020-08-05 2020-08-06 Public Policy … Kansas   Joseph R. Biden…    43
-#>  6   67956 2020-08-05 2020-08-06 Public Policy … Kansas   Donald Trump        50
-#>  7   67968 2020-07-27 2020-08-06 YouGov          Michigan Joseph R. Biden…    47
-#>  8   67968 2020-07-27 2020-08-06 YouGov          Michigan Donald Trump        43
-#>  9   67969 2020-07-27 2020-08-06 YouGov          Pennsyl… Joseph R. Biden…    50
-#> 10   67969 2020-07-27 2020-08-06 YouGov          Pennsyl… Donald Trump        41
-#> # … with 3,149 more rows
+#> # A tibble: 3,207 x 7
+#>    poll_id start_date end_date   pollster     state       candidate_name     pct
+#>      <dbl> <date>     <date>     <chr>        <chr>       <chr>            <dbl>
+#>  1   68040 2020-08-12 2020-08-12 SurveyUSA    California  Joseph R. Biden…  56  
+#>  2   68040 2020-08-12 2020-08-12 SurveyUSA    California  Donald Trump      28  
+#>  3   67998 2020-08-08 2020-08-10 Emerson Col… Minnesota   Joseph R. Biden…  51  
+#>  4   67998 2020-08-08 2020-08-10 Emerson Col… Minnesota   Donald Trump      49  
+#>  5   68005 2020-08-08 2020-08-10 Emerson Col… Arizona     Joseph R. Biden…  53.3
+#>  6   68005 2020-08-08 2020-08-10 Emerson Col… Arizona     Donald Trump      46.7
+#>  7   68006 2020-08-08 2020-08-10 Emerson Col… North Caro… Joseph R. Biden…  49.4
+#>  8   68006 2020-08-08 2020-08-10 Emerson Col… North Caro… Donald Trump      50.6
+#>  9   68007 2020-08-08 2020-08-10 Emerson Col… Pennsylvan… Joseph R. Biden…  53.3
+#> 10   68007 2020-08-08 2020-08-10 Emerson Col… Pennsylvan… Donald Trump      46.7
+#> # … with 3,197 more rows
 ```
 
 ### Polls by State
