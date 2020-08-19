@@ -91,20 +91,20 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 3,207 x 7
-#>    poll_id start_date end_date   pollster     state       candidate_name     pct
-#>      <dbl> <date>     <date>     <chr>        <chr>       <chr>            <dbl>
-#>  1   68040 2020-08-12 2020-08-12 SurveyUSA    California  Joseph R. Biden…  56  
-#>  2   68040 2020-08-12 2020-08-12 SurveyUSA    California  Donald Trump      28  
-#>  3   67998 2020-08-08 2020-08-10 Emerson Col… Minnesota   Joseph R. Biden…  51  
-#>  4   67998 2020-08-08 2020-08-10 Emerson Col… Minnesota   Donald Trump      49  
-#>  5   68005 2020-08-08 2020-08-10 Emerson Col… Arizona     Joseph R. Biden…  53.3
-#>  6   68005 2020-08-08 2020-08-10 Emerson Col… Arizona     Donald Trump      46.7
-#>  7   68006 2020-08-08 2020-08-10 Emerson Col… North Caro… Joseph R. Biden…  49.4
-#>  8   68006 2020-08-08 2020-08-10 Emerson Col… North Caro… Donald Trump      50.6
-#>  9   68007 2020-08-08 2020-08-10 Emerson Col… Pennsylvan… Joseph R. Biden…  53.3
-#> 10   68007 2020-08-08 2020-08-10 Emerson Col… Pennsylvan… Donald Trump      46.7
-#> # … with 3,197 more rows
+#> # A tibble: 3,234 x 7
+#>    poll_id start_date end_date   pollster        state    candidate_name     pct
+#>      <dbl> <date>     <date>     <chr>           <chr>    <chr>            <dbl>
+#>  1   68089 2020-08-07 2020-08-16 Morning Consult Wiscons… Joseph R. Biden…  49  
+#>  2   68089 2020-08-07 2020-08-16 Morning Consult Wiscons… Donald Trump      43  
+#>  3   68087 2020-08-14 2020-08-15 Landmark Commu… Georgia  Joseph R. Biden…  44.5
+#>  4   68087 2020-08-14 2020-08-15 Landmark Commu… Georgia  Donald Trump      47.4
+#>  5   68087 2020-08-14 2020-08-15 Landmark Commu… Georgia  Jo Jorgensen       4.4
+#>  6   68076 2020-08-12 2020-08-13 East Carolina … North C… Joseph R. Biden…  46.5
+#>  7   68076 2020-08-12 2020-08-13 East Carolina … North C… Donald Trump      46.9
+#>  8   68082 2020-08-04 2020-08-13 YouGov          Texas    Joseph R. Biden…  40.5
+#>  9   68082 2020-08-04 2020-08-13 YouGov          Texas    Donald Trump      47.5
+#> 10   68082 2020-08-04 2020-08-13 YouGov          Texas    Jo Jorgensen       1.1
+#> # … with 3,224 more rows
 ```
 
 ### Polls by State

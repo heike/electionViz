@@ -123,20 +123,20 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">new_polls &lt;-<span class="st"> </span><span class="kw"><a href="reference/fivethirtyeight_update.html">fivethirtyeight_update</a></span>(<span class="dt">polls=</span><span class="st">"president_polls"</span>)</a>
 <a class="sourceLine" id="cb4-2" title="2">new_polls <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(state)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">select</span>(poll_id, start_date, end_date, pollster, state, candidate_name, pct)</a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; # A tibble: 3,207 x 7</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;    poll_id start_date end_date   pollster     state       candidate_name     pct</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;            &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  1   68040 2020-08-12 2020-08-12 SurveyUSA    California  Joseph R. Biden…  56  </span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  2   68040 2020-08-12 2020-08-12 SurveyUSA    California  Donald Trump      28  </span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  3   67998 2020-08-08 2020-08-10 Emerson Col… Minnesota   Joseph R. Biden…  51  </span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  4   67998 2020-08-08 2020-08-10 Emerson Col… Minnesota   Donald Trump      49  </span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  5   68005 2020-08-08 2020-08-10 Emerson Col… Arizona     Joseph R. Biden…  53.3</span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  6   68005 2020-08-08 2020-08-10 Emerson Col… Arizona     Donald Trump      46.7</span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  7   68006 2020-08-08 2020-08-10 Emerson Col… North Caro… Joseph R. Biden…  49.4</span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;  8   68006 2020-08-08 2020-08-10 Emerson Col… North Caro… Donald Trump      50.6</span></a>
-<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;  9   68007 2020-08-08 2020-08-10 Emerson Col… Pennsylvan… Joseph R. Biden…  53.3</span></a>
-<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 10   68007 2020-08-08 2020-08-10 Emerson Col… Pennsylvan… Donald Trump      46.7</span></a>
-<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt; # … with 3,197 more rows</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; # A tibble: 3,215 x 7</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;    poll_id start_date end_date   pollster        state    candidate_name     pct</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;           &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  1   68076 2020-08-12 2020-08-13 East Carolina … North C… Joseph R. Biden…  46.5</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  2   68076 2020-08-12 2020-08-13 East Carolina … North C… Donald Trump      46.9</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  3   68040 2020-08-12 2020-08-12 SurveyUSA       Califor… Joseph R. Biden…  56  </span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  4   68040 2020-08-12 2020-08-12 SurveyUSA       Califor… Donald Trump      28  </span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  5   67998 2020-08-08 2020-08-10 Emerson College Minneso… Joseph R. Biden…  51  </span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  6   67998 2020-08-08 2020-08-10 Emerson College Minneso… Donald Trump      49  </span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  7   68005 2020-08-08 2020-08-10 Emerson College Arizona  Joseph R. Biden…  53.3</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;  8   68005 2020-08-08 2020-08-10 Emerson College Arizona  Donald Trump      46.7</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;  9   68006 2020-08-08 2020-08-10 Emerson College North C… Joseph R. Biden…  49.4</span></a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 10   68006 2020-08-08 2020-08-10 Emerson College North C… Donald Trump      50.6</span></a>
+<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt; # … with 3,205 more rows</span></a></code></pre></div>
 <div id="polls-by-state" class="section level3">
 <h3 class="hasAnchor">
 <a href="#polls-by-state" class="anchor"></a>Polls by State</h3>
