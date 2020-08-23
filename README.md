@@ -91,20 +91,20 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 3,234 x 7
-#>    poll_id start_date end_date   pollster        state    candidate_name     pct
-#>      <dbl> <date>     <date>     <chr>           <chr>    <chr>            <dbl>
-#>  1   68089 2020-08-07 2020-08-16 Morning Consult Wiscons… Joseph R. Biden…  49  
-#>  2   68089 2020-08-07 2020-08-16 Morning Consult Wiscons… Donald Trump      43  
-#>  3   68087 2020-08-14 2020-08-15 Landmark Commu… Georgia  Joseph R. Biden…  44.5
-#>  4   68087 2020-08-14 2020-08-15 Landmark Commu… Georgia  Donald Trump      47.4
-#>  5   68087 2020-08-14 2020-08-15 Landmark Commu… Georgia  Jo Jorgensen       4.4
-#>  6   68076 2020-08-12 2020-08-13 East Carolina … North C… Joseph R. Biden…  46.5
-#>  7   68076 2020-08-12 2020-08-13 East Carolina … North C… Donald Trump      46.9
-#>  8   68082 2020-08-04 2020-08-13 YouGov          Texas    Joseph R. Biden…  40.5
-#>  9   68082 2020-08-04 2020-08-13 YouGov          Texas    Donald Trump      47.5
-#> 10   68082 2020-08-04 2020-08-13 YouGov          Texas    Jo Jorgensen       1.1
-#> # … with 3,224 more rows
+#> # A tibble: 3,282 x 7
+#>    poll_id start_date end_date   pollster          state  candidate_name     pct
+#>      <dbl> <date>     <date>     <chr>             <chr>  <chr>            <dbl>
+#>  1   68158 2020-08-16 2020-08-19 Redfield & Wilto… Wisco… Joseph R. Biden…    49
+#>  2   68158 2020-08-16 2020-08-19 Redfield & Wilto… Wisco… Donald Trump        39
+#>  3   68158 2020-08-16 2020-08-19 Redfield & Wilto… Wisco… Jo Jorgensen         1
+#>  4   68158 2020-08-16 2020-08-19 Redfield & Wilto… Wisco… Howie Hawkins        1
+#>  5   68158 2020-08-16 2020-08-19 Redfield & Wilto… Wisco… Kanye West           1
+#>  6   68153 2020-08-16 2020-08-18 Redfield & Wilto… Arizo… Joseph R. Biden…    47
+#>  7   68153 2020-08-16 2020-08-18 Redfield & Wilto… Arizo… Donald Trump        38
+#>  8   68153 2020-08-16 2020-08-18 Redfield & Wilto… Arizo… Jo Jorgensen         2
+#>  9   68153 2020-08-16 2020-08-18 Redfield & Wilto… Arizo… Howie Hawkins        1
+#> 10   68153 2020-08-16 2020-08-18 Redfield & Wilto… Arizo… Kanye West           2
+#> # … with 3,272 more rows
 ```
 
 ### Polls by State
