@@ -126,31 +126,31 @@ senate, governor tables are not optimally tidy.</p></td>
     <pre class="examples"><div class='input'><span class='fu'>rcp_update</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown columns: `MoE`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown columns: `MoE`</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 100 x 14</span><span>
 #&gt;    date       rcp_poll_page_l… state race  poll_link pollster Poll  Date_Start
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>    
-#&gt; </span><span style='color: #555555;'> 1</span><span> 2020-09-02 /epolls/2020/pr… Penn… Trum… https://… Monmout… Monm… 2020-08-28
-#&gt; </span><span style='color: #555555;'> 2</span><span> 2020-09-01 /epolls/2020/pr… Geor… Trum… https://… WSB-TV/… WSB-… 2020-08-29
-#&gt; </span><span style='color: #555555;'> 3</span><span> 2020-09-01 /epolls/2020/pr… Nort… Trum… https://… East Ca… ECU   2020-08-29
-#&gt; </span><span style='color: #555555;'> 4</span><span> 2020-08-31 /epolls/2020/pr… Miss… Trum… https://… Trafalg… Traf… 2020-08-26
-#&gt; </span><span style='color: #555555;'> 5</span><span> 2020-08-28 /epolls/2020/pr… Mich… Trum… https://… Trafalg… Traf… 2020-08-14
-#&gt; </span><span style='color: #555555;'> 6</span><span> 2020-08-28 /epolls/2020/pr… Mass… Trum… https://… WHDH/Em… Emer… 2020-08-25
-#&gt; </span><span style='color: #555555;'> 7</span><span> 2020-08-27 /epolls/2020/pr… Penn… Trum… https://… Frankli… F&amp;M   2020-08-17
-#&gt; </span><span style='color: #555555;'> 8</span><span> 2020-08-26 /epolls/2020/pr… Penn… Trum… https://… CNBC/Ch… CNBC  2020-08-21
-#&gt; </span><span style='color: #555555;'> 9</span><span> 2020-08-26 /epolls/2020/pr… Mich… Trum… https://… CNBC/Ch… CNBC  2020-08-21
-#&gt; </span><span style='color: #555555;'>10</span><span> 2020-08-26 /epolls/2020/pr… Wisc… Trum… https://… CNBC/Ch… CNBC  2020-08-21
+#&gt; </span><span style='color: #555555;'> 1</span><span> 2020-09-03 /epolls/2020/pr… Penn… Trum… https://… Rasmuss… Rasm… 2020-08-25
+#&gt; </span><span style='color: #555555;'> 2</span><span> 2020-09-03 /epolls/2020/pr… Nort… Trum… https://… Monmout… Monm… 2020-08-29
+#&gt; </span><span style='color: #555555;'> 3</span><span> 2020-09-02 /epolls/2020/pr… Penn… Trum… https://… Monmout… Monm… 2020-08-28
+#&gt; </span><span style='color: #555555;'> 4</span><span> 2020-09-02 /epolls/2020/pr… Wisc… Trum… https://… FOX New… FOX … 2020-08-29
+#&gt; </span><span style='color: #555555;'> 5</span><span> 2020-09-02 /epolls/2020/pr… Ariz… Trum… https://… FOX New… FOX … 2020-08-29
+#&gt; </span><span style='color: #555555;'> 6</span><span> 2020-09-02 /epolls/2020/pr… Nort… Trum… https://… FOX New… FOX … 2020-08-29
+#&gt; </span><span style='color: #555555;'> 7</span><span> 2020-09-01 /epolls/2020/pr… Geor… Trum… https://… WSB-TV/… WSB-… 2020-08-29
+#&gt; </span><span style='color: #555555;'> 8</span><span> 2020-09-01 /epolls/2020/pr… Nort… Trum… https://… East Ca… ECU   2020-08-29
+#&gt; </span><span style='color: #555555;'> 9</span><span> 2020-08-31 /epolls/2020/pr… Miss… Trum… https://… Trafalg… Traf… 2020-08-26
+#&gt; </span><span style='color: #555555;'>10</span><span> 2020-08-28 /epolls/2020/pr… Mich… Trum… https://… Trafalg… Traf… 2020-08-14
 #&gt; </span><span style='color: #555555;'># … with 90 more rows, and 6 more variables: Date_End </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span style='color: #555555;'>, Sample_n </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   Sample_type </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, MoE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, id </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, res </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span></div><div class='input'><span class='fu'>rcp_update</span>(<span class='st'>"national_president"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 66 x 14</span><span>
+#&gt; </span><span style='color: #555555;'>#   Sample_type </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, MoE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, id </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, res </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span></div><div class='input'><span class='fu'>rcp_update</span>(<span class='st'>"national_president"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 68 x 14</span><span>
 #&gt;    date       rcp_poll_page_l… state race  poll_link pollster Poll  Date_Start
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>    
-#&gt; </span><span style='color: #555555;'> 1</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… USA Tod… USA … 2020-08-28
-#&gt; </span><span style='color: #555555;'> 2</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… Grinnel… Selz… 2020-08-26
-#&gt; </span><span style='color: #555555;'> 3</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… Rasmuss… Rasm… 2020-08-26
-#&gt; </span><span style='color: #555555;'> 4</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… Economi… YouG… 2020-08-30
-#&gt; </span><span style='color: #555555;'> 5</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… Quinnip… Quin… 2020-08-28
-#&gt; </span><span style='color: #555555;'> 6</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… IBD/TIPP IBD/… 2020-08-29
-#&gt; </span><span style='color: #555555;'> 7</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… USA Tod… USA … 2020-08-28
-#&gt; </span><span style='color: #555555;'> 8</span><span> 2020-08-31 /epolls/2020/pr… Gene… Trum… https://… Emerson  Emer… 2020-08-30
-#&gt; </span><span style='color: #555555;'> 9</span><span> 2020-08-30 /epolls/2020/pr… Gene… Trum… https://… The Hil… The … 2020-08-25
-#&gt; </span><span style='color: #555555;'>10</span><span> 2020-08-26 /epolls/2020/pr… Gene… Trum… https://… CNBC/Ch… CNBC* 2020-08-21
-#&gt; </span><span style='color: #555555;'># … with 56 more rows, and 6 more variables: Date_End </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span style='color: #555555;'>, Sample_n </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… CNN      CNN   2020-08-28
+#&gt; </span><span style='color: #555555;'> 2</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… USA Tod… USA … 2020-08-28
+#&gt; </span><span style='color: #555555;'> 3</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… Grinnel… Selz… 2020-08-26
+#&gt; </span><span style='color: #555555;'> 4</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… Rasmuss… Rasm… 2020-08-26
+#&gt; </span><span style='color: #555555;'> 5</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… Economi… YouG… 2020-08-30
+#&gt; </span><span style='color: #555555;'> 6</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… Quinnip… Quin… 2020-08-28
+#&gt; </span><span style='color: #555555;'> 7</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… The Hil… The … 2020-08-29
+#&gt; </span><span style='color: #555555;'> 8</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… IBD/TIPP IBD/… 2020-08-29
+#&gt; </span><span style='color: #555555;'> 9</span><span> 2020-09-02 /epolls/2020/pr… Gene… Trum… https://… USA Tod… USA … 2020-08-28
+#&gt; </span><span style='color: #555555;'>10</span><span> 2020-08-31 /epolls/2020/pr… Gene… Trum… https://… Emerson  Emer… 2020-08-30
+#&gt; </span><span style='color: #555555;'># … with 58 more rows, and 6 more variables: Date_End </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span style='color: #555555;'>, Sample_n </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   Sample_type </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, MoE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, id </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, res </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

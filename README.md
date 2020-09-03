@@ -91,20 +91,20 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 3,401 x 7
-#>    poll_id start_date end_date   pollster        state    candidate_name     pct
-#>      <dbl> <date>     <date>     <chr>           <chr>    <chr>            <dbl>
-#>  1   68308 2020-08-29 2020-08-31 Landmark Commu… Georgia  Joseph R. Biden…  40.5
-#>  2   68308 2020-08-29 2020-08-31 Landmark Commu… Georgia  Donald Trump      47.9
-#>  3   68308 2020-08-29 2020-08-31 Landmark Commu… Georgia  Jo Jorgensen       2.3
-#>  4   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Joseph R. Biden…  49  
-#>  5   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Donald Trump      45  
-#>  6   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Jo Jorgensen       2  
-#>  7   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Howie Hawkins      0  
-#>  8   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Joseph R. Biden…  49  
-#>  9   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Donald Trump      46  
-#> 10   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Joseph R. Biden…  48  
-#> # … with 3,391 more rows
+#> # A tibble: 3,668 x 7
+#>    poll_id start_date end_date   pollster          state   candidate_name    pct
+#>      <dbl> <date>     <date>     <chr>             <chr>   <chr>           <dbl>
+#>  1   68460 2020-08-30 2020-09-01 Harper Polling    Minnes… Joseph R. Bide…    48
+#>  2   68460 2020-08-30 2020-09-01 Harper Polling    Minnes… Donald Trump       45
+#>  3   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Joseph R. Bide…    49
+#>  4   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Donald Trump       39
+#>  5   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Jo Jorgensen        3
+#>  6   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Joseph R. Bide…    49
+#>  7   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Donald Trump       40
+#>  8   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Jo Jorgensen        3
+#>  9   68339 2020-08-29 2020-09-01 Fox News/Beacon … North … Joseph R. Bide…    49
+#> 10   68339 2020-08-29 2020-09-01 Fox News/Beacon … North … Donald Trump       45
+#> # … with 3,658 more rows
 ```
 
 ### Polls by State

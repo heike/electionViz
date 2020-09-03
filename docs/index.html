@@ -123,20 +123,20 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">new_polls &lt;-<span class="st"> </span><span class="kw"><a href="reference/fivethirtyeight_update.html">fivethirtyeight_update</a></span>(<span class="dt">polls=</span><span class="st">"president_polls"</span>)</a>
 <a class="sourceLine" id="cb4-2" title="2">new_polls <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(state)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">select</span>(poll_id, start_date, end_date, pollster, state, candidate_name, pct)</a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; # A tibble: 3,401 x 7</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;    poll_id start_date end_date   pollster        state    candidate_name     pct</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;           &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  1   68308 2020-08-29 2020-08-31 Landmark Commu… Georgia  Joseph R. Biden…  40.5</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  2   68308 2020-08-29 2020-08-31 Landmark Commu… Georgia  Donald Trump      47.9</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  3   68308 2020-08-29 2020-08-31 Landmark Commu… Georgia  Jo Jorgensen       2.3</span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  4   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Joseph R. Biden…  49  </span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  5   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Donald Trump      45  </span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  6   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Jo Jorgensen       2  </span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  7   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Howie Hawkins      0  </span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;  8   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Joseph R. Biden…  49  </span></a>
-<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;  9   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Donald Trump      46  </span></a>
-<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 10   68319 2020-08-28 2020-08-31 Monmouth Unive… Pennsyl… Joseph R. Biden…  48  </span></a>
-<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt; # … with 3,391 more rows</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; # A tibble: 3,668 x 7</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;    poll_id start_date end_date   pollster          state   candidate_name    pct</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;             &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  1   68460 2020-08-30 2020-09-01 Harper Polling    Minnes… Joseph R. Bide…    48</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  2   68460 2020-08-30 2020-09-01 Harper Polling    Minnes… Donald Trump       45</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  3   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Joseph R. Bide…    49</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  4   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Donald Trump       39</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  5   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Jo Jorgensen        3</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  6   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Joseph R. Bide…    49</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  7   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Donald Trump       40</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;  8   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Jo Jorgensen        3</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;  9   68339 2020-08-29 2020-09-01 Fox News/Beacon … North … Joseph R. Bide…    49</span></a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 10   68339 2020-08-29 2020-09-01 Fox News/Beacon … North … Donald Trump       45</span></a>
+<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt; # … with 3,658 more rows</span></a></code></pre></div>
 <div id="polls-by-state" class="section level3">
 <h3 class="hasAnchor">
 <a href="#polls-by-state" class="anchor"></a>Polls by State</h3>
