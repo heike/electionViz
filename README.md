@@ -91,20 +91,20 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 3,668 x 7
-#>    poll_id start_date end_date   pollster          state   candidate_name    pct
-#>      <dbl> <date>     <date>     <chr>             <chr>   <chr>           <dbl>
-#>  1   68460 2020-08-30 2020-09-01 Harper Polling    Minnes… Joseph R. Bide…    48
-#>  2   68460 2020-08-30 2020-09-01 Harper Polling    Minnes… Donald Trump       45
-#>  3   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Joseph R. Bide…    49
-#>  4   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Donald Trump       39
-#>  5   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Jo Jorgensen        3
-#>  6   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Joseph R. Bide…    49
-#>  7   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Donald Trump       40
-#>  8   68338 2020-08-29 2020-09-01 Fox News/Beacon … Arizona Jo Jorgensen        3
-#>  9   68339 2020-08-29 2020-09-01 Fox News/Beacon … North … Joseph R. Bide…    49
-#> 10   68339 2020-08-29 2020-09-01 Fox News/Beacon … North … Donald Trump       45
-#> # … with 3,658 more rows
+#> # A tibble: 3,803 x 7
+#>    poll_id start_date end_date   pollster           state  candidate_name    pct
+#>      <dbl> <date>     <date>     <chr>              <chr>  <chr>           <dbl>
+#>  1   68562 2020-09-07 2020-09-08 St. Pete Polls     Flori… Joseph R. Bide…  49.6
+#>  2   68562 2020-09-07 2020-09-08 St. Pete Polls     Flori… Donald Trump     47.1
+#>  3   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Joseph R. Bide…  35.2
+#>  4   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Donald Trump     59.6
+#>  5   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Kanye West        1.2
+#>  6   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Jade Simmons      0  
+#>  7   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Brock Pierce      0  
+#>  8   68570 2020-08-30 2020-09-08 Morning Consult    Wisco… Joseph R. Bide…  51  
+#>  9   68570 2020-08-30 2020-09-08 Morning Consult    Wisco… Donald Trump     42  
+#> 10   68574 2020-08-30 2020-09-08 Benenson Strategy… Flori… Joseph R. Bide…  48  
+#> # … with 3,793 more rows
 ```
 
 ### Polls by State
