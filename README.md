@@ -91,20 +91,20 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 3,803 x 7
-#>    poll_id start_date end_date   pollster           state  candidate_name    pct
-#>      <dbl> <date>     <date>     <chr>              <chr>  <chr>           <dbl>
-#>  1   68562 2020-09-07 2020-09-08 St. Pete Polls     Flori… Joseph R. Bide…  49.6
-#>  2   68562 2020-09-07 2020-09-08 St. Pete Polls     Flori… Donald Trump     47.1
-#>  3   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Joseph R. Bide…  35.2
-#>  4   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Donald Trump     59.6
-#>  5   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Kanye West        1.2
-#>  6   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Jade Simmons      0  
-#>  7   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Brock Pierce      0  
-#>  8   68570 2020-08-30 2020-09-08 Morning Consult    Wisco… Joseph R. Bide…  51  
-#>  9   68570 2020-08-30 2020-09-08 Morning Consult    Wisco… Donald Trump     42  
-#> 10   68574 2020-08-30 2020-09-08 Benenson Strategy… Flori… Joseph R. Bide…  48  
-#> # … with 3,793 more rows
+#> # A tibble: 3,968 x 7
+#>    poll_id start_date end_date   pollster       state     candidate_name     pct
+#>      <dbl> <date>     <date>     <chr>          <chr>     <chr>            <dbl>
+#>  1   69497 2020-09-06 2020-09-15 Morning Consu… Wisconsin Joseph R. Biden…  51  
+#>  2   69497 2020-09-06 2020-09-15 Morning Consu… Wisconsin Donald Trump      42  
+#>  3   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Joseph R. Biden…  46.2
+#>  4   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Donald Trump      42.8
+#>  5   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Don Blankenship    0  
+#>  6   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Howie Hawkins      0.2
+#>  7   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Jo Jorgensen       4.8
+#>  8   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Joseph R. Biden…  47.4
+#>  9   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Donald Trump      43.2
+#> 10   69487 2020-09-10 2020-09-14 Quinnipiac Un… Kentucky  Joseph R. Biden…  38  
+#> # … with 3,958 more rows
 ```
 
 ### Polls by State

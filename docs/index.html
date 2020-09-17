@@ -123,20 +123,20 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">new_polls &lt;-<span class="st"> </span><span class="kw"><a href="reference/fivethirtyeight_update.html">fivethirtyeight_update</a></span>(<span class="dt">polls=</span><span class="st">"president_polls"</span>)</a>
 <a class="sourceLine" id="cb4-2" title="2">new_polls <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(state)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">select</span>(poll_id, start_date, end_date, pollster, state, candidate_name, pct)</a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; # A tibble: 3,825 x 7</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;    poll_id start_date end_date   pollster           state  candidate_name    pct</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;              &lt;chr&gt;  &lt;chr&gt;           &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  1   68562 2020-09-07 2020-09-08 St. Pete Polls     Flori… Joseph R. Bide…  49.6</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  2   68562 2020-09-07 2020-09-08 St. Pete Polls     Flori… Donald Trump     47.1</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  3   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Joseph R. Bide…  35.2</span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  4   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Donald Trump     59.6</span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  5   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Kanye West        1.2</span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  6   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Jade Simmons      0  </span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  7   68569 2020-09-02 2020-09-08 SoonerPoll.com     Oklah… Brock Pierce      0  </span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;  8   68570 2020-08-30 2020-09-08 Morning Consult    Wisco… Joseph R. Bide…  51  </span></a>
-<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;  9   68570 2020-08-30 2020-09-08 Morning Consult    Wisco… Donald Trump     42  </span></a>
-<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 10   68574 2020-08-30 2020-09-08 Benenson Strategy… Flori… Joseph R. Bide…  48  </span></a>
-<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt; # … with 3,815 more rows</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; # A tibble: 3,968 x 7</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;    poll_id start_date end_date   pollster       state     candidate_name     pct</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  1   69497 2020-09-06 2020-09-15 Morning Consu… Wisconsin Joseph R. Biden…  51  </span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  2   69497 2020-09-06 2020-09-15 Morning Consu… Wisconsin Donald Trump      42  </span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  3   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Joseph R. Biden…  46.2</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  4   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Donald Trump      42.8</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  5   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Don Blankenship    0  </span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  6   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Howie Hawkins      0.2</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  7   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Jo Jorgensen       4.8</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;  8   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Joseph R. Biden…  47.4</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;  9   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Donald Trump      43.2</span></a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 10   69487 2020-09-10 2020-09-14 Quinnipiac Un… Kentucky  Joseph R. Biden…  38  </span></a>
+<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt; # … with 3,958 more rows</span></a></code></pre></div>
 <div id="polls-by-state" class="section level3">
 <h3 class="hasAnchor">
 <a href="#polls-by-state" class="anchor"></a>Polls by State</h3>
