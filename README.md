@@ -91,20 +91,20 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 3,968 x 7
-#>    poll_id start_date end_date   pollster       state     candidate_name     pct
-#>      <dbl> <date>     <date>     <chr>          <chr>     <chr>            <dbl>
-#>  1   69497 2020-09-06 2020-09-15 Morning Consu… Wisconsin Joseph R. Biden…  51  
-#>  2   69497 2020-09-06 2020-09-15 Morning Consu… Wisconsin Donald Trump      42  
-#>  3   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Joseph R. Biden…  46.2
-#>  4   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Donald Trump      42.8
-#>  5   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Don Blankenship    0  
-#>  6   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Howie Hawkins      0.2
-#>  7   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Jo Jorgensen       4.8
-#>  8   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Joseph R. Biden…  47.4
-#>  9   69504 2020-09-11 2020-09-14 Suffolk Unive… North Ca… Donald Trump      43.2
-#> 10   69487 2020-09-10 2020-09-14 Quinnipiac Un… Kentucky  Joseph R. Biden…  38  
-#> # … with 3,958 more rows
+#> # A tibble: 4,141 x 7
+#>    poll_id start_date end_date   pollster     state       candidate_name     pct
+#>      <dbl> <date>     <date>     <chr>        <chr>       <chr>            <dbl>
+#>  1   69678 2020-09-21 2020-09-22 St. Pete Po… Florida     Joseph R. Biden…  49.7
+#>  2   69678 2020-09-21 2020-09-22 St. Pete Po… Florida     Donald Trump      46.5
+#>  3   69681 2020-09-18 2020-09-20 Change Rese… Arizona     Joseph R. Biden…  49  
+#>  4   69681 2020-09-18 2020-09-20 Change Rese… Arizona     Donald Trump      43  
+#>  5   69682 2020-09-18 2020-09-20 Change Rese… Florida     Joseph R. Biden…  49  
+#>  6   69682 2020-09-18 2020-09-20 Change Rese… Florida     Donald Trump      46  
+#>  7   69683 2020-09-18 2020-09-20 Change Rese… Michigan    Joseph R. Biden…  51  
+#>  8   69683 2020-09-18 2020-09-20 Change Rese… Michigan    Donald Trump      43  
+#>  9   69684 2020-09-18 2020-09-20 Change Rese… North Caro… Joseph R. Biden…  48  
+#> 10   69684 2020-09-18 2020-09-20 Change Rese… North Caro… Donald Trump      46  
+#> # … with 4,131 more rows
 ```
 
 ### Polls by State
