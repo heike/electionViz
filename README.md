@@ -91,20 +91,20 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 4,141 x 7
-#>    poll_id start_date end_date   pollster     state       candidate_name     pct
-#>      <dbl> <date>     <date>     <chr>        <chr>       <chr>            <dbl>
-#>  1   69678 2020-09-21 2020-09-22 St. Pete Po… Florida     Joseph R. Biden…  49.7
-#>  2   69678 2020-09-21 2020-09-22 St. Pete Po… Florida     Donald Trump      46.5
-#>  3   69681 2020-09-18 2020-09-20 Change Rese… Arizona     Joseph R. Biden…  49  
-#>  4   69681 2020-09-18 2020-09-20 Change Rese… Arizona     Donald Trump      43  
-#>  5   69682 2020-09-18 2020-09-20 Change Rese… Florida     Joseph R. Biden…  49  
-#>  6   69682 2020-09-18 2020-09-20 Change Rese… Florida     Donald Trump      46  
-#>  7   69683 2020-09-18 2020-09-20 Change Rese… Michigan    Joseph R. Biden…  51  
-#>  8   69683 2020-09-18 2020-09-20 Change Rese… Michigan    Donald Trump      43  
-#>  9   69684 2020-09-18 2020-09-20 Change Rese… North Caro… Joseph R. Biden…  48  
-#> 10   69684 2020-09-18 2020-09-20 Change Rese… North Caro… Donald Trump      46  
-#> # … with 4,131 more rows
+#> # A tibble: 4,435 x 7
+#>    poll_id start_date end_date   pollster          state   candidate_name    pct
+#>      <dbl> <date>     <date>     <chr>             <chr>   <chr>           <dbl>
+#>  1   70049 2020-09-26 2020-09-29 Civiqs            Georgia Joseph R. Bide…    50
+#>  2   70049 2020-09-26 2020-09-29 Civiqs            Georgia Donald Trump       47
+#>  3   70042 2020-09-25 2020-09-28 Susquehanna Poll… Arizona Joseph R. Bide…    47
+#>  4   70042 2020-09-25 2020-09-28 Susquehanna Poll… Arizona Donald Trump       47
+#>  5   70007 2020-09-25 2020-09-27 Siena College/Th… Nebras… Joseph R. Bide…    48
+#>  6   70007 2020-09-25 2020-09-27 Siena College/Th… Nebras… Donald Trump       41
+#>  7   70007 2020-09-25 2020-09-27 Siena College/Th… Nebras… Jo Jorgensen        4
+#>  8   70017 2020-09-25 2020-09-27 Siena College/Th… Pennsy… Joseph R. Bide…    49
+#>  9   70017 2020-09-25 2020-09-27 Siena College/Th… Pennsy… Donald Trump       40
+#> 10   70047 2020-09-23 2020-09-27 Quinnipiac Unive… Georgia Joseph R. Bide…    50
+#> # … with 4,425 more rows
 ```
 
 ### Polls by State
