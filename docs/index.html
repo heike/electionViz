@@ -123,25 +123,26 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">new_polls &lt;-<span class="st"> </span><span class="kw"><a href="reference/fivethirtyeight_update.html">fivethirtyeight_update</a></span>(<span class="dt">polls=</span><span class="st">"president_polls"</span>)</a>
 <a class="sourceLine" id="cb4-2" title="2">new_polls <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(state)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">select</span>(poll_id, start_date, end_date, pollster, state, candidate_name, pct)</a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; # A tibble: 4,150 x 7</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;    poll_id start_date end_date   pollster         state  candidate_name      pct</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;             &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  1   69678 2020-09-21 2020-09-22 St. Pete Polls   Flori… Joseph R. Biden …  49.7</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  2   69678 2020-09-21 2020-09-22 St. Pete Polls   Flori… Donald Trump       46.5</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  3   69690 2020-09-17 2020-09-21 Monmouth Univer… Georg… Joseph R. Biden …  46  </span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  4   69690 2020-09-17 2020-09-21 Monmouth Univer… Georg… Donald Trump       47  </span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  5   69690 2020-09-17 2020-09-21 Monmouth Univer… Georg… Jo Jorgensen        2  </span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  6   69690 2020-09-17 2020-09-21 Monmouth Univer… Georg… Joseph R. Biden …  46  </span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  7   69690 2020-09-17 2020-09-21 Monmouth Univer… Georg… Donald Trump       48  </span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;  8   69690 2020-09-17 2020-09-21 Monmouth Univer… Georg… Jo Jorgensen        2  </span></a>
-<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;  9   69690 2020-09-17 2020-09-21 Monmouth Univer… Georg… Joseph R. Biden …  45  </span></a>
-<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 10   69690 2020-09-17 2020-09-21 Monmouth Univer… Georg… Donald Trump       50  </span></a>
-<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt; # … with 4,140 more rows</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; # A tibble: 5,376 x 7</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;    poll_id start_date end_date   pollster          state   candidate_name    pct</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;             &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  1   70576 2020-10-04 2020-10-05 Public Policy Po… North … Joseph R. Bide…    50</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  2   70576 2020-10-04 2020-10-05 Public Policy Po… North … Donald Trump       46</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  3   70584 2020-09-29 2020-10-05 Ipsos             Wiscon… Joseph R. Bide…    50</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  4   70584 2020-09-29 2020-10-05 Ipsos             Wiscon… Donald Trump       44</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  5   70585 2020-09-29 2020-10-05 Ipsos             Pennsy… Joseph R. Bide…    50</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  6   70585 2020-09-29 2020-10-05 Ipsos             Pennsy… Donald Trump       45</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  7   70578 2020-09-26 2020-10-04 Y2 Analytics      Utah    Joseph R. Bide…    40</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;  8   70578 2020-09-26 2020-10-04 Y2 Analytics      Utah    Donald Trump       50</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;  9   70565 2020-10-01 2020-10-03 Siena College/Th… Arizona Joseph R. Bide…    49</span></a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 10   70565 2020-10-01 2020-10-03 Siena College/Th… Arizona Donald Trump       41</span></a>
+<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt; # … with 5,366 more rows</span></a></code></pre></div>
 <div id="polls-by-state" class="section level3">
 <h3 class="hasAnchor">
 <a href="#polls-by-state" class="anchor"></a>Polls by State</h3>
 <p>The difference in percentage between democratic and republican percentage of the last five polls (of likely or registered voters) for each state are shown as grey points, colored points show average difference for each point. States are ordered according to difference in percentage. The yellow rectangle shows a margin of +/- 5 percent - the typical margin of error of a poll.</p>
-<pre><code>#&gt; Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<pre><code>#&gt; Warning: Removed 5 rows containing missing values (geom_point).
+#&gt; Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="100%"></p>
 </div>
 <div id="building-of-polls" class="section level3">

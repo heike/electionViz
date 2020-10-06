@@ -139,7 +139,8 @@ library(lubridate)
 state_polls <- new_polls %>% filter(
     !is.na(state),
     population %in% c("lv", "rv")) %>%
-  polls_filter(method="since", since = today()-weeks(6))
+   polls_filter(method="last_k", k = 5)
+#  polls_filter(method="since", since = today()-weeks(4))
 
 state_1 <- state_polls %>%
   mutate(
