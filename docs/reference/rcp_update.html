@@ -123,34 +123,34 @@ senate, governor tables are not optimally tidy.</p></td>
     <p>a table of poll links, with results for each candidate</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>rcp_update</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown columns: `MoE`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown columns: `MoE`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown columns: `MoE`</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 153 x 14</span><span>
+    <pre class="examples"><div class='input'><span class='fu'>rcp_update</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown columns: `MoE`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown columns: `MoE`</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Unknown columns: `MoE`</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 176 x 14</span><span>
 #&gt;    date       rcp_poll_page_l… state race  poll_link pollster Poll  Date_Start
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>    
-#&gt; </span><span style='color: #555555;'> 1</span><span> 2020-10-05 /epolls/2020/pr… Ohio  Trum… https://… Trafalg… Traf… 2020-10-01
-#&gt; </span><span style='color: #555555;'> 2</span><span> 2020-10-05 /epolls/2020/pr… Ariz… Trum… https://… NY Time… NYT/… 2020-10-01
-#&gt; </span><span style='color: #555555;'> 3</span><span> 2020-10-05 /epolls/2020/pr… Nort… Trum… https://… PPP (D)  PPP … 2020-10-04
-#&gt; </span><span style='color: #555555;'> 4</span><span> 2020-10-05 /epolls/2020/pr… Penn… Trum… https://… Reuters… Reut… 2020-09-29
-#&gt; </span><span style='color: #555555;'> 5</span><span> 2020-10-05 /epolls/2020/pr… Wisc… Trum… https://… Reuters… Reut… 2020-09-29
-#&gt; </span><span style='color: #555555;'> 6</span><span> 2020-10-05 /epolls/2020/pr… Utah  Trum… https://… Y2 Anal… Y2 A… 2020-09-26
-#&gt; </span><span style='color: #555555;'> 7</span><span> 2020-10-05 /epolls/2020/pr… Alab… Trum… https://… Auburn … Aubu… 2020-09-30
-#&gt; </span><span style='color: #555555;'> 8</span><span> 2020-10-05 /epolls/2020/pr… Dela… Trum… https://… Univers… Univ… 2020-09-21
-#&gt; </span><span style='color: #555555;'> 9</span><span> 2020-10-04 /epolls/2020/pr… Penn… Trum… https://… CBS New… CBS … 2020-09-30
-#&gt; </span><span style='color: #555555;'>10</span><span> 2020-10-04 /epolls/2020/pr… Ohio  Trum… https://… CBS New… CBS … 2020-09-30
-#&gt; </span><span style='color: #555555;'># … with 143 more rows, and 6 more variables: Date_End </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span style='color: #555555;'>, Sample_n </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   Sample_type </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, MoE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, id </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, res </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span></div><div class='input'><span class='fu'>rcp_update</span>(<span class='st'>"national_president"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 78 x 14</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 2020-10-08 /epolls/2020/pr… Flor… Trum… https://… FOX 35/… FOX … 2020-10-06
+#&gt; </span><span style='color: #555555;'> 2</span><span> 2020-10-08 /epolls/2020/pr… Texas Trum… https://… Rasmuss… Rasm… 2020-10-05
+#&gt; </span><span style='color: #555555;'> 3</span><span> 2020-10-08 /epolls/2020/pr… New … Trum… https://… St. Ans… St. … 2020-10-01
+#&gt; </span><span style='color: #555555;'> 4</span><span> 2020-10-08 /epolls/2020/pr… Mich… Trum… https://… Emerson  Emer… 2020-10-06
+#&gt; </span><span style='color: #555555;'> 5</span><span> 2020-10-08 /epolls/2020/pr… Mont… Trum… https://… Emerson  Emer… 2020-10-05
+#&gt; </span><span style='color: #555555;'> 6</span><span> 2020-10-08 /epolls/2020/pr… Mary… Trum… https://… Goucher… Gouc… 2020-09-30
+#&gt; </span><span style='color: #555555;'> 7</span><span> 2020-10-07 /epolls/2020/pr… Ariz… Trum… https://… Reuters… Reut… 2020-09-29
+#&gt; </span><span style='color: #555555;'> 8</span><span> 2020-10-07 /epolls/2020/pr… Wisc… Trum… https://… Marquet… Marq… 2020-09-30
+#&gt; </span><span style='color: #555555;'> 9</span><span> 2020-10-07 /epolls/2020/pr… Ohio  Trum… https://… NY Time… NYT/… 2020-10-02
+#&gt; </span><span style='color: #555555;'>10</span><span> 2020-10-07 /epolls/2020/pr… Penn… Trum… https://… Emerson  Emer… 2020-10-04
+#&gt; </span><span style='color: #555555;'># … with 166 more rows, and 6 more variables: Date_End </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span style='color: #555555;'>, Sample_n </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   Sample_type </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, MoE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, id </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, res </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span></div><div class='input'><span class='fu'>rcp_update</span>(<span class='st'>"national_president"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 81 x 14</span><span>
 #&gt;    date       rcp_poll_page_l… state race  poll_link pollster Poll  Date_Start
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>    
-#&gt; </span><span style='color: #555555;'> 1</span><span> 2020-10-05 /epolls/2020/pr… Gene… Trum… https://… JTN/RMG… JTN/… 2020-10-01
-#&gt; </span><span style='color: #555555;'> 2</span><span> 2020-10-04 /epolls/2020/pr… Gene… Trum… https://… NBC New… NBC/… 2020-09-30
-#&gt; </span><span style='color: #555555;'> 3</span><span> 2020-10-02 /epolls/2020/pr… Gene… Trum… https://… IBD/TIPP IBD/… 2020-09-30
-#&gt; </span><span style='color: #555555;'> 4</span><span> 2020-10-02 /epolls/2020/pr… Gene… Trum… https://… The Hil… The … 2020-09-30
-#&gt; </span><span style='color: #555555;'> 5</span><span> 2020-10-02 /epolls/2020/pr… Gene… Trum… https://… IBD/TIPP IBD/… 2020-09-30
-#&gt; </span><span style='color: #555555;'> 6</span><span> 2020-10-01 /epolls/2020/pr… Gene… Trum… https://… CNBC/Ch… CNBC  2020-09-29
-#&gt; </span><span style='color: #555555;'> 7</span><span> 2020-09-30 /epolls/2020/pr… Gene… Trum… https://… Economi… YouG… 2020-09-27
-#&gt; </span><span style='color: #555555;'> 8</span><span> 2020-09-30 /epolls/2020/pr… Gene… Trum… https://… Reuters… Reut… 2020-09-25
-#&gt; </span><span style='color: #555555;'> 9</span><span> 2020-09-30 /epolls/2020/pr… Gene… Trum… https://… Rasmuss… Rasm… 2020-09-23
-#&gt; </span><span style='color: #555555;'>10</span><span> 2020-09-29 /epolls/2020/pr… Gene… Trum… https://… Harvard… Harr… 2020-09-22
-#&gt; </span><span style='color: #555555;'># … with 68 more rows, and 6 more variables: Date_End </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span style='color: #555555;'>, Sample_n </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 2020-10-07 /epolls/2020/pr… Gene… Trum… https://… FOX News FOX … 2020-10-03
+#&gt; </span><span style='color: #555555;'> 2</span><span> 2020-10-07 /epolls/2020/pr… Gene… Trum… https://… Economi… YouG… 2020-10-04
+#&gt; </span><span style='color: #555555;'> 3</span><span> 2020-10-07 /epolls/2020/pr… Gene… Trum… https://… Reuters… Reut… 2020-10-02
+#&gt; </span><span style='color: #555555;'> 4</span><span> 2020-10-07 /epolls/2020/pr… Gene… Trum… https://… Rasmuss… Rasm… 2020-09-30
+#&gt; </span><span style='color: #555555;'> 5</span><span> 2020-10-06 /epolls/2020/pr… Gene… Trum… https://… CNN      CNN   2020-10-01
+#&gt; </span><span style='color: #555555;'> 6</span><span> 2020-10-06 /epolls/2020/pr… Gene… Trum… https://… SurveyU… SUSA  2020-10-01
+#&gt; </span><span style='color: #555555;'> 7</span><span> 2020-10-06 /epolls/2020/pr… Gene… Trum… https://… CNBC/Ch… CNBC* 2020-10-02
+#&gt; </span><span style='color: #555555;'> 8</span><span> 2020-10-06 /epolls/2020/pr… Gene… Trum… https://… CNBC/Ch… CNBC  2020-10-02
+#&gt; </span><span style='color: #555555;'> 9</span><span> 2020-10-05 /epolls/2020/pr… Gene… Trum… https://… JTN/RMG… JTN/… 2020-10-01
+#&gt; </span><span style='color: #555555;'>10</span><span> 2020-10-04 /epolls/2020/pr… Gene… Trum… https://… NBC New… NBC/… 2020-09-30
+#&gt; </span><span style='color: #555555;'># … with 71 more rows, and 6 more variables: Date_End </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span style='color: #555555;'>, Sample_n </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   Sample_type </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, MoE </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, id </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, res </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

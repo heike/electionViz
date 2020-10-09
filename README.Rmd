@@ -162,10 +162,11 @@ gg_states <- state_1 %>%
   geom_rect(xmin=-5, xmax=+5, ymin=-Inf, ymax = +Inf, 
             fill="#fcfcc5", size=0) + 
   geom_vline(xintercept = 0, colour = "grey10") + 
-  geom_point(colour = "grey50", alpha = 0.5, size = 1) +
+  geom_point(colour = "grey50", alpha = 0.25, size = 2) +
+  geom_text(aes(label=rank), colour = "grey30", size = 2) +
   theme_bw() +
   ylab("") +
-  scale_y_discrete(drop=FALSE)
+  scale_y_discrete(drop=FALSE) 
 
 gg_states +
   geom_point(aes(x = pct_diff, colour = pct_diff>0, shape=source),

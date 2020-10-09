@@ -91,20 +91,20 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 5,376 x 7
-#>    poll_id start_date end_date   pollster          state   candidate_name    pct
-#>      <dbl> <date>     <date>     <chr>             <chr>   <chr>           <dbl>
-#>  1   70576 2020-10-04 2020-10-05 Public Policy Po… North … Joseph R. Bide…    50
-#>  2   70576 2020-10-04 2020-10-05 Public Policy Po… North … Donald Trump       46
-#>  3   70584 2020-09-29 2020-10-05 Ipsos             Wiscon… Joseph R. Bide…    50
-#>  4   70584 2020-09-29 2020-10-05 Ipsos             Wiscon… Donald Trump       44
-#>  5   70585 2020-09-29 2020-10-05 Ipsos             Pennsy… Joseph R. Bide…    50
-#>  6   70585 2020-09-29 2020-10-05 Ipsos             Pennsy… Donald Trump       45
-#>  7   70578 2020-09-26 2020-10-04 Y2 Analytics      Utah    Joseph R. Bide…    40
-#>  8   70578 2020-09-26 2020-10-04 Y2 Analytics      Utah    Donald Trump       50
-#>  9   70565 2020-10-01 2020-10-03 Siena College/Th… Arizona Joseph R. Bide…    49
-#> 10   70565 2020-10-01 2020-10-03 Siena College/Th… Arizona Donald Trump       41
-#> # … with 5,366 more rows
+#> # A tibble: 5,530 x 7
+#>    poll_id start_date end_date   pollster          state  candidate_name     pct
+#>      <dbl> <date>     <date>     <chr>             <chr>  <chr>            <dbl>
+#>  1   70683 2020-10-07 2020-10-08 Public Policy Po… Texas  Joseph R. Biden…  50  
+#>  2   70683 2020-10-07 2020-10-08 Public Policy Po… Texas  Donald Trump      49  
+#>  3   70684 2020-10-06 2020-10-07 Opinion Savvy/In… Flori… Joseph R. Biden…  43  
+#>  4   70684 2020-10-06 2020-10-07 Opinion Savvy/In… Flori… Donald Trump      46  
+#>  5   70684 2020-10-06 2020-10-07 Opinion Savvy/In… Flori… Jo Jorgensen       1  
+#>  6   70692 2020-10-06 2020-10-07 Emerson College   Michi… Joseph R. Biden…  54.2
+#>  7   70692 2020-10-06 2020-10-07 Emerson College   Michi… Donald Trump      43.4
+#>  8   70662 2020-10-05 2020-10-07 Emerson College   Monta… Joseph R. Biden…  43.6
+#>  9   70662 2020-10-05 2020-10-07 Emerson College   Monta… Donald Trump      56.4
+#> 10   70650 2020-09-29 2020-10-07 Ipsos             Flori… Joseph R. Biden…  49  
+#> # … with 5,520 more rows
 ```
 
 ### Polls by State
@@ -117,6 +117,7 @@ percentage. The yellow rectangle shows a margin of +/- 5 percent - the
 typical margin of error of a poll.
 
     #> Warning: Removed 5 rows containing missing values (geom_point).
+    #> Warning: Removed 5 rows containing missing values (geom_text).
     #> Warning: Removed 1 rows containing missing values (geom_point).
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
