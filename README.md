@@ -89,22 +89,31 @@ to focus on:
 
 ``` r
 new_polls <- fivethirtyeight_update(polls="president_polls")
+#> Warning: 44 parsing failures.
+#>  row               col           expected          actual                                                                  file
+#> 1923 sponsor_candidate 1/0/T/F/TRUE/FALSE Nicole Galloway 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 1924 sponsor_candidate 1/0/T/F/TRUE/FALSE Nicole Galloway 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 2585 sponsor_candidate 1/0/T/F/TRUE/FALSE Al Gross        'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 2586 sponsor_candidate 1/0/T/F/TRUE/FALSE Al Gross        'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 2968 sponsor_candidate 1/0/T/F/TRUE/FALSE Raphael Warnock 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> .... ................. .................. ............... .....................................................................
+#> See problems(...) for more details.
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 5,530 x 7
-#>    poll_id start_date end_date   pollster          state  candidate_name     pct
-#>      <dbl> <date>     <date>     <chr>             <chr>  <chr>            <dbl>
-#>  1   70683 2020-10-07 2020-10-08 Public Policy Po… Texas  Joseph R. Biden…  50  
-#>  2   70683 2020-10-07 2020-10-08 Public Policy Po… Texas  Donald Trump      49  
-#>  3   70684 2020-10-06 2020-10-07 Opinion Savvy/In… Flori… Joseph R. Biden…  43  
-#>  4   70684 2020-10-06 2020-10-07 Opinion Savvy/In… Flori… Donald Trump      46  
-#>  5   70684 2020-10-06 2020-10-07 Opinion Savvy/In… Flori… Jo Jorgensen       1  
-#>  6   70692 2020-10-06 2020-10-07 Emerson College   Michi… Joseph R. Biden…  54.2
-#>  7   70692 2020-10-06 2020-10-07 Emerson College   Michi… Donald Trump      43.4
-#>  8   70662 2020-10-05 2020-10-07 Emerson College   Monta… Joseph R. Biden…  43.6
-#>  9   70662 2020-10-05 2020-10-07 Emerson College   Monta… Donald Trump      56.4
-#> 10   70650 2020-09-29 2020-10-07 Ipsos             Flori… Joseph R. Biden…  49  
-#> # … with 5,520 more rows
+#> # A tibble: 6,870 x 7
+#>    poll_id start_date end_date   pollster    state       candidate_name      pct
+#>      <dbl> <date>     <date>     <chr>       <chr>       <chr>             <dbl>
+#>  1   71295 2020-10-13 2020-10-16 YouGov      Arizona     Joseph R. Biden …    50
+#>  2   71295 2020-10-13 2020-10-16 YouGov      Arizona     Donald Trump         47
+#>  3   71296 2020-10-13 2020-10-16 YouGov      Wisconsin   Joseph R. Biden …    51
+#>  4   71296 2020-10-13 2020-10-16 YouGov      Wisconsin   Donald Trump         46
+#>  5   71242 2020-09-19 2020-10-16 SurveyMonk… Wyoming     Joseph R. Biden …    33
+#>  6   71242 2020-09-19 2020-10-16 SurveyMonk… Wyoming     Donald Trump         66
+#>  7   71242 2020-09-19 2020-10-16 SurveyMonk… Wyoming     Joseph R. Biden …    33
+#>  8   71242 2020-09-19 2020-10-16 SurveyMonk… Wyoming     Donald Trump         66
+#>  9   71243 2020-09-19 2020-10-16 SurveyMonk… West Virgi… Joseph R. Biden …    35
+#> 10   71243 2020-09-19 2020-10-16 SurveyMonk… West Virgi… Donald Trump         63
+#> # … with 6,860 more rows
 ```
 
 ### Polls by State
