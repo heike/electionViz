@@ -89,31 +89,31 @@ to focus on:
 
 ``` r
 new_polls <- fivethirtyeight_update(polls="president_polls")
-#> Warning: 44 parsing failures.
-#>  row               col           expected          actual                                                                  file
-#> 1923 sponsor_candidate 1/0/T/F/TRUE/FALSE Nicole Galloway 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
-#> 1924 sponsor_candidate 1/0/T/F/TRUE/FALSE Nicole Galloway 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
-#> 2585 sponsor_candidate 1/0/T/F/TRUE/FALSE Al Gross        'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
-#> 2586 sponsor_candidate 1/0/T/F/TRUE/FALSE Al Gross        'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
-#> 2968 sponsor_candidate 1/0/T/F/TRUE/FALSE Raphael Warnock 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
-#> .... ................. .................. ............... .....................................................................
+#> Warning: 50 parsing failures.
+#>  row               col           expected           actual                                                                  file
+#> 1039 sponsor_candidate 1/0/T/F/TRUE/FALSE Tommy Tuberville 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 1040 sponsor_candidate 1/0/T/F/TRUE/FALSE Tommy Tuberville 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 1872 sponsor_candidate 1/0/T/F/TRUE/FALSE Daniel M. Gade   'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 1873 sponsor_candidate 1/0/T/F/TRUE/FALSE Daniel M. Gade   'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 2477 sponsor_candidate 1/0/T/F/TRUE/FALSE Nicole Galloway  'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> .... ................. .................. ................ .....................................................................
 #> See problems(...) for more details.
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 6,870 x 7
-#>    poll_id start_date end_date   pollster    state       candidate_name      pct
-#>      <dbl> <date>     <date>     <chr>       <chr>       <chr>             <dbl>
-#>  1   71295 2020-10-13 2020-10-16 YouGov      Arizona     Joseph R. Biden …    50
-#>  2   71295 2020-10-13 2020-10-16 YouGov      Arizona     Donald Trump         47
-#>  3   71296 2020-10-13 2020-10-16 YouGov      Wisconsin   Joseph R. Biden …    51
-#>  4   71296 2020-10-13 2020-10-16 YouGov      Wisconsin   Donald Trump         46
-#>  5   71242 2020-09-19 2020-10-16 SurveyMonk… Wyoming     Joseph R. Biden …    33
-#>  6   71242 2020-09-19 2020-10-16 SurveyMonk… Wyoming     Donald Trump         66
-#>  7   71242 2020-09-19 2020-10-16 SurveyMonk… Wyoming     Joseph R. Biden …    33
-#>  8   71242 2020-09-19 2020-10-16 SurveyMonk… Wyoming     Donald Trump         66
-#>  9   71243 2020-09-19 2020-10-16 SurveyMonk… West Virgi… Joseph R. Biden …    35
-#> 10   71243 2020-09-19 2020-10-16 SurveyMonk… West Virgi… Donald Trump         63
-#> # … with 6,860 more rows
+#> # A tibble: 7,363 x 7
+#>    poll_id start_date end_date   pollster          state   candidate_name    pct
+#>      <dbl> <date>     <date>     <chr>             <chr>   <chr>           <dbl>
+#>  1   71450 2020-10-18 2020-10-19 Rasmussen Report… Ohio    Joseph R. Bide…  48  
+#>  2   71450 2020-10-18 2020-10-19 Rasmussen Report… Ohio    Donald Trump     47  
+#>  3   71457 2020-10-18 2020-10-19 Rasmussen Report… Pennsy… Joseph R. Bide…  50  
+#>  4   71457 2020-10-18 2020-10-19 Rasmussen Report… Pennsy… Donald Trump     47  
+#>  5   71435 2020-10-17 2020-10-19 Emerson College   Georgia Joseph R. Bide…  47  
+#>  6   71435 2020-10-17 2020-10-19 Emerson College   Georgia Donald Trump     48.4
+#>  7   71379 2020-10-13 2020-10-19 Ipsos             Pennsy… Joseph R. Bide…  49  
+#>  8   71379 2020-10-13 2020-10-19 Ipsos             Pennsy… Donald Trump     45  
+#>  9   71379 2020-10-13 2020-10-19 Ipsos             Pennsy… Joseph R. Bide…  49  
+#> 10   71379 2020-10-13 2020-10-19 Ipsos             Pennsy… Donald Trump     45  
+#> # … with 7,353 more rows
 ```
 
 ### Polls by State
