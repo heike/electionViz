@@ -89,31 +89,31 @@ to focus on:
 
 ``` r
 new_polls <- fivethirtyeight_update(polls="president_polls")
-#> Warning: 50 parsing failures.
+#> Warning: 54 parsing failures.
 #>  row               col           expected           actual                                                                  file
-#> 1039 sponsor_candidate 1/0/T/F/TRUE/FALSE Tommy Tuberville 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
-#> 1040 sponsor_candidate 1/0/T/F/TRUE/FALSE Tommy Tuberville 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
-#> 1872 sponsor_candidate 1/0/T/F/TRUE/FALSE Daniel M. Gade   'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
-#> 1873 sponsor_candidate 1/0/T/F/TRUE/FALSE Daniel M. Gade   'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
-#> 2477 sponsor_candidate 1/0/T/F/TRUE/FALSE Nicole Galloway  'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 1926 sponsor_candidate 1/0/T/F/TRUE/FALSE Ben Ray Luján    'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 1927 sponsor_candidate 1/0/T/F/TRUE/FALSE Ben Ray Luján    'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 2680 sponsor_candidate 1/0/T/F/TRUE/FALSE Tommy Tuberville 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 2681 sponsor_candidate 1/0/T/F/TRUE/FALSE Tommy Tuberville 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 2682 sponsor_candidate 1/0/T/F/TRUE/FALSE Jon Ossoff       'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
 #> .... ................. .................. ................ .....................................................................
 #> See problems(...) for more details.
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 7,363 x 7
-#>    poll_id start_date end_date   pollster          state   candidate_name    pct
-#>      <dbl> <date>     <date>     <chr>             <chr>   <chr>           <dbl>
-#>  1   71450 2020-10-18 2020-10-19 Rasmussen Report… Ohio    Joseph R. Bide…  48  
-#>  2   71450 2020-10-18 2020-10-19 Rasmussen Report… Ohio    Donald Trump     47  
-#>  3   71457 2020-10-18 2020-10-19 Rasmussen Report… Pennsy… Joseph R. Bide…  50  
-#>  4   71457 2020-10-18 2020-10-19 Rasmussen Report… Pennsy… Donald Trump     47  
-#>  5   71435 2020-10-17 2020-10-19 Emerson College   Georgia Joseph R. Bide…  47  
-#>  6   71435 2020-10-17 2020-10-19 Emerson College   Georgia Donald Trump     48.4
-#>  7   71379 2020-10-13 2020-10-19 Ipsos             Pennsy… Joseph R. Bide…  49  
-#>  8   71379 2020-10-13 2020-10-19 Ipsos             Pennsy… Donald Trump     45  
-#>  9   71379 2020-10-13 2020-10-19 Ipsos             Pennsy… Joseph R. Bide…  49  
-#> 10   71379 2020-10-13 2020-10-19 Ipsos             Pennsy… Donald Trump     45  
-#> # … with 7,353 more rows
+#> # A tibble: 8,895 x 7
+#>    poll_id start_date end_date   pollster      state      candidate_name     pct
+#>      <dbl> <date>     <date>     <chr>         <chr>      <chr>            <dbl>
+#>  1   71890 2020-10-24 2020-10-24 Gravis Marke… Michigan   Joseph R. Biden…    55
+#>  2   71890 2020-10-24 2020-10-24 Gravis Marke… Michigan   Donald Trump        42
+#>  3   71894 2020-09-27 2020-10-24 SurveyMonkey  West Virg… Joseph R. Biden…    33
+#>  4   71894 2020-09-27 2020-10-24 SurveyMonkey  West Virg… Donald Trump        66
+#>  5   71894 2020-09-27 2020-10-24 SurveyMonkey  West Virg… Joseph R. Biden…    33
+#>  6   71894 2020-09-27 2020-10-24 SurveyMonkey  West Virg… Donald Trump        66
+#>  7   71899 2020-09-27 2020-10-24 SurveyMonkey  Utah       Joseph R. Biden…    45
+#>  8   71899 2020-09-27 2020-10-24 SurveyMonkey  Utah       Donald Trump        52
+#>  9   71899 2020-09-27 2020-10-24 SurveyMonkey  Utah       Joseph R. Biden…    45
+#> 10   71899 2020-09-27 2020-10-24 SurveyMonkey  Utah       Donald Trump        52
+#> # … with 8,885 more rows
 ```
 
 ### Polls by State
