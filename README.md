@@ -91,29 +91,29 @@ to focus on:
 new_polls <- fivethirtyeight_update(polls="president_polls")
 #> Warning: 54 parsing failures.
 #>  row               col           expected           actual                                                                  file
-#> 1926 sponsor_candidate 1/0/T/F/TRUE/FALSE Ben Ray Luján    'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
-#> 1927 sponsor_candidate 1/0/T/F/TRUE/FALSE Ben Ray Luján    'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
-#> 2680 sponsor_candidate 1/0/T/F/TRUE/FALSE Tommy Tuberville 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
-#> 2681 sponsor_candidate 1/0/T/F/TRUE/FALSE Tommy Tuberville 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
-#> 2682 sponsor_candidate 1/0/T/F/TRUE/FALSE Jon Ossoff       'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 4690 sponsor_candidate 1/0/T/F/TRUE/FALSE Ben Ray Luján    'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 4691 sponsor_candidate 1/0/T/F/TRUE/FALSE Ben Ray Luján    'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 5444 sponsor_candidate 1/0/T/F/TRUE/FALSE Tommy Tuberville 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 5445 sponsor_candidate 1/0/T/F/TRUE/FALSE Tommy Tuberville 'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
+#> 5446 sponsor_candidate 1/0/T/F/TRUE/FALSE Jon Ossoff       'https://projects.fivethirtyeight.com/polls-page/president_polls.csv'
 #> .... ................. .................. ................ .....................................................................
 #> See problems(...) for more details.
 new_polls %>% filter(!is.na(state)) %>%
   select(poll_id, start_date, end_date, pollster, state, candidate_name, pct)
-#> # A tibble: 8,895 x 7
-#>    poll_id start_date end_date   pollster      state      candidate_name     pct
-#>      <dbl> <date>     <date>     <chr>         <chr>      <chr>            <dbl>
-#>  1   71890 2020-10-24 2020-10-24 Gravis Marke… Michigan   Joseph R. Biden…    55
-#>  2   71890 2020-10-24 2020-10-24 Gravis Marke… Michigan   Donald Trump        42
-#>  3   71894 2020-09-27 2020-10-24 SurveyMonkey  West Virg… Joseph R. Biden…    33
-#>  4   71894 2020-09-27 2020-10-24 SurveyMonkey  West Virg… Donald Trump        66
-#>  5   71894 2020-09-27 2020-10-24 SurveyMonkey  West Virg… Joseph R. Biden…    33
-#>  6   71894 2020-09-27 2020-10-24 SurveyMonkey  West Virg… Donald Trump        66
-#>  7   71899 2020-09-27 2020-10-24 SurveyMonkey  Utah       Joseph R. Biden…    45
-#>  8   71899 2020-09-27 2020-10-24 SurveyMonkey  Utah       Donald Trump        52
-#>  9   71899 2020-09-27 2020-10-24 SurveyMonkey  Utah       Joseph R. Biden…    45
-#> 10   71899 2020-09-27 2020-10-24 SurveyMonkey  Utah       Donald Trump        52
-#> # … with 8,885 more rows
+#> # A tibble: 11,385 x 7
+#>    poll_id start_date end_date   pollster          state   candidate_name    pct
+#>      <dbl> <date>     <date>     <chr>             <chr>   <chr>           <dbl>
+#>  1   72621 2020-11-01 2020-11-02 Public Policy Po… Iowa    Joseph R. Bide…  49  
+#>  2   72621 2020-11-01 2020-11-02 Public Policy Po… Iowa    Donald Trump     48  
+#>  3   72647 2020-11-01 2020-11-02 Susquehanna Poll… Pennsy… Joseph R. Bide…  48.4
+#>  4   72647 2020-11-01 2020-11-02 Susquehanna Poll… Pennsy… Donald Trump     49.2
+#>  5   72647 2020-11-01 2020-11-02 Susquehanna Poll… Pennsy… Jo Jorgensen      1.4
+#>  6   72722 2020-11-01 2020-11-02 Opinion Savvy/In… Florida Joseph R. Bide…  47  
+#>  7   72722 2020-11-01 2020-11-02 Opinion Savvy/In… Florida Donald Trump     48.2
+#>  8   72722 2020-11-01 2020-11-02 Opinion Savvy/In… Florida Jo Jorgensen      1.6
+#>  9   72754 2020-10-30 2020-11-02 University of Ne… Nebras… Joseph R. Bide…  50.2
+#> 10   72754 2020-10-30 2020-11-02 University of Ne… Nebras… Donald Trump     44.3
+#> # … with 11,375 more rows
 ```
 
 ### Polls by State
