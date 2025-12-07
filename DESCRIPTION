@@ -15,10 +15,10 @@ Authors@R: c(
     person(given = "Kiegan",
            family = "Rice",
            role = c("aut"),
-           email = "ricek@iastate.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))       
+           email = "rice-kiegan@norc.org",
+           comment = c(ORCID = "0000-0002-7454-7733"))       
            )
-Description: What the package does (one paragraph).
+Description: Visualizing US election polls and results.
 License: MIT + file LICENSE
 Depends: 
     R (>= 2.10)
